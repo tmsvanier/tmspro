@@ -1,5 +1,6 @@
  
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*, tms.*" %>
+
+<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -178,10 +179,16 @@
 
     <!-- Main content -->
     <section class="content">
-
+        
+        <jsp:useBean id="myUser"  scope="request" type="tmsModelLayer.Client" beanName="tmsModelLayer.Client"   >
+            
+         </jsp:useBean> 
+        
      <% 
-                      String name=(String)session.getAttribute("accountname"); 
-                       out.println("Hi Aslan\nfinally I Got IT: You have enterd ****  \n"+name +"  *****in the first Page: "); 
+      
+                     // String name=(String)session.getAttribute("accountname"); 
+                     
+                       out.println("Hi Aslan\nfinally I Got IT: You have enterd ****  \n"+ request.getAttribute("accountname") + myUser.getClientId()+  "  *****in the first Page: "); 
                        %> 
 
     </section>
