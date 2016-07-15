@@ -110,7 +110,7 @@
  
 
                 <p>
-                     
+                    
                   Client's Name - Client
                   <small>Member since Nov. 2012</small>
                 </p>
@@ -179,18 +179,19 @@
 
     <!-- Main content -->
     <section class="content">
-        
-        <jsp:useBean id="myUser"  scope="request" type="tmsModelLayer.Client" beanName="tmsModelLayer.Client"   >
-            
-         </jsp:useBean> 
-        
-     <% 
-      
+        <%!Client myuser=new Client();
+          %>
+        <%=myuser.getClientId()
+           
+        %></br>
+        <%= application.getAttribute("fff").toString() %></br>
+ 
+    
+       <% 
                      // String name=(String)session.getAttribute("accountname"); 
                      
-                       out.println("Hi Aslan\nfinally I Got IT: You have enterd ****  \n"+ request.getAttribute("accountname") + myUser.getClientId()+  "  *****in the first Page: "); 
-                       %> 
-
+         out.println("Hi Aslan\nfinally I Got IT: You have enterd ****  \n  *****in the first Page: "); 
+       %> 
     </section>
     <!-- /.content -->
     

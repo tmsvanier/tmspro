@@ -11,7 +11,7 @@ import BussinessLayer.Interface.Person;
  *
  * @author cstuser
  */
-public class Client extends Person{
+public class Client extends Person implements java.io.Serializable{
     private int clientId;
 
     public Client() {
@@ -35,5 +35,10 @@ public class Client extends Person{
       super.setPassword(tmp.getPassword());
       super.setPhone(tmp.getPhone());
     } 
+
+    @Override
+    public String toString() {
+        return "Client{" + "clientId=" + clientId + '}';
+    }
     
 }

@@ -42,10 +42,10 @@ UserLogin log;
         String username = request.getParameter("username");
         String password = request.getParameter("pass");
         String role=request.getParameter("role");
-        HttpSession mysession =request.getSession();
+//        HttpSession mysession = request.getSession();
        
         //sesion scope
-//       String t= request.getAttribute("username");
+  // String t= request.getAttribute("username");
 //      HttpSession mysession =request.getSession();
 //      if(mysession !=null){
 //          mysession.getAttribute("username");
@@ -59,11 +59,11 @@ UserLogin log;
            else if(check==-1)// not exist in database
                 response.sendRedirect("alert.jsp");           
              processRequest(request, response);    
-             
+              
              
             //HttpSession loginSession =request.getSession();
             //loginSession.setAttribute("login", log);
-             mysession.setAttribute("accountname", username);
+            // mysession.setAttribute("accountname", username);
     }
     private UserLogin getLogin(){
       log=new UserLogin();

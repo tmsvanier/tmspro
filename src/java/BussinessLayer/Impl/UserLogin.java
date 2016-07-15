@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package BussinessLayer.Impl;
-
 import BussinessLayer.Interface.LoginUser;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+
 import tmsModelLayer.Oracle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,8 @@ import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
 import tmsModelLayer.Driver;
 import tmsModelLayer.Provider;
+import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -24,19 +27,22 @@ public class UserLogin implements LoginUser {
       Oracle loginOrcl=null;
       ResultSet rslt=null;
       String query=""; 
-     
-       
+      HttpSession mySession;
+       ServletContext myapp;
     @Override
     public int check_Username(int role,String Tusername,String pass) {
        int exist=-1;      
         switch (role){
             case 1:{                
-               Client myUser=new Client();
-               myUser.makeCopy(getClient(Tusername));//copy from database
-                if(myUser.getPassword().equals(pass))
+              Client test=new Client();
+              
+               test.makeCopy(getClient(Tusername));//copy from database
+             
+             myapp.setAttribute( "fff",test);
+                if(test.getPassword().equals(pass))
                  exist=1;
-               else if(myUser.getClientId()!=0){
-                   if(checkPass(1,Tusername,myUser.getPassword()))
+               else if(test.getClientId()!=0){
+                   if(checkPass(1,Tusername,test.getPassword()))
                        exist=0;
                }    
                 break;
