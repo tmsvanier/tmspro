@@ -184,12 +184,14 @@
  
     
        <% 
-           Client myuser=(Client) session.getAttribute("login");
-         
-                     // String name=(String)session.getAttribute("accountname")<%= application.getAttribute("fff").toString() 
-                     
-         out.println("Hi Aslan\nfinally I Got IT: You have enterd ****\n"+myuser.getFullName()+  "*****in the first Page: "); 
-       %> 
+           Client myuser=(Client) session.getAttribute("login");                     
+           out.println(" \nuser Fullname: "+myuser.getFullName());
+           out.println(" user userId "+myuser.getClientId());
+           out.println(" user address "+myuser.getAddress());
+            out.println(" user email "+myuser.getEmail());
+           out.println(" user Telephone "+myuser.getPhone());
+       %>
+       
     </section>
     <!-- /.content -->
     
