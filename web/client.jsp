@@ -4,7 +4,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-            
+      <% 
+           Client myuser=(Client) session.getAttribute("login"); %>      
 <html>
 <head>
   <meta charset="utf-8">
@@ -101,7 +102,7 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
          
-            
+            <%= myuser.getFullName()%>
 
             </a>
             <ul class="dropdown-menu">
@@ -111,8 +112,16 @@
 
                 <p>
                     
-                  Client's Name - Client
-                  <small>Member since Nov. 2012</small>
+                  <%= myuser.getFullName()%> - Client
+                  <small>
+                         <% 
+  
+           out.println("Client ID: "+myuser.getClientId()); %><br>
+          <%  out.println("Address "+myuser.getAddress());%><br>
+           <%  out.println("Email "+myuser.getEmail());%><br>
+         <%   out.println("Telephone "+myuser.getPhone());
+       %></small>
+       
                 </p>
               </li>
 
@@ -183,14 +192,7 @@
         
  
     
-       <% 
-           Client myuser=(Client) session.getAttribute("login");                     
-           out.println(" \nuser Fullname: "+myuser.getFullName());
-           out.println(" user userId "+myuser.getClientId());
-           out.println(" user address "+myuser.getAddress());
-            out.println(" user email "+myuser.getEmail());
-           out.println(" user Telephone "+myuser.getPhone());
-       %>
+ 
        
     </section>
     <!-- /.content -->
@@ -294,27 +296,29 @@
  
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
         <label for="inputName" class="sr-only" >Account number</label>
-        <input type="text" id="inputName" class="form-control" placeholder="Account number" disabled autofocus name="accountname">
+        <input type="text" id="inputName" class="form-control" placeholder="Account number" disabled autofocus name="accountname" value="<% out.println(myuser.getUsername()); %>">
         </div>
         
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>  
         <label for="inputName" class="sr-only" >Full Name or Organization</label>
-        <input type="text" id="inputName" class="form-control" placeholder="Full Name or Organization" required autofocus name="name">
+        <input type="text" id="inputName" class="form-control" placeholder="Full Name or Organization" required autofocus name="name" value="<%= myuser.getFullName()%>">
         </div>
-        
+ 
+           <br>
+         
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>    
         <label for="inputAddress" class="sr-only" >Address (including postal code)</label>
-        <input type="text" id="inputAddress" class="form-control" placeholder="Address (including postal code)" required autofocus name="address">
+        <input type="text" id="inputAddress" class="form-control" placeholder="Address (including postal code)" required autofocus name="address" value="<%out.println(myuser.getAddress());%>">
         </div>
         
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>  
         <label for="inputTelephone" class="sr-only" >Telephone Number</label>
-        <input type="text" id="inputTelephone" class="form-control" placeholder="Telephone Number" required autofocus name="telephone">
+        <input type="text" id="inputTelephone" class="form-control" placeholder="Telephone Number" required autofocus name="telephone" value="<%   out.println(myuser.getPhone());%>">
         </div>
         
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></div>
         <label for="inputEmail" class="sr-only" >Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus name="email">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus name="email" value="<%  out.println(myuser.getEmail());%>">
         </div>
         <p></p>
  
