@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * @author omid
  */
 public class LoginServlet extends HttpServlet {
-UserLogin log;
+UserLogin log,clienttest;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,11 +59,12 @@ UserLogin log;
            else if(check==-1)// not exist in database
                 response.sendRedirect("alert.jsp");           
              processRequest(request, response);    
-              
+              Client myclinet=new Client();
+             myclinet.makeCopy(getLogin().getClient(username));
              
-            //HttpSession loginSession =request.getSession();
-            //loginSession.setAttribute("login", log);
-            // mysession.setAttribute("accountname", username);
+            HttpSession loginSession =request.getSession();
+            loginSession.setAttribute("login", myclinet);
+             
     }
     private UserLogin getLogin(){
       log=new UserLogin();
