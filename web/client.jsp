@@ -179,18 +179,16 @@
 
     <!-- Main content -->
     <section class="content">
-        <%!Client myuser=new Client();
-          %>
-        <%=myuser.getClientId()
-           
-        %></br>
-        <%= application.getAttribute("fff").toString() %></br>
+       
+        
  
     
        <% 
-                     // String name=(String)session.getAttribute("accountname"); 
+           Client myuser=(Client) session.getAttribute("login");
+         
+                     // String name=(String)session.getAttribute("accountname")<%= application.getAttribute("fff").toString() 
                      
-         out.println("Hi Aslan\nfinally I Got IT: You have enterd ****  \n  *****in the first Page: "); 
+         out.println("Hi Aslan\nfinally I Got IT: You have enterd ****\n"+myuser.getFullName()+  "*****in the first Page: "); 
        %> 
     </section>
     <!-- /.content -->
