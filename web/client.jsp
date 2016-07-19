@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
       <% 
-           Client myuser=(Client) session.getAttribute("login"); %>      
+           Client myuser=(Client) session.getAttribute("clientpage"); %>      
 <html>
 <head>
   <meta charset="utf-8">
