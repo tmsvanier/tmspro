@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -35,13 +35,10 @@ public class UserLogin implements LoginUser {
         switch (role){
             case 1:{                
               Client test=new Client();
-              
-               test.makeCopy(getClient(Tusername));//copy from database
-             
-             myapp.setAttribute( "fff",test);
-                if(test.getPassword().equals(pass))
+              test.makeCopy(getClient(Tusername));//copy from database
+              if(test.getPassword().equals(pass))
                  exist=1;
-               else if(test.getClientId()!=0){
+              else if(test.getClientId()!=0){
                    if(checkPass(1,Tusername,test.getPassword()))
                        exist=0;
                }    
@@ -117,8 +114,7 @@ public class UserLogin implements LoginUser {
             }
         catch (SQLException ex) {
                   Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
-              }
-        
+              }        
          loginOrcl.terminate();
         if(pass.trim().equals(str.trim()))
            match=true;
