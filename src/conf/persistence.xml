@@ -3,7 +3,14 @@
   <persistence-unit name="tmsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>tms.NewEntity</class>
-    <class>tmsModelLayer.ServletRegistration</class>
+    <class>tmsModelLayer.Kpilog</class>
+    <class>tmsModelLayer.Item</class>
+    <class>tmsModelLayer.Transportation</class>
+    <class>tmsModelLayer.Orderstatus</class>
+    <class>tmsModelLayer.Itemcategory</class>
+    <class>tmsModelLayer.Gps</class>
+    <class>tmsModelLayer.Orders</class>
+    <class>tmsModelLayer.ServletPackage.ServletRegistration</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:scott"/>
