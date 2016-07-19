@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
  * @author omid
  */
 public class LoginServlet extends HttpServlet {
-UserLogin log,clienttest;
-    
+UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,22 +38,41 @@ UserLogin log,clienttest;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
-        String username = request.getParameter("username");
-        String password = request.getParameter("pass");
-        String role=request.getParameter("role");
-//        HttpSession mysession = request.getSession();
-       
-        //sesion scope
-  // String t= request.getAttribute("username");
-//      HttpSession mysession =request.getSession();
-//      if(mysession !=null){
-//          mysession.getAttribute("username");
-//      }
+        
+       HttpSession loginSession =request.getSession();
+          
+       String username = request.getParameter("username");
+       String password = request.getParameter("pass");
+       int role=Integer.parseInt(request.getParameter("role"));
        int check=-1;
-       check= getLogin().check_Username(Integer.parseInt(role), username,password);
-           if(check==1)//correct information
+       check= getLogin().check_Username(role, username,password);
+       
+        switch (role){
+            case 1:{
+                user_1=new Client();
+                break;
+            }
+            case 2:{
+                user_2=new Provider();
+                break;
+            }
+            case 3:{
+                user_3=new Carrier();
+                break;
+            }
+            case 4:{
+                user_4=new Driver();
+                break;
+            }
+        }
+           if(check==1 &&role==1)//correct information
+           {
+               user_1.makeCopy(getLogin().getClient(username));
+               loginSession.setAttribute("clientpage", user_1);
                response.sendRedirect("client.jsp");
+               
+           }//redirect to client page
+           
            else if(check==0)//meets username only
               response.sendRedirect("index.jsp");
            else if(check==-1)// not exist in database
@@ -62,7 +81,7 @@ UserLogin log,clienttest;
               Client myclinet=new Client();
              myclinet.makeCopy(getLogin().getClient(username));
              
-            HttpSession loginSession =request.getSession();
+           
             loginSession.setAttribute("login", myclinet);
              
     }
