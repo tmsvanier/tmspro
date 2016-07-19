@@ -81,6 +81,7 @@ public class Orders implements Serializable {
     private Gps gps;
 
     public Orders() {
+        
     }
 
     public Orders(Long orderid) {

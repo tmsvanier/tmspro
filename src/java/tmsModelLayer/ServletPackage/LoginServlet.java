@@ -5,6 +5,12 @@ import BussinessLayer.Impl.UserLogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
 import tmsModelLayer.Driver;
+import tmsModelLayer.Orders;
 import tmsModelLayer.Provider;
 
 /**
@@ -20,7 +27,7 @@ import tmsModelLayer.Provider;
  * @author omid
  */
 public class LoginServlet extends HttpServlet {
-UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
+UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;Set<Orders> client_order;Orders order;
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -54,6 +61,7 @@ UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
         switch (role){
             case 1:{
                 user_1=new Client();
+                client_order=new LinkedHashSet ();
                 break;
             }
             case 2:{
@@ -73,6 +81,7 @@ UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
            {
                user_1.makeCopy(getLogin().getClient(username));
                loginSession.setAttribute("clientpage", user_1);
+               client_order.
                response.sendRedirect("client.jsp");
                
            }//redirect to client page
