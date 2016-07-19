@@ -210,5 +210,8 @@ public class Orders implements Serializable {
     public String toString() {
         return "tmsModelLayer.Orders[ orderid=" + orderid + " ]";
     }
-    
+    public void makeCopy(Orders tOrder){
+        
+        orderid=tOrder.getOrderid();
+    }
 }

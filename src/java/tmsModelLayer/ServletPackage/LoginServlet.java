@@ -2,6 +2,7 @@
 package tmsModelLayer.ServletPackage;
 
 import BussinessLayer.Impl.UserLogin;
+import BussinessLayer.Impl.UserOrderItem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +29,7 @@ import tmsModelLayer.Provider;
  */
 public class LoginServlet extends HttpServlet {
 UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;Set<Orders> client_order;Orders order;
-  
+UserOrderItem user_order;  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -81,7 +82,7 @@ UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;Set<Ord
            {
                user_1.makeCopy(getLogin().getClient(username));
                loginSession.setAttribute("clientpage", user_1);
-               client_order.
+               //order.makeCopy(getUserOrder().getClientOrder(user_1.getClientId()));
                response.sendRedirect("client.jsp");
                
            }//redirect to client page
@@ -102,7 +103,10 @@ UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;Set<Ord
       log=new UserLogin();
       return log;
     }
-    
+    private UserOrderItem getUserOrder(){
+        user_order=new UserOrderItem();
+        return user_order;
+    }
     @Override
     public String getServletInfo() {
         return "Short description";

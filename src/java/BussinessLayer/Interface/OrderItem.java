@@ -14,9 +14,9 @@ import tmsModelLayer.Orders;
  */
 public interface OrderItem {
     public Orders getClientOrder(int cL_Id);
-    public Item getOrderItem(int orderId);
+    public Item getOrderItem(long orderId);
     public Orders getCarrierOrder(int cR_Id);
     public Orders getDriverOrder(int dR_Id);
     public Orders getProviderOrder(int pR_Id);
-    public int getPosition(int orderId);
+    public int getPosition(long orderId);
 }
