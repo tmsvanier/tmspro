@@ -117,9 +117,9 @@
                          <% 
   
            out.println("Client ID: "+myuser.getClientId()); %><br>
-          <%  out.println("Address "+myuser.getAddress());%><br>
-           <%  out.println("Email "+myuser.getEmail());%><br>
-         <%   out.println("Telephone "+myuser.getPhone());
+          <%  out.println("Address: "+myuser.getAddress());%><br>
+           <%  out.println("Email: "+myuser.getEmail());%><br>
+         <%   out.println("Telephone: "+myuser.getPhone());
        %></small>
        
                 </p>
@@ -244,7 +244,44 @@
     <!-- Main content -->
     <section class="content">
 
-      <!-- Your Page Content Here -->dfff
+ 
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Recent Orders</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ID</th>
+                  <th>Destination</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Comments</th>
+                </tr>
+                <tr>
+                    <td><a href="fff"><%  out.println(myuser.getAddress());%></a></td>
+                  <td>John Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
     </section>
     <!-- /.content -->
