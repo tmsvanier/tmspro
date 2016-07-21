@@ -218,8 +218,158 @@
     <!-- Main content -->
     <section class="content">
 
-      <!-- Your Page Content Here -->dfff
+<form action="Order"  method="post" class="form-update" name="order">
+ 
+        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
+        <label for="departure" class="sr-only" >Departure(Enter Address)</label>
+        <input type="text" id="departure" class="form-control" placeholder="Departure (Enter Address)" required autofocus name="departure">
+        </div>
 
+         
+        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
+        <label for="destination" class="sr-only" >Destination(Enter Address)</label>
+        <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
+        </div>
+    Items:
+        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 1. Description" name="item1desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item1category">
+                    <option>Category</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item1qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item1volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item1weight">
+                </div>
+              </div>    
+        
+        </div>
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 2. Description" name="item2desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item2category">
+                    <option>Category</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item2qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item2volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item2weight">
+                </div>
+              </div>    
+        
+        </div>
+        
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 3. Description" name="item3desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item3category">
+                    <option>Category</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item3qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item3volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item3weight">
+                </div>
+              </div>    
+        
+        </div>
+ 
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 4. Description" name="item4desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item4category">
+                    <option>Category</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item4qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item4volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item4weight">
+                </div>
+              </div>    
+        
+        </div>
+    
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 5. Description" name="item5desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item5category">
+                    <option>Category</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item5qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item5volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item5weight">
+                </div>
+              </div>    
+        
+        </div>
+
+        <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order" >Create an Order</button>
+      </form>
+        
+        
     </section>
     <!-- /.content -->
   </div>
