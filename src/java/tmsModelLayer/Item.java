@@ -38,11 +38,11 @@ public class Item implements Serializable {
     protected ItemPK itemPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ITEMWEIGHT")
-    private BigDecimal itemweight;
+    private double itemweight;
     @Column(name = "ITEMVOLUME")
     private Integer itemvolume;
     @Column(name = "ITEMPRICE")
-    private BigDecimal itemprice;
+    private double itemprice;
     @Column(name = "ITEMQTY")
     private Integer itemqty;
     @JoinColumn(name = "ITEMCATEGORYID", referencedColumnName = "ITEMCATEGORYID", insertable = false, updatable = false)
@@ -71,11 +71,11 @@ public class Item implements Serializable {
         this.itemPK = itemPK;
     }
 
-    public BigDecimal getItemweight() {
+    public double getItemweight() {
         return itemweight;
     }
 
-    public void setItemweight(BigDecimal itemweight) {
+    public void setItemweight(double itemweight) {
         this.itemweight = itemweight;
     }
 
@@ -87,11 +87,11 @@ public class Item implements Serializable {
         this.itemvolume = itemvolume;
     }
 
-    public BigDecimal getItemprice() {
+    public double getItemprice() {
         return itemprice;
     }
 
-    public void setItemprice(BigDecimal itemprice) {
+    public void setItemprice(double itemprice) {
         this.itemprice = itemprice;
     }
 
@@ -141,7 +141,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "tmsModelLayer.Item[ itemPK=" + itemPK + " ]";
+        return "Item information: "+itemweight+"//"+itemprice+"//"+itemqty+"\n";
     }
     
 }

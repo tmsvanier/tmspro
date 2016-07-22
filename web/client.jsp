@@ -4,12 +4,58 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+<%!
+public String getStatusDesc(int num){
+    String str="";
+   
+    switch(num){
+        case 2:{
+            str="Submited";break;
+        }
+        case 3:{
+            str="Confirmed";break;
+        }
+         case 4:{
+            str="Shipped";break;
+        }
+          case 5:{
+            str="Delivered";break;
+        }
+          case 6:{
+            str="Cancelled";break;
+        }
+          default:{
+               str="undefined";break;
+          }
+          
+    }//end switch
+    return str;
+}
+public String gettype(int num){
+    String type="";
+    if(num==2)type="label-info" ;else if(num==3)type="label-info" ;
+     else if(num==4)type="label-primary"; else if(num==5)type="label-success";
+     else if(num==6)type="label-danger";
+    return type;
+}
+public void showIem(Orders Tmp){
+  //  ArrayList mylist=new ArrayList();
+    for (Item element:Tmp.getItemCollection()){
+         System.out.println("<tr>");
+    System.out.println("<td>"+element.getItemweight()+"</td>");
+    System.out.println("<td>"+element.getItemqty()+"</td>");
+    System.out.println("<td>"+element.getItemvolume()+"</td>");
+   System.out.println("</tr></br>"); 
+    } 
+}
+%>
       <% 
            Client myuser=(Client) session.getAttribute("clientpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
+           
            Iterator it=myorder.iterator();
       %>      
-<html>
+<html  >
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,7 +108,6 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
  
-
           
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
@@ -416,38 +461,56 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>ID</th>
-                  <th>Destination</th>
-                  <th>Date</th>
+                  <th>Order ID</th>
+                  <th>Departure</th>
+                  <th>Arrival</th>
                   <th>Status</th>
-                  <th>Comments</th>
+                  <th >Drider Id</th>
+                  <th>Request Date</th>
+                   <th>Distance </th>
                 </tr>
-                <% for(Orders element:myorder){
+                <% for(Orders element:myorder){                                
                  out.println("<tr>");
-                    out.println("<td>"+element.getOrderid()+"</td>");
+                    out.println("<td><a  href=#show '>"+element.getOrderid()+"</a></td>");
+                    out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
-                    out.println("<td>"+element.getStatusid()+"</td>");
-                     out.println("<td>"+element.getProviderid()+"</td>");
-                //  <td>11-7-2014</td>
-                  //<td><span class="label label-success">Approved</span></td>
-                 // <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
+                    out.println("<td>"+element.getDriverid()+"</td>");
+                    out.println("<td>"+element.getOrderdate()+"</td>");
+                     out.println("<td>"+element.getDistance()+"</td>");
                 out.println("</tr>"); 
                }%>
               </table>
+            
             </div>
-            <!-- /.box-body -->
+            
           </div>
           <!-- /.box -->
 
     </section>
-    <!-- /.content -->
+           <div id="show">
+                   <% for(Orders element:myorder){
+                      if(element.getOrderid()==4){
+                           out.print("item informaion related to "+element.getOrderid());
+                     for(Item record:element.getItemCollection()){
+               
+                     out.println("</br><tr>");
+                     out.println("<td>"+record.toString()+"</td>");
+                       out.println("</tr></br>");
+                       }
+                       }       
+                  }%>
+                 </div>    
   </div>
   <!-- /.content-wrapper -->
     </div>
  
+
  
  
-     <div id="report" class="tab-pane fade">
+ 
+ 
+  <div id="report" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

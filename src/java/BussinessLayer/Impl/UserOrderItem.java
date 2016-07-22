@@ -6,8 +6,10 @@
 package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.OrderItem;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +26,8 @@ import tmsModelLayer.Orders;
 public class UserOrderItem implements OrderItem{
     Oracle order_Conn=null;
     Set<Orders> orderSet=null;
-    ResultSet rslt=null;
+    ArrayList<Item>orderItems=null;
+    ResultSet rslt,rslt1=null;
     String  query="";
     @Override
     public Set<Orders> getClientOrder(int cL_Id) {
@@ -40,6 +43,7 @@ public class UserOrderItem implements OrderItem{
         query="SELECT *FROM ORDERS WHERE CLIENTID="+cL_Id;
         rslt=order_Conn.getResult(query);
         orderSet=new HashSet();
+        orderItems=new ArrayList();
         try {
             while(rslt.next()){
                 Orders record=new Orders();
@@ -47,15 +51,31 @@ public class UserOrderItem implements OrderItem{
                 record.setProviderid(rslt.getShort("providerid"));
                 record.setStatusid(rslt.getInt("statusId"));
                 record.setArrival(rslt.getString("arrival"));
+                record.setDeparture(rslt.getString("departure"));
+                record.setOrderdate(rslt.getDate("orderdate"));
+                record.setDriverid(rslt.getInt("driverid"));
+                record.setDistance(rslt.getBigDecimal("distance"));
+                query="Select * from Item where orderid="+record.getOrderid();
+                rslt1=order_Conn.getResult(query);
+                while(rslt1.next()){
+                    Item element=new Item();
+                    element.setItemprice(rslt1.getDouble("itemprice"));
+                    element.setItemvolume(rslt1.getInt("itemvolume"));
+                   element.setItemqty(rslt1.getInt("itemqty"));
+                   element.setItemweight(rslt1.getDouble("itemweight"));
+                    orderItems.add(element);
+                }
+                record.setItemCollection(orderItems);
                 orderSet.add(record);
                 
-                //ords.set
-            }
+             
+            }//end of orderset pushing
+            
            } 
         catch (SQLException ex) {
                 Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
              }
-        
+        order_Conn.terminate();
        return  orderSet; 
     }
 

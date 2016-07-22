@@ -7,8 +7,10 @@ package tmsModelLayer;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -71,7 +73,7 @@ public class Orders implements Serializable {
     @Column(name = "PROVIDERID")
     private Short providerid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
-    private Collection<Item> itemCollection;
+    private ArrayList<Item> itemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     private Collection<Kpilog> kpilogCollection;
     @JoinColumn(name = "STATUSID", referencedColumnName = "STATUSID")
@@ -79,7 +81,10 @@ public class Orders implements Serializable {
     private int statusid;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "orders")
     private Gps gps;
-
+    Carrier orderCarrier;
+    Driver OrderDriver;
+    Provider OrderProvidr;
+    
     public Orders() {
         
     }
@@ -153,11 +158,11 @@ public class Orders implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Item> getItemCollection() {
+    public ArrayList<Item> getItemCollection() {
         return itemCollection;
     }
 
-    public void setItemCollection(Collection<Item> itemCollection) {
+    public void setItemCollection(ArrayList<Item> itemCollection) {
         this.itemCollection = itemCollection;
     }
 
