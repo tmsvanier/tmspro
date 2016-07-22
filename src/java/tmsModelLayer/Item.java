@@ -149,7 +149,12 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item information: Category: "+categoryDetail+", Weight: "+itemweight+"kg,  Quantity: "+itemqty+", Price: "+itemprice+" $";
+        String str="";
+        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbspCategory&nbsp;&nbsp;&nbsp;&nbsp;&nbspWeight(kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbspitemqty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspPrice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</br>";
+        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+categoryDetail+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemweight+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemqty+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemprice+" $</br>";
+        str+="----------------------------------------------------------------------------------------</br>";
+        
+        return str;
     }
     
 }

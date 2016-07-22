@@ -501,11 +501,14 @@ public void showIem(Orders Tmp){
                   out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
                   out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
                   out.println("  <div class='modal-body'>");
+                  int i=0;
                     for(Item record: element.getItemCollection()){
-                        out.println("--------------------------------------------------------------------------------------------------</br>");
+                        i++;
+                        out.println("item No: "+i+"</br>");
+                        
                     %>
                     <%=  record.toString()%>
-                    <%out.println("</br>");}//iner loop
+                    <%}//iner loop
                    out.println(" </div> <div class='modal-footer'>"); 
                out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                out.println("  </div></div></div></div>"); 
@@ -517,7 +520,8 @@ public void showIem(Orders Tmp){
             
           </div>
           <!-- /.box -->
-
+         
+          
     </section>
             
   </div>
