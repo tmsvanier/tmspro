@@ -76,7 +76,7 @@ public class Orders implements Serializable {
     private Collection<Kpilog> kpilogCollection;
     @JoinColumn(name = "STATUSID", referencedColumnName = "STATUSID")
     @ManyToOne
-    private Orderstatus statusid;
+    private int statusid;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "orders")
     private Gps gps;
 
@@ -170,12 +170,12 @@ public class Orders implements Serializable {
         this.kpilogCollection = kpilogCollection;
     }
 
-    public Orderstatus getStatusid() {
+    public int getStatusid() {
         return statusid;
     }
 
-    public void setStatusid(Orderstatus statusid) {
-        this.statusid = statusid;
+    public void setStatusid(int states) {
+        this.statusid = states;
     }
 
     public Gps getGps() {
@@ -208,7 +208,7 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return "tmsModelLayer.Orders[ orderid=" + orderid + " ]";
+        return ""+ orderid;
     }
     public void makeCopy(Orders tOrder){
         

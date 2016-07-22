@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +29,7 @@ import tmsModelLayer.Provider;
  * @author omid
  */
 public class LoginServlet extends HttpServlet {
-UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;Set<Orders> client_order;Orders order;
+UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
 UserOrderItem user_order;  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,7 +63,7 @@ UserOrderItem user_order;
         switch (role){
             case 1:{
                 user_1=new Client();
-                client_order=new LinkedHashSet ();
+                //client_order=new HashSet ();
                 break;
             }
             case 2:{
@@ -82,7 +83,7 @@ UserOrderItem user_order;
            {
                user_1.makeCopy(getLogin().getClient(username));
                loginSession.setAttribute("clientpage", user_1);
-               //order.makeCopy(getUserOrder().getClientOrder(user_1.getClientId()));
+               loginSession.setAttribute("orders", getUserOrder().getClientOrder(user_1.getClientId()));
                response.sendRedirect("client.jsp");
                
            }//redirect to client page

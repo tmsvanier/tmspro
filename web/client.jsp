@@ -5,7 +5,10 @@
 
 <!DOCTYPE html>
       <% 
-           Client myuser=(Client) session.getAttribute("clientpage"); %>      
+           Client myuser=(Client) session.getAttribute("clientpage");
+           Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
+           Iterator it=myorder.iterator();
+      %>      
 <html>
 <head>
   <meta charset="utf-8">
@@ -419,14 +422,17 @@
                   <th>Status</th>
                   <th>Comments</th>
                 </tr>
-                <tr>
-                    <td><a href="fff"><%  out.println(myuser.getAddress());%></a></td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-               
+                <% for(Orders element:myorder){
+                 out.println("<tr>");
+                    out.println("<td>"+element.getOrderid()+"</td>");
+                    out.println("<td>"+element.getArrival()+"</td>");
+                    out.println("<td>"+element.getStatusid()+"</td>");
+                     out.println("<td>"+element.getProviderid()+"</td>");
+                //  <td>11-7-2014</td>
+                  //<td><span class="label label-success">Approved</span></td>
+                 // <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                out.println("</tr>"); 
+               }%>
               </table>
             </div>
             <!-- /.box-body -->
