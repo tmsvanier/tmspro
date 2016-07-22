@@ -4,6 +4,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+<% 
+           Client myuser=(Client) session.getAttribute("clientpage");
+           Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
+           List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
+           //Iterator it=myCategory.listIterator();
+           
+      %>    
 <%!
 public String getStatusDesc(int num){
     String str="";
@@ -39,7 +46,6 @@ public String gettype(int num){
     return type;
 }
 public void showIem(Orders Tmp){
-  //  ArrayList mylist=new ArrayList();
     for (Item element:Tmp.getItemCollection()){
          System.out.println("<tr>");
     System.out.println("<td>"+element.getItemweight()+"</td>");
@@ -49,12 +55,7 @@ public void showIem(Orders Tmp){
     } 
 }
 %>
-      <% 
-           Client myuser=(Client) session.getAttribute("clientpage");
-           Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
-           
-           Iterator it=myorder.iterator();
-      %>      
+        
 <html  >
 <head>
   <meta charset="utf-8">
@@ -231,7 +232,8 @@ public void showIem(Orders Tmp){
         Dashboard
         <small>Main page for Clients</small>
       </h1>
-
+        
+       
     </section>
 
     <!-- Main content -->
@@ -287,10 +289,12 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item1category">
                     <option>Category</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                    <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
                   </select>
                 </div>
                 <div class="col-xs-1">
@@ -313,10 +317,12 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item2category">
                     <option>Category</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
                   </select>
                 </div>
                 <div class="col-xs-1">
@@ -340,10 +346,12 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item3category">
                     <option>Category</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
                   </select>
                 </div>
                 <div class="col-xs-1">
@@ -367,10 +375,12 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item4category">
                     <option>Category</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
                   </select>
                 </div>
                 <div class="col-xs-1">
@@ -394,10 +404,12 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item5category">
                     <option>Category</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                       <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
                   </select>
                 </div>
                 <div class="col-xs-1">

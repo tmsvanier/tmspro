@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tmsModelLayer.Item;
+import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Oracle;
 import tmsModelLayer.Orders;
 
@@ -110,6 +111,29 @@ public class UserOrderItem implements OrderItem{
     @Override
     public int getPosition(long orderId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Itemcategory> getCategory() {
+        
+        ArrayList<Itemcategory> catList=new ArrayList();
+      query="select * from Itemcategory";
+        order_Conn=new Oracle();
+        order_Conn.connect("scott", "tiger");
+        rslt=order_Conn.getResult(query);
+        try {
+            while(rslt.next()){
+               Itemcategory element=new Itemcategory(); 
+               element.setItemcategoryid(rslt.getInt("itemCategoryId"));
+               element.setItemcategorydesc(rslt.getString("itemCategoryDesc"));
+               catList.add(element);
+            }
+           order_Conn.terminate();
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return catList;
     }
     
 }

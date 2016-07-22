@@ -38,7 +38,7 @@ public class Itemcategory implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ITEMCATEGORYID")
-    private Short itemcategoryid;
+    private int itemcategoryid;
     @Size(max = 10)
     @Column(name = "ITEMCATEGORYDESC")
     private String itemcategorydesc;
@@ -52,11 +52,11 @@ public class Itemcategory implements Serializable {
         this.itemcategoryid = itemcategoryid;
     }
 
-    public Short getItemcategoryid() {
+    public int getItemcategoryid() {
         return itemcategoryid;
     }
 
-    public void setItemcategoryid(Short itemcategoryid) {
+    public void setItemcategoryid(int itemcategoryid) {
         this.itemcategoryid = itemcategoryid;
     }
 
@@ -67,37 +67,37 @@ public class Itemcategory implements Serializable {
     public void setItemcategorydesc(String itemcategorydesc) {
         this.itemcategorydesc = itemcategorydesc;
     }
+//
+//    @XmlTransient
+//    public Collection<Item> getItemCollection() {
+//        return itemCollection;
+//    }
+//
+////    public void setItemCollection(Collection<Item> itemCollection) {
+//        this.itemCollection = itemCollection;
+//    }
+//
+//    @Override
+////    public int hashCode() {
+//        int hash = 0;
+//        hash += (itemcategoryid != 1 ? itemcategoryid.hashCode() : 0);
+//        return hash;
+//    }
 
-    @XmlTransient
-    public Collection<Item> getItemCollection() {
-        return itemCollection;
-    }
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof Itemcategory)) {
+//            return false;
+//        }
+//        Itemcategory other = (Itemcategory) object;
+//        if ((this.itemcategoryid == null && other.itemcategoryid != null) || (this.itemcategoryid != null && !this.itemcategoryid.equals(other.itemcategoryid))) {
+//            return false;
+//        }
+//        return true;
+//    }
 
-    public void setItemCollection(Collection<Item> itemCollection) {
-        this.itemCollection = itemCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (itemcategoryid != null ? itemcategoryid.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Itemcategory)) {
-            return false;
-        }
-        Itemcategory other = (Itemcategory) object;
-        if ((this.itemcategoryid == null && other.itemcategoryid != null) || (this.itemcategoryid != null && !this.itemcategoryid.equals(other.itemcategoryid))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
+   
     public String toString() {
         return "tmsModelLayer.Itemcategory[ itemcategoryid=" + itemcategoryid + " ]";
     }

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
 import tmsModelLayer.Driver;
+import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Orders;
 import tmsModelLayer.Provider;
 
@@ -30,7 +31,7 @@ import tmsModelLayer.Provider;
  */
 public class LoginServlet extends HttpServlet {
 UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
-UserOrderItem user_order;  
+UserOrderItem user_order; List<Itemcategory> category=new ArrayList(); 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -63,7 +64,6 @@ UserOrderItem user_order;
         switch (role){
             case 1:{
                 user_1=new Client();
-                //client_order=new HashSet ();
                 break;
             }
             case 2:{
@@ -84,6 +84,7 @@ UserOrderItem user_order;
                user_1.makeCopy(getLogin().getClient(username));
                loginSession.setAttribute("clientpage", user_1);
                loginSession.setAttribute("orders", getUserOrder().getClientOrder(user_1.getClientId()));
+               loginSession.setAttribute("category",getUserOrder().getCategory());
                response.sendRedirect("client.jsp");
                
            }//redirect to client page
