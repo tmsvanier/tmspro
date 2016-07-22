@@ -47,11 +47,11 @@ public class Item implements Serializable {
     private Integer itemqty;
     @JoinColumn(name = "ITEMCATEGORYID", referencedColumnName = "ITEMCATEGORYID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Itemcategory itemcategory;
+    private int itemcategory;
     @JoinColumn(name = "ORDERID", referencedColumnName = "ORDERID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Orders orders;
-
+    private long orderId;
+    private String categoryDetail;
     public Item() {
     }
 
@@ -103,20 +103,28 @@ public class Item implements Serializable {
         this.itemqty = itemqty;
     }
 
-    public Itemcategory getItemcategory() {
+    public int getItemcategory() {
         return itemcategory;
     }
 
-    public void setItemcategory(Itemcategory itemcategory) {
+    public String getCategoryDetail() {
+        return categoryDetail;
+    }
+
+    public void setCategoryDetail(String categoryDetail) {
+        this.categoryDetail = categoryDetail;
+    }
+   
+    public void setItemcategory(int itemcategory) {
         this.itemcategory = itemcategory;
     }
 
-    public Orders getOrders() {
-        return orders;
+    public long getOrderId() {
+        return orderId;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 
     @Override
@@ -141,7 +149,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item information: "+itemweight+"//"+itemprice+"//"+itemqty+"\n";
+        return "Item information: Category: "+categoryDetail+", Weight: "+itemweight+"kg,  Quantity: "+itemqty+", Price: "+itemprice+" $";
     }
     
 }

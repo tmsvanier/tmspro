@@ -43,10 +43,10 @@ public class UserOrderItem implements OrderItem{
         query="SELECT *FROM ORDERS WHERE CLIENTID="+cL_Id;
         rslt=order_Conn.getResult(query);
         orderSet=new HashSet();
-        orderItems=new ArrayList();
+        
         try {
             while(rslt.next()){
-                Orders record=new Orders();
+                Orders record=new Orders();               
                 record.setOrderid(rslt.getLong("orderId"));record.setClientid(cL_Id);
                 record.setProviderid(rslt.getShort("providerid"));
                 record.setStatusid(rslt.getInt("statusId"));
@@ -55,15 +55,23 @@ public class UserOrderItem implements OrderItem{
                 record.setOrderdate(rslt.getDate("orderdate"));
                 record.setDriverid(rslt.getInt("driverid"));
                 record.setDistance(rslt.getBigDecimal("distance"));
-                query="Select * from Item where orderid="+record.getOrderid();
-                rslt1=order_Conn.getResult(query);
-                while(rslt1.next()){
+                query="Select i.*,ic.itemCategoryDesc " +
+                        "from " +
+                        "item i,itemcategory ic " +
+                         "Where " +
+                         "ic.itemCategoryId=i.itemCategoryId and i.orderid="+record.getOrderid();
+                rslt1=order_Conn.getResult(query); 
+                orderItems=new ArrayList();
+                while(rslt1.next()){                    
                     Item element=new Item();
+                    element.setOrderId(rslt1.getLong("orderid"));
+                    element.setCategoryDetail(rslt1.getString("itemCategoryDesc"));
                     element.setItemprice(rslt1.getDouble("itemprice"));
                     element.setItemvolume(rslt1.getInt("itemvolume"));
-                   element.setItemqty(rslt1.getInt("itemqty"));
-                   element.setItemweight(rslt1.getDouble("itemweight"));
-                    orderItems.add(element);
+                    element.setItemqty(rslt1.getInt("itemqty"));
+                    element.setItemweight(rslt1.getDouble("itemweight"));
+                    
+                    orderItems.add(element);                    
                 }
                 record.setItemCollection(orderItems);
                 orderSet.add(record);

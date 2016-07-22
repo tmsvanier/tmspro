@@ -72,7 +72,7 @@ public class Orders implements Serializable {
     private Integer driverid;
     @Column(name = "PROVIDERID")
     private Short providerid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     private ArrayList<Item> itemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     private Collection<Kpilog> kpilogCollection;

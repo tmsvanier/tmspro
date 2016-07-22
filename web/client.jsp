@@ -483,35 +483,22 @@ public void showIem(Orders Tmp){
                 out.println("</tr>"); 
                 
                 
-                  out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");
-                
-                  
-                
-                         
-    out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-     out.println("   <div class='modal-header'>"); 
-      out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-      out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
-      out.println("  <div class='modal-body'>"); 
-
-                    
-                    out.println(element.getDeparture()+"<br>");
-                    out.println(element.getArrival()+"<br>");
-                    out.println(element.getDriverid()+"<br>");
-                    out.println(element.getOrderdate()+"<br>");
-                     out.println(element.getDistance()+"<br>");
-        
-      
-      
-      
-      out.println(" </div> <div class='modal-footer'>"); 
-       out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
-      out.println("  </div></div></div></div>"); 
-
-                  
-                  
-                  
-               }%>
+                out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
+                out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
+                  out.println("   <div class='modal-header'>"); 
+                  out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+                  out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+                  out.println("  <div class='modal-body'>");
+                    for(Item record: element.getItemCollection()){
+                        out.println("--------------------------------------------------------------------------------------------------</br>");
+                    %>
+                    <%=  record.toString()%>
+                    <%out.println("</br>");}//iner loop
+                   out.println(" </div> <div class='modal-footer'>"); 
+               out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
+               out.println("  </div></div></div></div>"); 
+ 
+                }//the outmost loop%>
               </table>
             
             </div>
@@ -520,19 +507,7 @@ public void showIem(Orders Tmp){
           <!-- /.box -->
 
     </section>
-           <div id="show">
-                   <% for(Orders element:myorder){
-                      if(element.getOrderid()==4){
-                           out.print("item informaion related to "+element.getOrderid());
-                     for(Item record:element.getItemCollection()){
-               
-                     out.println("</br><tr>");
-                     out.println("<td>"+record.toString()+"</td>");
-                       out.println("</tr></br>");
-                       }
-                       }       
-                  }%>
-                 </div>    
+            
   </div>
   <!-- /.content-wrapper -->
     </div>
