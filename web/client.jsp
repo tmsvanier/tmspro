@@ -465,13 +465,15 @@ public void showIem(Orders Tmp){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
-                  <th >Drider Id</th>
+                  <th>Driver Id</th>
                   <th>Request Date</th>
                    <th>Distance </th>
                 </tr>
                 <% for(Orders element:myorder){                                
                  out.println("<tr>");
-                    out.println("<td><a  href=#show '>"+element.getOrderid()+"</a></td>");
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>");
+                            
+                                    
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
@@ -479,6 +481,36 @@ public void showIem(Orders Tmp){
                     out.println("<td>"+element.getOrderdate()+"</td>");
                      out.println("<td>"+element.getDistance()+"</td>");
                 out.println("</tr>"); 
+                
+                
+                  out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");
+                
+                  
+                
+                         
+    out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
+     out.println("   <div class='modal-header'>"); 
+      out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+      out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+      out.println("  <div class='modal-body'>"); 
+
+                    
+                    out.println(element.getDeparture()+"<br>");
+                    out.println(element.getArrival()+"<br>");
+                    out.println(element.getDriverid()+"<br>");
+                    out.println(element.getOrderdate()+"<br>");
+                     out.println(element.getDistance()+"<br>");
+        
+      
+      
+      
+      out.println(" </div> <div class='modal-footer'>"); 
+       out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
+      out.println("  </div></div></div></div>"); 
+
+                  
+                  
+                  
                }%>
               </table>
             
