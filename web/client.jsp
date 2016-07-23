@@ -424,9 +424,23 @@ public void showIem(Orders Tmp){
               </div>    
         
         </div>
+                  
+                  <p>
+    
+    <div class="btn-group" data-toggle="buttons"> 
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="kpi" autocomplete="off" checked>Best KPI
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="speed" autocomplete="off"> Speed
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="cost" autocomplete="off"> Cost
+  </label>
+</div>
 
         <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order" >Create an Order</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Create an Order</button>
       </form>
         
         
