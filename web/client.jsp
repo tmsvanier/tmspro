@@ -280,7 +280,39 @@ public void showIem(Orders Tmp){
         <label for="destination" class="sr-only" >Destination(Enter Address)</label>
         <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
         </div>
-    Items:
+    
+    <p>
+        
+                         
+        
+        
+        
+        
+      <div class="btn-group" data-toggle="buttons"> 
+   
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="kpi" autocomplete="off" checked>Best KPI
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="speed" autocomplete="off"> Speed
+  </label>
+    <label class="btn btn-primary">
+    <input type="radio" name="options" id="cost" autocomplete="off"> Cost
+  
+  </label>
+ &nbsp;
+             <select class="form-control-static " name="item1category">
+                    <option>Transport type</option>
+                    <option> Plane</option>
+                    <option> Train</option>
+                    <option> Track</option>
+                    <option> Marine</option>
+
+                  </select>
+      
+</div>
+    <p>
+        
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
                            <div class="col-xs-5">
@@ -427,17 +459,7 @@ public void showIem(Orders Tmp){
                   
                   <p>
     
-    <div class="btn-group" data-toggle="buttons"> 
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="kpi" autocomplete="off" checked>Best KPI
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="speed" autocomplete="off"> Speed
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="cost" autocomplete="off"> Cost
-  </label>
-</div>
+  
 
         <p></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Create an Order</button>
