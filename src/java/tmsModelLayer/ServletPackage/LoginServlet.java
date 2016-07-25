@@ -31,7 +31,7 @@ import tmsModelLayer.Provider;
  */
 public class LoginServlet extends HttpServlet {
 UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
-UserOrderItem user_order; List<Itemcategory> category=new ArrayList(); 
+UserOrderItem client_Order; List<Itemcategory> category=new ArrayList(); 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -106,8 +106,8 @@ UserOrderItem user_order; List<Itemcategory> category=new ArrayList();
       return log;
     }
     private UserOrderItem getUserOrder(){
-        user_order=new UserOrderItem();
-        return user_order;
+        client_Order=new UserOrderItem();
+        return client_Order;
     }
     @Override
     public String getServletInfo() {

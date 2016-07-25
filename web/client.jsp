@@ -8,6 +8,8 @@
            Client myuser=(Client) session.getAttribute("clientpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
+           //List<Item> items_request=new ArrayList();
+          // Orders order_Request=new Orders();
            //Iterator it=myCategory.listIterator();
            
       %>    
@@ -209,7 +211,7 @@ public void showIem(Orders Tmp){
        <!-- <li class="header">Main Menu</li>
          Optionally, you can add icons to the links -->
         <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
-        <li><a data-toggle="pill" href="#order"><i class="fa fa-plus"></i> <span>Create an Order</span></a></li>
+        <li><a data-toggle="pill" href="#order"><i class="fa fa-plus"></i> <span>Place an Order</span></a></li>
  	<li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
 <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
       </ul>
@@ -259,8 +261,8 @@ public void showIem(Orders Tmp){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create an Order
-        <small>You can create an Order here</small>
+          Place an Order
+        <small>You can place your order here</small>
       </h1>
 
     </section>
@@ -268,8 +270,8 @@ public void showIem(Orders Tmp){
     <!-- Main content -->
     <section class="content">
 
-<form action="Order"  method="post" class="form-update" name="order">
- 
+<form action="Client_order"  method="post" class="form-update" name="order" >
+    <input type=hidden id="client_id" name="client_id" value=<%=myuser.getClientId()%>>
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
         <label for="departure" class="sr-only" >Departure(Enter Address)</label>
         <input type="text" id="departure" class="form-control" placeholder="Departure (Enter Address)" required autofocus name="departure">
@@ -281,31 +283,29 @@ public void showIem(Orders Tmp){
         <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
         </div>
     
-    <p>
-        
-                         
-        
-        
-        
-        
+    <p > </br>To carry your order, which following options do you prefer to be considered ? (optional)</p>
+    
+    
       <div class="btn-group" data-toggle="buttons"> 
    
   <label class="btn btn-primary active">
-    <input type="radio" name="options" id="kpi" autocomplete="off" checked>Best KPI
+    <input type="radio" name="KPI" id="kpi" autocomplete="off" checked>TMS Suggestion
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="speed" autocomplete="off"> Speed
+    <input type="radio" name="speed" id="speed" autocomplete="off"> Time
   </label>
     <label class="btn btn-primary">
-    <input type="radio" name="options" id="cost" autocomplete="off"> Cost
-  
+    <input type="radio" name="cost" id="cost" autocomplete="off"> Cost  
+  </label>
+   <label class="btn btn-primary">
+    <input type="radio" name="NumOfReq" id="NumOfReq" autocomplete="off"> Number of request  
   </label>
  &nbsp;
-             <select class="form-control-static " name="item1category">
+             <select class="form-control-static " name="transportType" id="transportType">
                     <option>Transport type</option>
-                    <option> Plane</option>
+                    <option> Airplane</option>
                     <option> Train</option>
-                    <option> Track</option>
+                    <option> Truck</option>
                     <option> Marine</option>
 
                   </select>
@@ -462,7 +462,7 @@ public void showIem(Orders Tmp){
   
 
         <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Create an Order</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Place an Order</button>
       </form>
         
         

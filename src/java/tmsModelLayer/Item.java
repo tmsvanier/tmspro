@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected ItemPK itemPK;
+  //  protected ItemPK itemPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ITEMWEIGHT")
     private double itemweight;
@@ -55,21 +55,21 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(ItemPK itemPK) {
-        this.itemPK = itemPK;
-    }
+//   // public Item(ItemPK itemPK) {
+//        this.itemPK = itemPK;
+//    }
+//
+//    public Item(long orderid, short itemcategoryid) {
+//        this.itemPK = new ItemPK(orderid, itemcategoryid);
+//    }
+//
+//    public ItemPK getItemPK() {
+//        return itemPK;
+//    }
 
-    public Item(long orderid, short itemcategoryid) {
-        this.itemPK = new ItemPK(orderid, itemcategoryid);
-    }
-
-    public ItemPK getItemPK() {
-        return itemPK;
-    }
-
-    public void setItemPK(ItemPK itemPK) {
-        this.itemPK = itemPK;
-    }
+//    public void setItemPK(ItemPK itemPK) {
+//        this.itemPK = itemPK;
+//    }
 
     public double getItemweight() {
         return itemweight;
@@ -127,25 +127,25 @@ public class Item implements Serializable {
         this.orderId = orderId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (itemPK != null ? itemPK.hashCode() : 0);
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (itemPK != null ? itemPK.hashCode() : 0);
+//        return hash;
+//    }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Item)) {
-            return false;
-        }
-        Item other = (Item) object;
-        if ((this.itemPK == null && other.itemPK != null) || (this.itemPK != null && !this.itemPK.equals(other.itemPK))) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof Item)) {
+//            return false;
+//        }
+//        Item other = (Item) object;
+//        if ((this.itemPK == null && other.itemPK != null) || (this.itemPK != null && !this.itemPK.equals(other.itemPK))) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     @Override
     public String toString() {

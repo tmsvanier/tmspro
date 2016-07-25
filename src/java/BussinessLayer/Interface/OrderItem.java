@@ -19,6 +19,8 @@ import tmsModelLayer.Orders;
 public interface OrderItem {
     public Set<Orders> getClientOrder(int cL_Id);
     public List<Item> getOrderItem(long orderId);
+    public void setClientOrder(int clientid,int providerid,int driver_id,String deprt,String arrival);
+    public Item setOrderItem(long orderId,int catNo,double Weight,int Volume,double Price,int Qnty);
     public Set<Orders> getCarrierOrder(int cR_Id);
     public Orders getDriverOrder(int dR_Id);
     public Set<Orders> getProviderOrder(int pR_Id);

@@ -71,7 +71,7 @@ public class Orders implements Serializable {
     @Column(name = "DRIVERID")
     private Integer driverid;
     @Column(name = "PROVIDERID")
-    private Short providerid;
+    private int providerid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     private ArrayList<Item> itemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
@@ -149,11 +149,11 @@ public class Orders implements Serializable {
         this.driverid = driverid;
     }
 
-    public Short getProviderid() {
+    public int getProviderid() {
         return providerid;
     }
 
-    public void setProviderid(Short providerid) {
+    public void setProviderid(int providerid) {
         this.providerid = providerid;
     }
 
@@ -213,7 +213,7 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return ""+ orderid;
+        return ""+ orderid+"//"+clientid+"//"+providerid+"//"+departure+"//"+arrival+"//"+driverid+"//"+statusid+"//";
     }
     public void makeCopy(Orders tOrder){
         

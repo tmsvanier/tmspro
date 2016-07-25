@@ -25,14 +25,15 @@ import tmsModelLayer.Orders;
  * @author cstuser
  */
 public class UserOrderItem implements OrderItem{
-    Oracle order_Conn=null;
+    Oracle Client_Conn=null;
+     Oracle provider_Conn=null;
     Set<Orders> orderSet=null;
     ArrayList<Item>orderItems=null;
     ResultSet rslt,rslt1=null;
     String  query="";
     @Override
     public Set<Orders> getClientOrder(int cL_Id) {
-        order_Conn=new Oracle();
+        Client_Conn=new Oracle();
         
         
 //        query="SELECT o.orderid,ic.itemCategoryDesc,o.clientId,c.fullName"+
@@ -40,9 +41,9 @@ public class UserOrderItem implements OrderItem{
 //               "where c.clientId=o.clientId and o.orderid=i.orderid and ic.itemCategoryId=i.itemCategoryId and c.clientId="+
 //                cL_Id+
 //                "and i.orderid in(select orderid from item )";
-        order_Conn.connect("scott", "tiger");
+        Client_Conn.connect("scott", "tiger");
         query="SELECT *FROM ORDERS WHERE CLIENTID="+cL_Id;
-        rslt=order_Conn.getResult(query);
+        rslt=Client_Conn.getResult(query);
         orderSet=new HashSet();
         
         try {
@@ -61,7 +62,7 @@ public class UserOrderItem implements OrderItem{
                         "item i,itemcategory ic " +
                          "Where " +
                          "ic.itemCategoryId=i.itemCategoryId and i.orderid="+record.getOrderid();
-                rslt1=order_Conn.getResult(query); 
+                rslt1=Client_Conn.getResult(query); 
                 orderItems=new ArrayList();
                 while(rslt1.next()){                    
                     Item element=new Item();
@@ -84,7 +85,7 @@ public class UserOrderItem implements OrderItem{
         catch (SQLException ex) {
                 Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
              }
-        order_Conn.terminate();
+        Client_Conn.terminate();
        return  orderSet; 
     }
 
@@ -118,9 +119,9 @@ public class UserOrderItem implements OrderItem{
         
         ArrayList<Itemcategory> catList=new ArrayList();
       query="select * from Itemcategory";
-        order_Conn=new Oracle();
-        order_Conn.connect("scott", "tiger");
-        rslt=order_Conn.getResult(query);
+        Client_Conn=new Oracle();
+        Client_Conn.connect("scott", "tiger");
+        rslt=Client_Conn.getResult(query);
         try {
             while(rslt.next()){
                Itemcategory element=new Itemcategory(); 
@@ -128,12 +129,45 @@ public class UserOrderItem implements OrderItem{
                element.setItemcategorydesc(rslt.getString("itemCategoryDesc"));
                catList.add(element);
             }
-           order_Conn.terminate();
+           Client_Conn.terminate();
         } 
         catch (SQLException ex) {
             Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
         }
         return catList;
+    }
+
+    @Override
+    public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival) {
+        Client_Conn=new Oracle();
+        Client_Conn.connect("scott", "tiger");
+        query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
+              clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2)";     
+        Client_Conn.setQuery(query);
+        query="select orderid_seq.nextval from dual";
+           int nextvalue=-1;
+       rslt= Client_Conn.getResult(query);
+        try {
+            rslt.next() ;  nextvalue = rslt.getInt(1) ;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        nextvalue-=1;
+        query="insert into item (orderid,itemcategoryid) values("+nextvalue+",5)";
+        Client_Conn.setQuery(query);
+        Client_Conn.terminate();
+        
+        
+          
+    }
+
+    @Override
+    public Item setOrderItem(long orderId, int catNo, double Weight, int Volume, double Price, int Qnty) {
+        Item element=new Item();
+        element.setOrderId(orderId);element.setItemcategory(catNo);element.setItemweight(Weight);
+        element.setItemprice(Price);element.setItemvolume(Volume);element.setItemqty(Qnty);
+        return element;
     }
     
 }

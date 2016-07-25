@@ -145,7 +145,30 @@ public class Oracle
                 }
            }//exception  
     }//set query
-    
+     public ResultSet getLstKey()
+    {
+        try
+        {           
+           rslt=stmt.getGeneratedKeys();         
+           conn.commit();
+        }
+         catch (Exception e)
+           {
+            try
+            {
+                conn.rollback();
+            }
+           catch(Exception rr) 
+              {              
+                 System.out.println("---------connect Error----");
+                 System.out.println("Oracle Database Error addressing: "+e);
+                 JOptionPane.showMessageDialog(null,"Oracle Database Error addressing:  \n "+e
+                                                  , "---------connect Error----",
+                                            JOptionPane.ERROR_MESSAGE);    
+                }
+           }//exception  
+        return rslt;
+    }
     public  void terminate()
     {
         try
