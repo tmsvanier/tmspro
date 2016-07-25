@@ -144,7 +144,7 @@ public class UserOrderItem implements OrderItem{
         query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
               clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2)";     
         Client_Conn.setQuery(query);
-        query="select orderid_seq.nextval from dual";
+        query="select max(orderid)from orders";
            int nextvalue=-1;
        rslt= Client_Conn.getResult(query);
         try {
