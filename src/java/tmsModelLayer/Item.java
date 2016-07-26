@@ -52,7 +52,12 @@ public class Item implements Serializable {
     @ManyToOne(optional = false)
     private long orderId;
     private String categoryDetail;
+    private String itemDesc;
     public Item() {
+    }
+
+    public String getItemDesc() {
+        return itemDesc;
     }
 
 //   // public Item(ItemPK itemPK) {
@@ -66,10 +71,12 @@ public class Item implements Serializable {
 //    public ItemPK getItemPK() {
 //        return itemPK;
 //    }
-
 //    public void setItemPK(ItemPK itemPK) {
 //        this.itemPK = itemPK;
 //    }
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
+    }
 
     public double getItemweight() {
         return itemweight;
@@ -150,8 +157,13 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         String str="";
-        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbspCategory&nbsp;&nbsp;&nbsp;&nbsp;&nbspWeight(kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbspitemqty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspPrice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</br>";
-        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+categoryDetail+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemweight+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemqty+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+itemprice+" $</br>";
+        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbspCategory&nbsp;&nbsp;&nbsp;&nbsp;&nbspWeight(kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbspitemqty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspPrice&nbsp;&nbsp;&nbsp;&nbsp;&nbspitem Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</br>";
+        str+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+
+                categoryDetail+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"
+                +itemweight+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"
+                +itemqty+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+
+                itemprice+"$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+
+                itemDesc+"</br>";
         str+="----------------------------------------------------------------------------------------</br>";
         
         return str;

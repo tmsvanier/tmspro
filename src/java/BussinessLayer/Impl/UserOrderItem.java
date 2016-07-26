@@ -72,6 +72,7 @@ public class UserOrderItem implements OrderItem{
                     element.setItemvolume(rslt1.getInt("itemvolume"));
                     element.setItemqty(rslt1.getInt("itemqty"));
                     element.setItemweight(rslt1.getDouble("itemweight"));
+                    element.setItemDesc(rslt1.getString("itemdesc"));
                     
                     orderItems.add(element);                    
                 }
