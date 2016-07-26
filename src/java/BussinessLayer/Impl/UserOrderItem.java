@@ -194,24 +194,31 @@ public class UserOrderItem implements OrderItem{
     }
 
     @Override
-    public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival) {
+    public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival,ArrayList<Item> items) {
         Client_Conn=new Oracle();
         Client_Conn.connect("scott", "tiger");
         query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
               clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2)";     
         Client_Conn.setQuery(query);
         query="select max(orderid)from orders";
-           int nextvalue=-1;
+           int NewOrderId=-1;
        rslt= Client_Conn.getResult(query);
         try {
-            rslt.next() ;  nextvalue = rslt.getInt(1) ;
+            rslt.next() ;  NewOrderId = rslt.getInt(1) ;
         } catch (SQLException ex) {
             Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-        nextvalue-=1;
-        query="insert into item (orderid,itemcategoryid) values("+nextvalue+",5)";
-        Client_Conn.setQuery(query);
+        //set orderId for selected item
+        for(int i=0;i<6;i++){
+            query="insert into item values("+NewOrderId+","+items.get(i).getItemcategory()+","+
+                    +items.get(i).getItemweight()+","+items.get(i).getItemvolume()+
+                    ","+items.get(i).getItemprice()+","+items.get(i).getItemqty()+
+                    ",'"+items.get(i).getCategoryDetail()+"')";
+             Client_Conn.setQuery(query);
+        }
+        NewOrderId-=1;
+        //query="insert into item (orderid,itemcategoryid) values("+NewOrderId+",5)";;
+       
         Client_Conn.terminate();
         
         

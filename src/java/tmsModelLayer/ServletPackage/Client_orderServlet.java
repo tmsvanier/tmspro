@@ -9,10 +9,13 @@ package tmsModelLayer.ServletPackage;
 import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tmsModelLayer.Item;
+import tmsModelLayer.Orders;
 
 /**
  *
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Client_orderServlet extends HttpServlet {
  UserOrderItem setClient_order=new UserOrderItem();
+  ArrayList<Item> orderItem=new ArrayList();
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,7 +38,8 @@ public class Client_orderServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet Client_orderServlet at " + request.getContextPath() + "</h1>");
           
-            out.println("<h1>item2cat id is=" +request.getParameter("item2category") + "</h1>");
+            out.println("<h1>item2cat id is=" +request.getParameter("item5category") + "</h1>");
+            out.println("<h1>item2cat id is=" +request.getParameter("KPI") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,46 +62,29 @@ public class Client_orderServlet extends HttpServlet {
         String departure=request.getParameter("departure");
         String destination=request.getParameter("destination");
         //KPI consideration 1
-        String KPI=request.getParameter("KPI");
+        int KPI=Integer.parseInt(request.getParameter("KPI"));
         String speed=request.getParameter("speed");
         String cost=request.getParameter("cost");
         String NumOfReq=request.getParameter("NumOfReq");
-       String transportType=request.getParameter("transportType");
-       setClient_order.setClientOrder(clientId,2,10, departure, destination);
-        //item1
-        String item1category=request.getParameter("item1category");
-        String item1desc=request.getParameter("item1desc");
-        String item1qty=request.getParameter("item1qty");
-        String item1volume=request.getParameter("item1volume");
-        String item1weight=request.getParameter("item1weight");
+        String transportType=request.getParameter("transportType");
         
-        //item2
-        String item2category=request.getParameter("item2category");
-        String item2desc=request.getParameter("item2desc");
-        String item2qty=request.getParameter("item2qty");
-        String item2volume=request.getParameter("item2volume");
-        String item2weight=request.getParameter("item2weight");
       
-        //item3
-        String item3category=request.getParameter("item3category");
-        String item3desc=request.getParameter("item3desc");
-        String item3qty=request.getParameter("item3qty");
-        String item3volume=request.getParameter("item3volume");
-        String item3weight=request.getParameter("item3weight");
-        
-        //item4
-        String item4category=request.getParameter("item4category");
-        String item4desc=request.getParameter("item4desc");
-        String item4qty=request.getParameter("item4qty");
-        String item4volume=request.getParameter("item4volume");
-        String item4weight=request.getParameter("item4weight");
-        
-         //item5
-        String item5category=request.getParameter("item5category");
-        String item5desc=request.getParameter("item5desc");
-        String item5qty=request.getParameter("item5qty");
-        String item5volume=request.getParameter("item5volume");
-        String item5weight=request.getParameter("item5weight");
+       for(int i=1;i<2;i++){
+           String cat,itemdes,itemqty,itemvol,itemweight;
+           cat="item"+i+"category";itemdes="item"+i+"desc";
+           itemqty="item"+i+"qty";itemvol="item"+i+"volume";
+           itemweight="item"+i+"weight";
+           Item record=new Item();
+           record.setItemcategory(Integer.parseInt(request.getParameter(cat)));
+          record.setItemDesc(request.getParameter(itemdes));
+           record.setItemprice(100.00);
+           record.setItemqty(Integer.parseInt(request.getParameter(itemqty)));
+           record.setItemweight(Double.parseDouble(request.getParameter(itemweight)));
+           record.setItemvolume(Integer.parseInt(request.getParameter(itemvol)));
+           orderItem.add(record);
+       }
+        //item1
+       // setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem);
         
         processRequest(request, response);
     }
