@@ -290,18 +290,228 @@ public void showIem(Orders Tmp){
                 
                 out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
                 out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-                  out.println("   <div class='modal-header'>"); 
-                  out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                  out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
-                  out.println("  <div class='modal-body'>");
-                  int i=0;
-                    for(Item record: element.getItemCollection()){
-                        i++;
-                        out.println("item No: "+i+"</br>");
+                  out.println(" <div class='modal-header'>"); 
+                  out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+                  out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+                  out.println(" <div class='modal-body'>");
+ 
                         
                     %>
-                    <%=  record.toString()%>
-                    <%}//iner loop
+            
+<form action="Client_order"  method="post" class="form-update" name="order" >
+    
+             <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
+        <label for="fullname" class="sr-only" >Client's ID, Full Name and Order Date</label>
+        <input type="text" id="fullname" disabled="" class="form-control" placeholder="Client's ID, Full Name and Order Date" required autofocus name="departure">
+        </div>
+    
+         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
+        <label for="departure" class="sr-only" >Departure(Enter Address)</label>
+        <input type="text" id="departure" class="form-control" placeholder="Departure (Enter Address)" required autofocus name="departure">
+        </div>
+
+         
+        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
+        <label for="destination" class="sr-only" >Destination(Enter Address)</label>
+        <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
+        </div>
+    
+            <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
+        <label for="destination" class="sr-only" ></label>
+        <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
+        </div>
+     &nbsp;<p>
+  
+                <select class="form-control-static " name="carrier" id="transportType">
+                    <option>Carrier</option>
+                    <option> Airplane</option>
+                    <option> Train</option>
+                    <option> Truck</option>
+                    <option> Marine</option>
+
+                  </select>
+         &nbsp;
+         
+             <select class="form-control-static " name="transportType" id="transportType">
+                    <option>Transport type</option>
+                    <option> Airplane</option>
+                    <option> Train</option>
+                    <option> Truck</option>
+                    <option> Marine</option>
+
+                  </select>
+ 
+ 
+    <p>
+        
+        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 1. Description" name="item1desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item1category">
+                    <option>Category</option>
+                    <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item1qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item1volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item1weight">
+                </div>
+              </div>    
+        
+        </div>
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 2. Description" name="item2desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item2category">
+                    <option>Category</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item2qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item2volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item2weight">
+                </div>
+              </div>    
+        
+        </div>
+        
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 3. Description" name="item3desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item3category">
+                    <option>Category</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item3qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item3volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item3weight">
+                </div>
+              </div>    
+        
+        </div>
+ 
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 4. Description" name="item4desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item4category">
+                    <option>Category</option>
+                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item4qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item4volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item4weight">
+                </div>
+              </div>    
+        
+        </div>
+    
+     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder="Item 5. Description" name="item5desc">
+                </div>
+                <div class="col-xs-2" >
+                  <select class="form-control" name="item5category">
+                    <option>Category</option>
+                       <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
+                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  </select>
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" placeholder="Qty" name="item5qty">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item5volume">
+                </div>
+                <div class="col-xs-2">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item5weight">
+                </div>
+              </div>    
+        
+        </div>
+                  <p>
+    <div class="btn-group" data-toggle="buttons"> 
+   
+  <label class="btn btn-primary active">
+    <input type="radio" name="KPI" id="kpi" autocomplete="off" checked>Created
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="speed" id="speed" autocomplete="off"> Confirmed
+  </label>
+    <label class="btn btn-primary">
+    <input type="radio" name="cost" id="cost" autocomplete="off"> Shipped  
+  </label>
+   <label class="btn btn-primary">
+    <input type="radio" name="NumOfReq" id="NumOfReq" autocomplete="off"> Delivered  
+  </label>
+    <label class="btn btn-primary">
+    <input type="radio" name="NumOfReq" id="NumOfReq" autocomplete="off"> Cancelled  
+  </label>
+      
+</div>
+
+        <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Update an Order</button>
+      </form>
+                    <%//iner loop
                    out.println(" </div> <div class='modal-footer'>"); 
                out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                out.println("  </div></div></div></div>"); 
@@ -437,71 +647,7 @@ public void showIem(Orders Tmp){
   <!-- /.content-wrapper -->
     </div>              
  
-      <div id="profile" class="tab-pane fade">
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" width="600">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Profile
-        <small>Update your Profile</small>
-      </h1>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content" >
-
-       <form action="Update"  method="post" class="form-update" name="update">
- 
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
-        <label for="inputName" class="sr-only" >Account number</label>
-        <input type="text" id="inputName" class="form-control" placeholder="Account number" disabled autofocus name="accountname" value="<% out.println(myuser1.getUsername()); %>">
-        </div>
-        
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>  
-        <label for="inputName" class="sr-only" >Full Name or Organization</label>
-        <input type="text" id="inputName" class="form-control" placeholder="Full Name or Organization" required autofocus name="name" value="<%= myuser1.getFullName()%>">
-        </div>
- 
-           <br>
-         
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>    
-        <label for="inputAddress" class="sr-only" >Address (including postal code)</label>
-        <input type="text" id="inputAddress" class="form-control" placeholder="Address (including postal code)" required autofocus name="address" value="<%out.println(myuser1.getAddress());%>">
-        </div>
-        
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>  
-        <label for="inputTelephone" class="sr-only" >Telephone Number</label>
-        <input type="text" id="inputTelephone" class="form-control" placeholder="Telephone Number" required autofocus name="telephone" value="<%   out.println(myuser1.getPhone());%>">
-        </div>
-        
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></div>
-        <label for="inputEmail" class="sr-only" >Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus name="email" value="<%  out.println(myuser1.getEmail());%>">
-        </div>
-        <p></p>
- 
-         
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-        <label for="inputPasswordReg" class="sr-only">Password</label>
-        <input type="password" id="inputPasswordReg" class="form-control" placeholder="New Password" required  name="passwordreg">
-        </div>
-     
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-        <label for="inputPasswordConf" class="sr-only">Confirm Password</label>
-        <input type="password" id="inputPasswordConf" class="form-control" placeholder="Confirm Password" required  name="passwordconf">
-          </div>
-        <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="submitregister" value="Register" >Update</button>
-      </form>
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-    </div>
- 
+      
  
  </div>
 
