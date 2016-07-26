@@ -87,6 +87,7 @@ public void showIem(Orders Tmp){
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
 </head>
  
 <body class="hold-transition skin-blue sidebar-mini">
@@ -214,6 +215,7 @@ public void showIem(Orders Tmp){
          Optionally, you can add icons to the links -->
         <li class="active"><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
         <li><a data-toggle="pill" href="#clients"><i class="fa fa-list-ul"></i> <span>List of Clients</span></a></li>
+        <li><a data-toggle="pill" href="#providers"><i class="fa fa-list-ul"></i> <span>List of Providers</span></a></li>
 <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
@@ -247,7 +249,7 @@ public void showIem(Orders Tmp){
  
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Recent Orders</h3>
+              <h3 class="box-title">All Orders</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -261,7 +263,7 @@ public void showIem(Orders Tmp){
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+              <table id="orders" class="table table-hover">
                 <tr>
                   <th>Order ID</th>
                   <th>Departure</th>
@@ -363,39 +365,7 @@ public void showIem(Orders Tmp){
                   <th>Request Date</th>
                    <th>Distance </th>
                 </tr>
-                <% for(Client element : myorder){ 
-                 
-                    out.println("<tr>");
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element()+">"+element.getOrderid()+ "</a>");
-                                      
-                    out.println("<td>"+element.getDeparture()+"</td>");
-                    out.println("<td>"+element.getArrival()+"</td>");
-                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
-                    out.println("<td>"+element.getDriverid()+"</td>");
-                    out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>");
-                    out.println("</tr>"); 
-                
-                
-                out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
-                out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-                  out.println("   <div class='modal-header'>"); 
-                  out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                  out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
-                  out.println("  <div class='modal-body'>");
-                  int i=0;
-                    for(Item record: element.getItemCollection()){
-                        i++;
-                        out.println("item No: "+i+"</br>");
-                        
-                    %>
-                    <%=  record.toString()%>
-                    <%}//iner loop
-                   out.println(" </div> <div class='modal-footer'>"); 
-               out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
-               out.println("  </div></div></div></div>"); 
- 
-                }//the outmost loop%>
+            
               </table>
             
             </div>
@@ -409,6 +379,63 @@ public void showIem(Orders Tmp){
   </div>
   <!-- /.content-wrapper -->
     </div>
+              
+<div id="providers" class="tab-pane fade">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        List of Providers
+        <small>List of all Providers</small>
+      </h1>
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+ 
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">All Clients</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Order ID</th>
+                  <th>Departure</th>
+                  <th>Arrival</th>
+                  <th>Status</th>
+                  <th>Driver Id</th>
+                  <th>Request Date</th>
+                   <th>Distance </th>
+                </tr>
+                
+              </table>
+            
+            </div>
+            
+          </div>
+          <!-- /.box -->
+         
+          
+    </section>
+            
+  </div>
+  <!-- /.content-wrapper -->
+    </div>              
  
       <div id="profile" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
