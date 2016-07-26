@@ -89,6 +89,17 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
                
            }//redirect to client page
            
+            if(check==1 &&role==2)//correct information
+           {
+               user_2.makeCopy(getLogin().getProvider(username));
+               loginSession.setAttribute("providerpage", user_2);
+               loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
+               loginSession.setAttribute("category",getUserOrder().getCategory());
+               response.sendRedirect("provider.jsp");
+               
+           }//redirect to client page
+           
+           
            else if(check==0)//meets username only
               response.sendRedirect("index.jsp");
            else if(check==-1)// not exist in database

@@ -28,12 +28,18 @@ public class Provider extends Person {
         this.providerId = providerId;
     }
      public void makeCopy( Provider tmp){
-      tmp.setProviderId(providerId);
-      tmp.setFullName(super.getFullName());
-      tmp.setAddress(super.getAddress());
-      tmp.setEmail(super.getEmail());
-      tmp.setUsername(super.getUsername());
-      tmp.setPassword(super.getPassword());
-      tmp.setPhone(super.getPhone());
+         providerId=  tmp.getProviderId();    
+        super.setFullName(tmp.getFullName());
+         super.setAddress(tmp.getAddress());
+         super.setEmail(tmp.getEmail());
+        super.setUsername(tmp.getUsername());
+        super.setPassword(tmp.getPassword());
+        super.setPhone(tmp.getPhone());
     } 
+     
+         @Override
+    public String toString() {
+        return "Provider{" + "providerId=" + providerId + '}';
+    }
+    
 }
