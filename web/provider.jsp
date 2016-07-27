@@ -115,42 +115,7 @@ public void showIem(Orders Tmp){
         <ul class="nav navbar-nav">
  
           
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all Orders</a>
-              </li>
-            </ul>
-          </li>
+         
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -168,9 +133,7 @@ public void showIem(Orders Tmp){
                     
                   <%= myuser1.getFullName()%> - Provider
                   <small>
-                         <% 
-  
-           out.println("Provider ID: "+myuser1.getProviderId()); %><br>
+                      
           <%  out.println("Address: "+myuser1.getAddress());%><br>
            <%  out.println("Email: "+myuser1.getEmail());%><br>
          <%   out.println("Telephone: "+myuser1.getPhone());
@@ -181,9 +144,7 @@ public void showIem(Orders Tmp){
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a data-toggle="pill" href="#profile" class="btn btn-default btn-flat">Profile</a>
-                </div>
+ 
                 <div class="pull-right">
                     
                     
@@ -275,28 +236,26 @@ public void showIem(Orders Tmp){
                 </tr>
                 <% for(Orders element:myorder){    
                     
-                 out.println("<tr>");
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>");
-                            
-                                    
+                    out.println("<tr>");
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                     out.println("<td>"+element.getDistance()+"</td>");
-                out.println("</tr>"); 
+                    out.println("<td>"+element.getDistance()+"</td>");
+                    out.println("</tr>"); 
                 
                 
-                out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
-                out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-                  out.println(" <div class='modal-header'>"); 
-                  out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                  out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
-                  out.println(" <div class='modal-body'>");
- 
+                    out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
+                    out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
+                    out.println(" <div class='modal-header'>"); 
+                    out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+                    out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+                    out.println(" <div class='modal-body'>");
+
                         
-                    %>
+                 %>
             
 <form action="Client_order"  method="post" class="form-update" name="order" >
     
@@ -488,18 +447,15 @@ public void showIem(Orders Tmp){
 
         <p></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="confirmbtn" value="order">Confirm an Order</button>
-        <button class="btn btn-lg bg-red btn-primary btn-block" type="submit" name="confirmbtn" value="order">Cancel an Order</button>
-      </form>
+        <button class="btn btn-lg bg-red btn-primary btn-block" type="submit" name="cancelbtn" value="order">Cancel an Order</button>
+    </form>
                     <%//iner loop
-                   out.println(" </div> <div class='modal-footer'>"); 
-               out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
-               out.println("  </div></div></div></div>"); 
- 
-                }//the outmost loop%>
-              </table>
-            
-            </div>
-            
+                        out.println(" </div> <div class='modal-footer'>"); 
+                        out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
+                        out.println("  </div></div></div></div>");  
+                     }//the outmost loop%>
+              </table> 
+            </div> 
           </div>
           <!-- /.box -->
          
@@ -546,13 +502,12 @@ public void showIem(Orders Tmp){
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>Order ID</th>
-                  <th>Departure</th>
-                  <th>Arrival</th>
-                  <th>Status</th>
-                  <th>Driver Id</th>
-                  <th>Request Date</th>
-                   <th>Distance </th>
+                  <th>Client ID</th>
+                  <th>Client Name</th>
+                  <th>Client Address</th>
+                  <th>Client Phone</th>
+                  <th>Client Email</th>
+                  <th>Client Orders</th>
                 </tr>
             
               </table>
