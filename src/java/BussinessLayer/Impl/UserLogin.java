@@ -129,7 +129,7 @@ public class UserLogin implements LoginUser {
        query="Select * from client where username='"+Tusername+"'";
        rslt=loginOrcl.getResult(query);
        Client tmp=new Client();           
-       try {              
+       try {               
              while(rslt.next())
                 {                              
                  tmp.setClientId(rslt.getInt("clientId"));
