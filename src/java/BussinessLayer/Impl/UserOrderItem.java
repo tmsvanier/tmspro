@@ -209,7 +209,7 @@ public class UserOrderItem implements OrderItem{
             Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
         }
         //set orderId for selected item
-        for(int i=0;i<6;i++){
+        for(int i=0;i<5;i++){
             query="insert into item values("+NewOrderId+","+items.get(i).getItemcategory()+","+
                     +items.get(i).getItemweight()+","+items.get(i).getItemvolume()+
                     ","+items.get(i).getItemprice()+","+items.get(i).getItemqty()+

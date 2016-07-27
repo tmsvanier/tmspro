@@ -342,23 +342,23 @@ public void showIem(Orders Tmp){
       <div class="btn-group" data-toggle="buttons"> 
    
   <label class="btn btn-primary active">
-    <input type="radio" name="radiobtn" id="kpi" autocomplete="off" checked value="1">TMS Suggestion
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="radiobtn" id="speed" autocomplete="off" value="2"> Time
+    <input type="radio" name="radiobtn"  autocomplete="off" checked value="1">TMS Suggestion
   </label>
     <label class="btn btn-primary">
-    <input type="radio" name="radiobtn" id="cost" autocomplete="off" value="3"> Cost  
+    <input type="radio" name="radiobtn"  autocomplete="off" value="2"> Cost  
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="radiobtn"  autocomplete="off" value="3"> Time
   </label>
    <label class="btn btn-primary">
-    <input type="radio" name="radiobtn" id="NumOfReq" autocomplete="off" value="4"> Carrier Reputation  
+    <input type="radio" name="radiobtn"  autocomplete="off" value="4"> Carrier Reputation  
    </label><br> <br>
              <select class="form-control-static " name="transportType" id="transportType">
-                    <option>Transport type</option>
-                    <option> Airplane</option>
-                    <option> Train</option>
-                    <option> Truck</option>
-                    <option> Marine</option> 
+                    <option value="0">Transport type</option>
+                    <option value="2"> Airplane</option>
+                    <option value="3"> Train</option>
+                    <option value="4"> Truck</option>
+                    <option value="5"> Marine</option> 
                   </select>
       
 </div>

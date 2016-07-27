@@ -37,9 +37,14 @@ public class Client_orderServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Client_orderServlet at " + request.getContextPath() + "</h1>");
-          
-            out.println("<h1>item2cat id is=" +request.getParameter("item5category") + "</h1>");
-            out.println("<h1>item2cat id is=" +request.getParameter("KPI") + "</h1>");
+            for(int i=0;i<6;i++){
+            out.println("<p> order:"+orderItem.get(i).getItemcategory()+"//"+orderItem.get(i).getItemqty()+
+                    "//"+orderItem.get(i).getOrderId()+"//"+orderItem.get(i).getItemvolume()+"//"+orderItem.get(i).getItemprice()+
+                    "//"+orderItem.get(i).getCategoryDetail()+"//"+orderItem.get(i).getItemDesc()+
+                    "</p>");
+            }
+            out.println("<h1>radiobtn id is=" +request.getParameter("radiobtn") + "</h1>");
+            out.println("<h1>Transport id is=" +request.getParameter("transportType") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,14 +66,9 @@ public class Client_orderServlet extends HttpServlet {
         //GPS value
         String departure=request.getParameter("departure");
         String destination=request.getParameter("destination");
-        //KPI consideration 1
-        int KPI=Integer.parseInt(request.getParameter("KPI"));
-        String speed=request.getParameter("speed");
-        String cost=request.getParameter("cost");
-        String NumOfReq=request.getParameter("NumOfReq");
-        String transportType=request.getParameter("transportType");
-        
-      
+        int considerid=Integer.parseInt(request.getParameter("radiobtn"));
+        int trasportid=Integer.parseInt(request.getParameter("transportType"));
+              
        for(int i=1;i<2;i++){
            String cat,itemdes,itemqty,itemvol,itemweight;
            cat="item"+i+"category";itemdes="item"+i+"desc";
@@ -84,7 +84,7 @@ public class Client_orderServlet extends HttpServlet {
            orderItem.add(record);
        }
         //item1
-       // setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem);
+        setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem);
         
         processRequest(request, response);
     }
