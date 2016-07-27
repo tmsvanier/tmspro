@@ -375,8 +375,8 @@ public void showIem(Orders Tmp){
                 <div class="col-xs-2" >
                   <select class="form-control" name="item<% out.print(i); %>category">
                     <option value="0">Category</option>
-                    <% for (int j = 1; j<6; j++) { %>
-                    <option value="<% out.print(j); %>"> <%=myCategory.get(j-1).getItemcategorydesc()%></option>
+                    <% for (int j = 1; j<7; j++) { %>
+                    <option value="<% out.print(j+1); %>"> <%=myCategory.get(j-1).getItemcategorydesc()%></option>
                         <% } %>
 
                   </select>

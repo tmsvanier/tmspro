@@ -213,7 +213,7 @@ public class UserOrderItem implements OrderItem{
             query="insert into item values("+NewOrderId+","+items.get(i).getItemcategory()+","+
                     +items.get(i).getItemweight()+","+items.get(i).getItemvolume()+
                     ","+items.get(i).getItemprice()+","+items.get(i).getItemqty()+
-                    ",'"+items.get(i).getCategoryDetail()+"')";
+                    ",'"+items.get(i).getItemDesc()+"')";
              Client_Conn.setQuery(query);
         }
         NewOrderId-=1;

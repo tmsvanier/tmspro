@@ -37,10 +37,10 @@ public class Client_orderServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Client_orderServlet at " + request.getContextPath() + "</h1>");
-            for(int i=0;i<6;i++){
+            for(int i=0;i<5;i++){
             out.println("<p> order:"+orderItem.get(i).getItemcategory()+"//"+orderItem.get(i).getItemqty()+
                     "//"+orderItem.get(i).getOrderId()+"//"+orderItem.get(i).getItemvolume()+"//"+orderItem.get(i).getItemprice()+
-                    "//"+orderItem.get(i).getCategoryDetail()+"//"+orderItem.get(i).getItemDesc()+
+                    "//"+orderItem.get(i).getItemDesc()+
                     "</p>");
             }
             out.println("<h1>radiobtn id is=" +request.getParameter("radiobtn") + "</h1>");
@@ -69,7 +69,7 @@ public class Client_orderServlet extends HttpServlet {
         int considerid=Integer.parseInt(request.getParameter("radiobtn"));
         int trasportid=Integer.parseInt(request.getParameter("transportType"));
               
-       for(int i=1;i<2;i++){
+       for(int i=1;i<6;i++){
            String cat,itemdes,itemqty,itemvol,itemweight;
            cat="item"+i+"category";itemdes="item"+i+"desc";
            itemqty="item"+i+"qty";itemvol="item"+i+"volume";
