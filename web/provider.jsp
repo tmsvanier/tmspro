@@ -88,6 +88,8 @@ public void showIem(Orders Tmp){
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   
+    
+  
 </head>
  
 <body class="hold-transition skin-blue sidebar-mini">
@@ -538,41 +540,7 @@ public void showIem(Orders Tmp){
 
     <!-- Main content -->
     <section class="content">
-
  
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">All Clients</h3>
-
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>Order ID</th>
-                  <th>Departure</th>
-                  <th>Arrival</th>
-                  <th>Status</th>
-                  <th>Driver Id</th>
-                  <th>Request Date</th>
-                   <th>Distance </th>
-                </tr>
-                
-              </table>
-            
-            </div>
-            
-          </div>
-          <!-- /.box -->
          
           
     </section>
