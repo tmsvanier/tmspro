@@ -363,8 +363,7 @@ public void showIem(Orders Tmp){
       
 </div>
     <p>
-        
-       
+ 
  <% for (int i = 1; i<6; i++) { %>
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
@@ -393,10 +392,11 @@ public void showIem(Orders Tmp){
               </div>    
         
         </div>
- <% } %>
+                  <% } %>
+    <p>
 
                   
-                  <p>
+                  
     
   
 
@@ -488,7 +488,7 @@ public void showIem(Orders Tmp){
                out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                out.println("  </div></div></div></div>"); 
  
-                }//the outmost loop%>
+                }//the outmost loop%> 
               </table>
             
             </div>

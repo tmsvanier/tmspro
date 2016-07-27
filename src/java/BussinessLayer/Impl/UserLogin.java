@@ -10,6 +10,7 @@ import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import tmsModelLayer.Oracle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tmsModelLayer.Carrier;
@@ -229,6 +230,27 @@ public class UserLogin implements LoginUser {
              }              
          loginOrcl.terminate();
           return tmp;
+    }
+
+    @Override
+    public ArrayList<Client> clientList() {
+       ArrayList<Client> allClient=new ArrayList();
+        Oracle provLog = new Oracle();
+       provLog.connect("scott", "tiger");
+       query="Select * from client";
+       rslt=provLog.getResult(query);
+          try {
+              while(rslt.next()){
+                  Client record=new Client();
+                  record.setClientId(rslt.getInt("clientid"));record.setAddress(rslt.getString("address"));
+                  record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
+                  record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
+                  record.setPassword(rslt.getString("password"));
+                  allClient.add(record);
+              }  } catch (SQLException ex) {
+              Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+          }
+       return allClient;
     }
 
    

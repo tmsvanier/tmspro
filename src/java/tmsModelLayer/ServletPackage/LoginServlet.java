@@ -95,6 +95,7 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
                loginSession.setAttribute("providerpage", user_2);
                loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
                loginSession.setAttribute("category",getUserOrder().getCategory());
+                loginSession.setAttribute("clients",getLogin().clientList());
                response.sendRedirect("provider.jsp");
                
            }//redirect to client page

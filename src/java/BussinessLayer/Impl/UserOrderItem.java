@@ -176,7 +176,7 @@ public class UserOrderItem implements OrderItem{
         ArrayList<Itemcategory> catList=new ArrayList();
       query="select * from Itemcategory";
         Client_Conn=new Oracle();
-        Client_Conn.connect("scott", "tiger");
+        Client_Conn.connect("scott","tiger");
         rslt=Client_Conn.getResult(query);
         try {
             while(rslt.next()){

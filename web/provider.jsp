@@ -7,7 +7,7 @@
 <% 
            Provider myuser1=(Provider) session.getAttribute("providerpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
-           Set<Client> myclient=(Set<Client>)session.getAttribute("clients");
+           List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            
            //List<Item> items_request=new ArrayList();
@@ -205,7 +205,7 @@ public void showIem(Orders Tmp){
       </h1>
 
     </section>
-
+    
     <!-- Main content -->
     <section class="content">
 
@@ -236,6 +236,7 @@ public void showIem(Orders Tmp){
                   <th>Request Date</th>
                    <th>Distance </th>
                 </tr>
+                
                 <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
@@ -257,8 +258,8 @@ public void showIem(Orders Tmp){
                     out.println(" <div class='modal-body'>");
 
                         
-                 %>
-            
+                 %>}
+             
 <form action="Client_order"  method="post" class="form-update" name="order" >
     
              <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
@@ -279,154 +280,40 @@ public void showIem(Orders Tmp){
  
  
     <p>
-        
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
-                           <div class="col-xs-5">
-                               <input type="text" class="form-control" disabled placeholder="<%=   element.getOrderdate()  %>" name="item1desc">
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" disabled name="item1category">
-                    <option>Category</option>
-                    <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" disabled placeholder="Qty" name="item1qty">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="volume (in liters)" name="item1volume">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="weight (in kg)" name="item1weight">
-                </div>
-              </div>    
-        
-        </div>
-     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
-                           <div class="col-xs-5">
-                  <input type="text" class="form-control" disabled placeholder="Item 2. Description" name="item2desc">
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" disabled name="item2category">
-                    <option>Category</option>
-                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" disabled placeholder="Qty" name="item2qty">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="volume (in liters)" name="item2volume">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="weight (in kg)" name="item2weight">
-                </div>
-              </div>    
-        
-        </div>
-        
-     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
-                           <div class="col-xs-5">
-                  <input type="text" class="form-control" disabled placeholder="Item 3. Description" name="item3desc">
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" disabled name="item3category">
-                    <option>Category</option>
-                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" disabled placeholder="Qty" name="item3qty">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="volume (in liters)" name="item3volume">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="weight (in kg)" name="item3weight">
-                </div>
-              </div>    
-        
-        </div>
+         
+         <% for (int i = 1; i<6; i++) { %>
  
-     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
                            <div class="col-xs-5">
-                  <input type="text" class="form-control" disabled placeholder="Item 4. Description" name="item4desc">
+                  <input type="text" class="form-control" placeholder="Item <% out.print(i); %>. Description" name="item<% out.print(i); %>desc" >
                 </div>
                 <div class="col-xs-2" >
-                  <select class="form-control" disabled name="item4category">
-                    <option>Category</option>
-                      <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
+                  <select class="form-control" name="item<% out.print(i); %>category">
+                    <option value="0">Category</option>
+                    <% for (int j = 1; j<7; j++) { %>
+                    <option value="<% out.print(j+1); %>"> <%=myCategory.get(j-1).getItemcategorydesc()%></option>
+                        <% } %>
+
                   </select>
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" disabled placeholder="Qty" name="item4qty">
+                  <input type="text" class="form-control" placeholder="Qty" name="item<% out.print(i); %>qty">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="volume (in liters)" name="item4volume">
+                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item<% out.print(i); %>volume">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="weight (in kg)" name="item4weight">
+                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item<% out.print(i); %>weight">
                 </div>
               </div>    
         
         </div>
-    
-     <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
-                           <div class="col-xs-5">
-                  <input type="text" class="form-control" disabled placeholder="Item 5. Description" name="item5desc">
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" disabled name="item5category">
-                    <option>Category</option>
-                       <option> <%=myCategory.get(0).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(1).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(2).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(3).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(4).getItemcategorydesc()%></option>
-                    <option> <%=myCategory.get(5).getItemcategorydesc()%></option>
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" disabled placeholder="Qty" name="item5qty">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="volume (in liters)" name="item5volume">
-                </div>
-                <div class="col-xs-2">
-                  <input type="text" class="form-control" disabled placeholder="weight (in kg)" name="item5weight">
-                </div>
-              </div>    
-        
-        </div>
+                  <% }%></p>
  
                   
-     &nbsp;<p>
-  
+    &nbsp;<p></p>
+        
                 <select class="form-control-static " name="carrier" id="transportType">
                     <option>Carrier</option>
                     <option> Airplane</option>
@@ -436,7 +323,7 @@ public void showIem(Orders Tmp){
 
                   </select>
          &nbsp;
-         
+          
              <select class="form-control-static " disabled name="transportType" id="transportType">
                     <option>Transport type</option>
                     <option> Airplane</option>
@@ -455,7 +342,7 @@ public void showIem(Orders Tmp){
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                         out.println("  </div></div></div></div>");  
-                     }//the outmost loop%>
+                     }%>
               </table> 
             </div> 
           </div>
@@ -502,7 +389,7 @@ public void showIem(Orders Tmp){
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+                <table class="table table-hover">
                 <tr>
                   <th>Client ID</th>
                   <th>Client Name</th>
@@ -511,7 +398,21 @@ public void showIem(Orders Tmp){
                   <th>Client Email</th>
                   <th>Client Orders</th>
                 </tr>
-            
+             <% Client elementj=new Client();
+                   for(Client element:myclient){
+                      out.println("<tr >");
+                    out.println("<td>"+ element.getClientId()+"</td>");
+                    out.println("<td>"+element.getFullName()+"</td>");
+                    
+                    out.println("<td>"+element.getEmail()+"</td>");
+                    out.println("<td>"+element.getAddress()+"</td>");
+                     out.println("<td>"+element.getPhone()+"</td>");
+                     out.println("<td>"+element.getUsername()+"</td>");
+                     out.println("<td>"+element.getPassword()+"</td>");
+                out.println("</tr>"); 
+              
+                   }
+                    %>   
               </table>
             
             </div>
