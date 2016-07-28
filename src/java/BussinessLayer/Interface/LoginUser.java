@@ -25,5 +25,6 @@ public interface LoginUser {
     public Carrier getCarrier(String Tusername);
     public Driver getDriver(String Tusername);
     public ArrayList<Client> clientList();
+    public ArrayList<Carrier> carrierList();
     
 }

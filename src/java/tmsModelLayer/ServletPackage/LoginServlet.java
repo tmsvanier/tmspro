@@ -43,7 +43,7 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
             out.println("<title>Servlet LoginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -96,9 +96,10 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
                loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
                loginSession.setAttribute("category",getUserOrder().getCategory());
                 loginSession.setAttribute("clients",getLogin().clientList());
+                loginSession.setAttribute("carrierlist",getLogin().carrierList());
                response.sendRedirect("provider.jsp");
                
-           }//redirect to client page
+           }//redirect to provider page
            
            
            else if(check==0)//meets username only

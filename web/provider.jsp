@@ -9,11 +9,7 @@
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
-          // List<Carrier> mycarrier=(ArrayList)<Carrier)>session.getAttribute("carrierlist");
-           //List<Item> items_request=new ArrayList();
-          // Orders order_Request=new Orders();
-           //Iterator it=myCategory.listIterator();
-           
+           List<Carrier> mycarrier=(ArrayList<Carrier>)session.getAttribute("carrierlist");
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -44,19 +40,10 @@ public String getStatusDesc(int num){
 }
 public String gettype(int num){
     String type="";
-    if(num==2)type="label-info" ;else if(num==3)type="label-info" ;
+    if(num==2)type="label-warning" ;else if(num==3)type="label-info" ;
      else if(num==4)type="label-primary"; else if(num==5)type="label-success";
      else if(num==6)type="label-danger";
     return type;
-}
-public void showIem(Orders Tmp){
-    for (Item element:Tmp.getItemCollection()){
-         System.out.println("<tr>");
-    System.out.println("<td>"+element.getItemweight()+"</td>");
-    System.out.println("<td>"+element.getItemqty()+"</td>");
-    System.out.println("<td>"+element.getItemvolume()+"</td>");
-   System.out.println("</tr></br>"); 
-    } 
 }
 %>
         
@@ -64,7 +51,7 @@ public void showIem(Orders Tmp){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TMS | Provider's Dashboard</title>
+  <title >TMS | Provider's Dashboard  </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -143,7 +130,6 @@ public void showIem(Orders Tmp){
        
                 </p>
               </li>
-
               <!-- Menu Footer-->
               <li class="user-footer">
  
@@ -304,11 +290,11 @@ public void showIem(Orders Tmp){
               </div>    
         
         </div>
-                  <% }%></p>
+                  <% };%></p>
  
                  
     &nbsp;<p></p>
-        
+                
                 <select class="form-control-static " name="carrier" id="transportType">
                     <option>Carrier</option>
                     <option> Airplane</option>
@@ -337,7 +323,7 @@ public void showIem(Orders Tmp){
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                         out.println("  </div></div></div></div>");  
-                    }%>
+                    };%>
               </table> 
             </div> 
           </div>
@@ -407,10 +393,10 @@ public void showIem(Orders Tmp){
                      out.println("<td>"+element.getPassword()+"</td>");
                 out.println("</tr>"); 
               
-                   }
+                   };
                     %>   
               </table>
-            
+     
             </div>
             
           </div>

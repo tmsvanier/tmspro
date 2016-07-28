@@ -16,11 +16,11 @@ public class Carrier extends Person{
     private int transportId;
     private double KPIvalue;
 
+    
     public Carrier() {
         super();
         this.carrierId = 0;
-        this.transportId = 6;
-        this.KPIvalue = 0;
+        
     }
    
     public int getCarrierId() {

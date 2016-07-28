@@ -250,7 +250,31 @@ public class UserLogin implements LoginUser {
               }  } catch (SQLException ex) {
               Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
           }
+          provLog.terminate();
        return allClient;
+    }
+
+    @Override
+    public ArrayList<Carrier> carrierList() {
+         ArrayList<Carrier> allCarrier=new ArrayList();              
+        Oracle provLog = new Oracle();
+       provLog.connect("scott", "tiger");
+       query="Select * from carrier";
+       rslt=provLog.getResult(query);
+          try {
+              while(rslt.next()){
+                   Carrier record=new Carrier();                
+                 record.setCarrierId(rslt.getInt("carrierid"));record.setAddress(rslt.getString("address"));
+                  record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
+                  record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
+                  record.setPassword(rslt.getString("password")); record.setKPIvalue(rslt.getDouble("kpivalue"));
+                  record.setTransportId(rslt.getInt("transportId"));
+                  allCarrier.add(record);
+              }  } catch (SQLException ex) {
+              Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          provLog.terminate();
+       return allCarrier;
     }
 
    
