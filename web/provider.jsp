@@ -9,7 +9,7 @@
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
-           
+          // List<Carrier> mycarrier=(ArrayList)<Carrier)>session.getAttribute("carrierlist");
            //List<Item> items_request=new ArrayList();
           // Orders order_Request=new Orders();
            //Iterator it=myCategory.listIterator();
@@ -258,7 +258,7 @@ public void showIem(Orders Tmp){
                     out.println(" <div class='modal-body'>");
 
                         
-                 %>}
+                 %>
              
 <form action="Client_order"  method="post" class="form-update" name="order" >
     
@@ -277,41 +277,36 @@ public void showIem(Orders Tmp){
         <label for="destination" class="sr-only" >Destination(Enter Address)</label>
         <input type="text" id="destination" disabled class="form-control" placeholder="<%= element.getArrival() %>" required autofocus name="destination">
         </div>
- 
+
  
     <p>
          
-         <% for (int i = 1; i<6; i++) { %>
+  <% for (Item items:element.getItemCollection()) { %>
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
-                           <div class="col-xs-5">
-                  <input type="text" class="form-control" placeholder="Item <% out.print(i); %>. Description" name="item<% out.print(i); %>desc" >
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" name="item<% out.print(i); %>category">
-                    <option value="0">Category</option>
-                    <% for (int j = 1; j<7; j++) { %>
-                    <option value="<% out.print(j+1); %>"> <%=myCategory.get(j-1).getItemcategorydesc()%></option>
-                        <% } %>
-
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" placeholder="Qty" name="item<% out.print(i); %>qty">
+                           <div class="col-xs-3">
+                               <input disabled type="text"  class="form-control" placeholder=" <%=items.getItemDesc()%>"name="itemdesc" >
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item<% out.print(i); %>volume">
+                  <input disabled type="text" size="30" class="form-control" placeholder="<%=items.getCategoryDetail()%>" name="itemqty">
+                </div>
+                
+                <div class="col-xs-2">
+                  <input  disabled type="text" class="form-control" placeholder="<%=items.getItemqty()%>" name="itemqty">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item<% out.print(i); %>weight">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemvolume()%>" name="itemvolume">
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemweight()%> ( kg)" name="itemweight">
                 </div>
               </div>    
         
         </div>
                   <% }%></p>
  
-                  
+                 
     &nbsp;<p></p>
         
                 <select class="form-control-static " name="carrier" id="transportType">
@@ -342,7 +337,7 @@ public void showIem(Orders Tmp){
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                         out.println("  </div></div></div></div>");  
-                     }%>
+                    }%>
               </table> 
             </div> 
           </div>
@@ -393,13 +388,14 @@ public void showIem(Orders Tmp){
                 <tr>
                   <th>Client ID</th>
                   <th>Client Name</th>
+                  <th>Client Email</th>              
                   <th>Client Address</th>
                   <th>Client Phone</th>
-                  <th>Client Email</th>
-                  <th>Client Orders</th>
+                  <th>Client UserName</th>
+                  <th>Client Password</th>
                 </tr>
-             <% Client elementj=new Client();
-                   for(Client element:myclient){
+             <% 
+                   for( Client element:myclient){
                       out.println("<tr >");
                     out.println("<td>"+ element.getClientId()+"</td>");
                     out.println("<td>"+element.getFullName()+"</td>");
