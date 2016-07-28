@@ -164,7 +164,7 @@ public class Orders implements Serializable {
 
     public void setItemCollection(ArrayList<Item> itemCollection) {
         this.itemCollection=itemCollection;
-      //   this.itemCollection.addAll(itemCollection);
+        // this.itemCollection.addAll(itemCollection);
        
     }
 

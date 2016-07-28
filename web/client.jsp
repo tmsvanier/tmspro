@@ -284,11 +284,11 @@ public void showIem(Orders Tmp){
      new Morris.Donut({ 
   element: 'orderstats',
   data: [
-    {label: "Created", value: 0},
-    {label: "Confirmed", value: 1},
-    {label: "Shipped", value: 1},
-    {label: "Delivered", value: 1},
-    {label: "Cancelled", value: 0}],
+    {label: "Created", value: 5},
+    {label: "Confirmed", value: 7},
+    {label: "Shipped", value: 12},
+    {label: "Delivered", value: 9},
+    {label: "Cancelled", value: 2}],
   colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
  
 }); 
