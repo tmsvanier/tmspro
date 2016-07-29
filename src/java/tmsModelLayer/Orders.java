@@ -68,6 +68,8 @@ public class Orders implements Serializable {
     private Date orderdate;
     @Column(name = "CLIENTID")
     private Integer clientid;
+    @Column(name="CARRIERID")
+    private Integer carrierid;
     @Column(name = "DRIVERID")
     private Integer driverid;
     @Column(name = "PROVIDERID")
@@ -139,6 +141,38 @@ public class Orders implements Serializable {
 
     public void setClientid(Integer clientid) {
         this.clientid = clientid;
+    }
+
+    public Integer getCarrierid() {
+        return carrierid;
+    }
+
+    public void setCarrierid(Integer carrierid) {
+        this.carrierid = carrierid;
+    }
+
+    public Carrier getOrderCarrier() {
+        return orderCarrier;
+    }
+
+    public void setOrderCarrier(Carrier orderCarrier) {
+        this.orderCarrier = orderCarrier;
+    }
+
+    public Driver getOrderDriver() {
+        return OrderDriver;
+    }
+
+    public void setOrderDriver(Driver OrderDriver) {
+        this.OrderDriver = OrderDriver;
+    }
+
+    public Provider getOrderProvidr() {
+        return OrderProvidr;
+    }
+
+    public void setOrderProvidr(Provider OrderProvidr) {
+        this.OrderProvidr = OrderProvidr;
     }
 
     public Integer getDriverid() {

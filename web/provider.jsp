@@ -218,6 +218,7 @@ public String gettype(int num){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
+                   <th>carrier Id</th>
                   <th>Driver Id</th>
                   <th>Request Date</th>
                    <th>Distance </th>
@@ -230,6 +231,7 @@ public String gettype(int num){
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
+                     out.println("<td>"+element.getCarrierid()+"</td>");
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
                     out.println("<td>"+element.getDistance()+"</td>");

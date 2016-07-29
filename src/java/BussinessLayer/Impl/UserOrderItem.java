@@ -113,6 +113,7 @@ public class UserOrderItem implements OrderItem{
                 record.setArrival(rslt.getString("arrival"));
                 record.setDeparture(rslt.getString("departure"));
                 record.setOrderdate(rslt.getDate("orderdate"));
+                record.setCarrierid(rslt.getInt("carrierid"));
                 record.setDriverid(rslt.getInt("driverid"));
                 record.setDistance(rslt.getBigDecimal("distance"));
                 query="Select i.*,ic.itemCategoryDesc " +
