@@ -352,7 +352,7 @@ public void showIem(Orders Tmp){
   </label>
    <label class="btn btn-primary">
     <input type="radio" name="radiobtn"  autocomplete="off" value="4"> Carrier Reputation  
-   </label><br> <br>
+   </label> &nbsp;
              <select class="form-control-static " name="transportType" id="transportType">
                     <option value="0">Transport type</option>
                     <option value="2"> Airplane</option>

@@ -164,7 +164,7 @@ public String gettype(int num){
          Optionally, you can add icons to the links -->
         <li class="active"><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
         <li><a data-toggle="pill" href="#clients"><i class="fa fa-list-ul"></i> <span>List of Clients</span></a></li>
-        <li><a data-toggle="pill" href="#providers"><i class="fa fa-list-ul"></i> <span>List of Providers</span></a></li>
+        <li><a data-toggle="pill" href="#carriers"><i class="fa fa-list-ul"></i> <span>List of Carriers</span></a></li>
 <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
@@ -307,7 +307,7 @@ public String gettype(int num){
                   </select>
          &nbsp;
           
-             <select class="form-control-static " disabled name="transportType" id="transportType">
+             <select class="form-control-static "   name="transportType" id="transportType">
                     <option>Transport type</option>
                     <option> Airplane</option>
                     <option> Train</option>
@@ -384,7 +384,7 @@ public String gettype(int num){
                 </tr>
              <% 
                    for( Client element:myclient){
-                      out.println("<tr >");
+                   out.println("<tr >");
                     out.println("<td>"+ element.getClientId()+"</td>");
                     out.println("<td>"+element.getFullName()+"</td>");
                     
@@ -411,28 +411,78 @@ public String gettype(int num){
   <!-- /.content-wrapper -->
     </div>
               
-<div id="providers" class="tab-pane fade">
+<div id="carriers" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List of Providers
-        <small>List of all Providers</small>
+        List of Carriers
+        <small>List of all Carriers</small>
       </h1>
 
     </section>
 
     <!-- Main content -->
     <section class="content">
+
  
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">All Carriers</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                <tr>
+                  <th>Carrier ID</th>
+                  <th>Transport ID</th>
+                  <th>Carrier Name</th>
+                  <th>Carrier Email</th>              
+                  <th>Carrier Address</th>
+                  <th>Carrier Phone</th>
+                  <th>Carrier UserName</th> 
+                  <th>Carrier KPI</th>
+                </tr>
+             <% 
+                   for( Carrier element:mycarrier){
+                   out.println("<tr >");
+                    out.println("<td>"+ element.getCarrierId()+"</td>");
+                    out.println("<td>"+ element.getTransportId()+"</td>");
+                    out.println("<td>"+element.getFullName()+"</td>");
+                    
+                    out.println("<td>"+element.getEmail()+"</td>");
+                    out.println("<td>"+element.getAddress()+"</td>");
+                     out.println("<td>"+element.getPhone()+"</td>");
+                     out.println("<td>"+element.getUsername()+"</td>");
+                     out.println("<td>"+element.getKPIvalue()+"</td>");
+                out.println("</tr>"); 
+              
+                   };
+                    %>   
+              </table>
+     
+            </div>
+            
+          </div>
+          <!-- /.box -->
          
           
     </section>
             
   </div>
   <!-- /.content-wrapper -->
-    </div>              
+    </div>            
  
       
  
