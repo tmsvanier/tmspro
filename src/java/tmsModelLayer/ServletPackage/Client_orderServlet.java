@@ -69,10 +69,11 @@ public class Client_orderServlet extends HttpServlet {
         int trasportid=Integer.parseInt(request.getParameter("transportType"));
               
        for(int i=1;i<6;i++){
-           String cat,itemdes,itemqty,itemvol,itemweight;
+           String cat,itemdes,itemqty,itemvol,itemweight,itemcost;
            cat="item"+i+"category";itemdes="item"+i+"desc";
            itemqty="item"+i+"qty";itemvol="item"+i+"volume";
            itemweight="item"+i+"weight";
+           itemcost="item"+i+"cost";
            Item record=new Item();
            record.setItemcategory(Integer.parseInt(request.getParameter(cat)));
           record.setItemDesc(request.getParameter(itemdes));
@@ -80,6 +81,7 @@ public class Client_orderServlet extends HttpServlet {
            record.setItemqty(Integer.parseInt(request.getParameter(itemqty)));
            record.setItemweight(Double.parseDouble(request.getParameter(itemweight)));
            record.setItemvolume(Integer.parseInt(request.getParameter(itemvol)));
+           record.setItemprice(Double.parseDouble(request.getParameter(itemcost)));
            orderItem.add(record);
        }
         //item1
