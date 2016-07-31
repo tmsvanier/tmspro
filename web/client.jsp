@@ -368,7 +368,7 @@ public void showIem(Orders Tmp){
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
-                           <div class="col-xs-5">
+                           <div class="col-xs-4">
                   <input type="text" class="form-control" placeholder="Item <% out.print(i); %>. Description" name="item<% out.print(i); %>desc" >
                 </div>
                 <div class="col-xs-2" >
@@ -381,13 +381,16 @@ public void showIem(Orders Tmp){
                   </select>
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" placeholder="Qty" name="item<% out.print(i); %>qty">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" placeholder="volume (in liters)" name="item<% out.print(i); %>volume">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" placeholder="weight (in kg)" name="item<% out.print(i); %>weight">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight">
+                </div>
+                <div class="col-xs-1">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>price" disabled placeholder="Price" name="item<% out.print(i); %>price">
                 </div>
               </div>    
         
