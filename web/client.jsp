@@ -363,6 +363,18 @@ public void showIem(Orders Tmp){
       
 </div>
     <p>
+        
+        <script type="text/javascript">
+                  
+function calcCost(){
+    for(var i=1;i<6;i++)
+    document.getElementById('order'+i+'price').value=
+            document.getElementById('order'+i+'qty').value
+            *(document.getElementById('order'+i+'weight').value*5
+            +document.getElementById('order'+i+'volume').value*5);
+}
+
+</script>
  
  <% for (int i = 1; i<6; i++) { %>
  
@@ -381,13 +393,13 @@ public void showIem(Orders Tmp){
                   </select>
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onblur="calcCost()">
                 </div>
                 <div class="col-xs-1">
                   <input type="text" class="form-control" id="order<% out.print(i); %>price" disabled placeholder="Price" name="item<% out.print(i); %>price">
