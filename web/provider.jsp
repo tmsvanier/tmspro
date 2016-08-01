@@ -280,14 +280,17 @@ public String gettype(int num){
                   <input disabled type="text" size="30" class="form-control" placeholder="<%=items.getCategoryDetail()%>" name="itemqty">
                 </div>
                 
-                <div class="col-xs-2">
+                <div class="col-xs-1">
                   <input  disabled type="text" class="form-control" placeholder="<%=items.getItemqty()%>" name="itemqty">
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1">
                   <input disabled type="text" class="form-control" placeholder="<%=items.getItemvolume()%>" name="itemvolume">
                 </div>
                 <div class="col-xs-2">
                   <input disabled type="text" class="form-control" placeholder="<%=items.getItemweight()%> ( kg)" name="itemweight">
+                    </div>
+                    <div class="col-xs-3">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemprice()%> $" name="itemprice">               
                 </div>
               </div>    
         
