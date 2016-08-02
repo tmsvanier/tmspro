@@ -301,25 +301,22 @@ public String gettype(int num){
     &nbsp;<p></p>
                 
                 <select class="form-control-static " name="carrier" id="transportType">
-                    <option>Carrier</option>
-                    <option> Airplane</option>
-                    <option> Train</option>
-                    <option> Truck</option>
-                    <option> Marine</option>
-
-                  </select>
-         &nbsp;
-          
-             <select class="form-control-static "   name="transportType" id="transportType">
-                    <option>Transport type</option>
-                    <option> Airplane</option>
-                    <option> Train</option>
-                    <option> Truck</option>
-                    <option> Marine</option>
+                    <option value="0">Choose Carrier</option>
+                    <optgroup label="Airplane">
+                        <option>Choose Carrier</option>
+                    </optgroup>
+                    <optgroup label="Train">
+                        <option>Choose Carrier</option>
+                    </optgroup>
+                    <optgroup label="Truck">
+                        <option>Choose Carrier</option>
+                    </optgroup>
+                    <optgroup label="Marine">
+                        <option>Choose Carrier</option>
+                    </optgroup>
 
                   </select>
  
-
         <p></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="confirmbtn" value="order">Confirm an Order</button>
         <button class="btn btn-lg bg-red btn-primary btn-block" type="submit" name="cancelbtn" value="order">Cancel an Order</button>
