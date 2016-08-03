@@ -477,39 +477,67 @@ function calcCost(){
                   <th>Request Date</th>
                    <th>Distance </th>
                 </tr>
-                <% for(Orders element:myorder){                                
-                 out.println("<tr>");
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>");
-                            
-                                    
+                    <% for(Orders element:myorder){    
+                    
+                    out.println("<tr>");
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                     out.println("<td>"+element.getDistance()+"</td>");
-                out.println("</tr>"); 
+                    out.println("<td>"+element.getDistance()+"</td>");
+                    out.println("</tr>"); 
                 
                 
-                out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
-                out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-                  out.println("   <div class='modal-header'>"); 
-                  out.println("    <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                  out.println("    <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
-                  out.println("  <div class='modal-body'>");
-                  int i=0;
-                    for(Item record: element.getItemCollection()){
-                        i++;
-                        out.println("item No: "+i+"</br>");
+                    out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
+                    out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
+                    out.println(" <div class='modal-header'>"); 
+                    out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+                    out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+                    out.println(" <div class='modal-body'>");
+
                         
-                    %>
-                    <%=  record.toString()%>
-                    <%}//iner loop
-                   out.println(" </div> <div class='modal-footer'>"); 
-               out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
-               out.println("  </div></div></div></div>"); 
+                 %>
+             
+<form action="Client_order"  method="post" class="form-update" name="order" >
+  
+  <% for (Item items:element.getItemCollection()) { %>
  
-                }//the outmost loop%> 
+  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-3">
+                               <input disabled type="text"  class="form-control" placeholder=" <%=items.getItemDesc()%>"name="itemdesc" >
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" size="30" class="form-control" placeholder="<%=items.getCategoryDetail()%>" name="itemqty">
+                </div>
+                
+                <div class="col-xs-1">
+                  <input  disabled type="text" class="form-control" placeholder="<%=items.getItemqty()%>" name="itemqty">
+                </div>
+                <div class="col-xs-1">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemvolume()%>" name="itemvolume">
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemweight()%> ( kg)" name="itemweight">
+                    </div>
+                    <div class="col-xs-3">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemprice()%> $" name="itemprice">               
+                </div>
+              </div>    
+        
+        </div>
+                  <% };%></p>
+ 
+                 
+   
+    </form>
+                    <%//iner loop
+                        out.println(" </div> <div class='modal-footer'>"); 
+                        out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
+                        out.println("  </div></div></div></div>");  
+                    };%>
               </table>
             
             </div>
