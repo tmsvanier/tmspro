@@ -30,8 +30,8 @@ public class Oracle
         try
         {
            Class.forName("oracle.jdbc.driver.OracleDriver");
-         url="jdbc:oracle:thin:@ Localhost:1521:orcl";
-         // url="jdbc:oracle:thin:@localhost:1521:scott";
+         //url="jdbc:oracle:thin:@ Localhost:1521:orcl";
+         url="jdbc:oracle:thin:@localhost:1521:scott";
           
             conn=DriverManager.getConnection(url,username,password); 
              

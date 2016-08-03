@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tmsModelLayer.Carrier;
+import tmsModelLayer.ClientConsider;
 import tmsModelLayer.Item;
 import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Oracle;
@@ -27,6 +29,8 @@ import tmsModelLayer.Orders;
 public class UserOrderItem implements OrderItem{
     Oracle Client_Conn=null;
      Oracle Provider_Conn=null;
+     Oracle bestCarry=null;
+     
     Set<Orders> orderSet=null;
     ArrayList<Item>orderItems=null;
     ResultSet rslt,rslt1=null;
@@ -232,6 +236,22 @@ public class UserOrderItem implements OrderItem{
         element.setOrderId(orderId);element.setItemcategory(catNo);element.setItemweight(Weight);
         element.setItemprice(Price);element.setItemvolume(Volume);element.setItemqty(Qnty);
         return element;
+    }
+
+    @Override
+    public ArrayList<Carrier> getBestCarriers(int transportid) {
+       ArrayList<Carrier> bestCarrier=new ArrayList();
+       Carrier record=new Carrier();
+       ClientConsider consider=new ClientConsider();
+        bestCarry=new Oracle();
+        bestCarry.connect("scott", "tiger");
+        query="CREATE TABLE TMSKPI as " +
+              "SELECT c.transportId\"T1\",outer.carrierid\"C1\",outer.orderid\"O1\", " +
+                "COALESCE((select sum(KpiValue*(KpiWeight)) from kpilog where orderid=outer.orderid ),0)\"C2\" " +
+              "from orders outer,carrier c where outer.carrierid=c.carrierid and c.transportId In (2,3,4,5,6) and outer.statusId=5 " +
+              "order by 4 desc";
+        
+       return bestCarrier;
     }
     
 }

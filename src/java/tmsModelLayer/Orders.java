@@ -83,6 +83,7 @@ public class Orders implements Serializable {
     private int statusid;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "orders")
     private Gps gps;
+    private float orderKPI;
     Carrier orderCarrier;
     Driver OrderDriver;
     Provider OrderProvidr;
@@ -133,6 +134,14 @@ public class Orders implements Serializable {
 
     public void setOrderdate(Date orderdate) {
         this.orderdate = orderdate;
+    }
+
+    public float getOrderKPI() {
+        return orderKPI;
+    }
+
+    public void setOrderKPI(float orderKPI) {
+        this.orderKPI = orderKPI;
     }
 
     public Integer getClientid() {
