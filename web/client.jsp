@@ -580,16 +580,49 @@ for (Item items:element.getItemCollection()) {%>
                   
                   <script>
                     function feedback() {
-                        var dropcost = document.getElementById('costfeedbackweight');
+                       var dropcost = document.getElementById('costfeedbackweight');
                         var droptime = document.getElementById('timefeedbackweight');
                         var dropnod = document.getElementById('nodfeedbackweight');
                         var cost = dropcost.options[dropcost.selectedIndex].value;
                         var time = droptime.options[droptime.selectedIndex].value;
-                        var nod = dropnod.options[dropnod.selectedIndex].value;
-                        alert(nod)
-                         var sum =  cost+time+nod;
-                            if(sum != 100)
-                                alert("Total weight % must be exactly 100")
+                        var nod = dropnod.options[dropnod.selectedIndex].value; 
+           
+                         var sum =  parseInt(cost)+parseInt(time)+parseInt(nod);
+                            if(sum == 100 && cost!=0 && nod!=0 && time!=0) {
+                                document.getElementById('costfeedbackweight').style.borderColor="green";
+                                document.getElementById('timefeedbackweight').style.borderColor="green";
+                                document.getElementById('nodfeedbackweight').style.borderColor="green";
+                            }
+                            else if (sum != 100 && cost!=0 && nod!=0 && time!=0){
+                                alert("Total weight % must be exactly 100");
+                                document.getElementById('costfeedbackweight').style.borderColor="red";
+                                document.getElementById('timefeedbackweight').style.borderColor="red";
+                                document.getElementById('nodfeedbackweight').style.borderColor="red";
+                            }
+                            else
+                            return 0;
+                    }
+                    function feedbackvalue() {
+                        if (parseInt(document.getElementById('costfeedback').value)>100 || parseInt(document.getElementById('costfeedback').value)<0) {
+                            document.getElementById('costfeedback').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('costfeedback').value)<100 && parseInt(document.getElementById('costfeedback').value)>0) 
+                            document.getElementById('costfeedback').style.borderColor="green";
+                        
+                        if (parseInt(document.getElementById('timefeedback').value)>100 || parseInt(document.getElementById('timefeedback').value)<0) {
+                            document.getElementById('timefeedback').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('timefeedback').value)<100 && parseInt(document.getElementById('timefeedback').value)>0) 
+                            document.getElementById('timefeedback').style.borderColor="green";
+                        
+                        if (parseInt(document.getElementById('nodfeedback').value)> 100 || parseInt(document.getElementById('nodfeedback').value)<0) {
+                            document.getElementById('nodfeedback').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('nodfeedback').value)<100 && parseInt(document.getElementById('nodfeedback').value)>0)
+                            document.getElementById('nodfeedback').style.borderColor="green";                        
                     }
                   </script>
                   
@@ -599,7 +632,7 @@ for (Item items:element.getItemCollection()) {%>
    
                      <div class="row"> 
                     <div class="col-xs-7">
-                        <select class="form-control" id="costt" name="costfeedbackweight" onchange="feedback()">
+                        <select class="form-control" id="costfeedbackweight" onchange="feedback()">
                        <option  value="0">Choose Cost Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -609,14 +642,14 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" id="costfeedback"  ></div>
+                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" id="costfeedback"  onblur="feedbackvalue()"></div>
                      
                      
                       </div> 
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="timee" name="timefeedbackweight" onchange="feedback()">
+                     <select class="form-control" id="timefeedbackweight" onchange="feedback()">
                        <option  value="0">Choose Time Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -626,7 +659,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" id="timefeedback" ></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" id="timefeedback" onblur="feedbackvalue()"></div>
                      
                      
                       </div>     
@@ -634,7 +667,7 @@ for (Item items:element.getItemCollection()) {%>
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="timee" name="nodfeedbackweight" onchange="feedback()">
+                     <select class="form-control" id="nodfeedbackweight" onchange="feedback()">
                        <option  value="0">Choose Weight Number of Defects</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -644,7 +677,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback"  ></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback"  onblur="feedbackvalue()"></div>
                      
                      
                       </div>                          
