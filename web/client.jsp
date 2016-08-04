@@ -411,7 +411,7 @@ function calcCost(){
                   <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price">
+                  <input disabled type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price">
                 </div>
               </div>    
         
@@ -479,35 +479,14 @@ function calcCost(){
                   <th>Driver Id</th>
                   <th>Request Date</th>
                    <th>Distance </th>
-   <script>
-  $( function() {
-    $( "#spinner" ).spinner({
-      spin: function( event, ui ) {
-        if ( ui.value > 10 ) {
-          $( this ).spinner( "value", -10 );
-          return false;
-        } else if ( ui.value < -10 ) {
-          $( this ).spinner( "value", 10 );
-          return false;
-        }
-      }
-    });
-  } );
-  </script>
-  
-  <p>
-  <label for="spinner">Select a value:</label>
-  <input id="spinner" name="value">
-</p>
+                   <th>Track/Feedback </th>
+ 
                 </tr>
                     <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
-                                        if( element.getStatusid()==5) {
-                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a> <img src=https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/alert-triangle-red-128.png width=15 title='Please leave a feedback' alt='Please leave a feedback'>");                     }
-                    else {
-                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
-                                        }
+                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
+                        
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
 
@@ -516,6 +495,13 @@ function calcCost(){
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
                     out.println("<td>"+element.getDistance()+"</td>");
+                    
+                            if( element.getStatusid()==5 ) {
+                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); 
+                            } else { 
+                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>"); 
+
+                    }
                     out.println("</tr>"); 
                 
                 
@@ -531,7 +517,11 @@ function calcCost(){
              
 <form action="Client_order"  method="post" class="form-update" name="order" >
   
-  <% for (Item items:element.getItemCollection()) { %>
+  <% if( element.getStatusid()==5 ) { 
+  
+
+  for (Item items:element.getItemCollection()) {%>  
+
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
@@ -557,16 +547,56 @@ function calcCost(){
               </div>    
         
         </div>
-                  <% };%></p>
+               <% } } else {
+for (Item items:element.getItemCollection()) {%>
+                
+  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-3">
+                               <input disabled type="text"  class="form-control" placeholder=" <%=items.getItemDesc()%>"name="itemdesc" >
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" size="30" class="form-control" placeholder="<%=items.getCategoryDetail()%>" name="itemqty">
+                </div>
+                
+                <div class="col-xs-1">
+                  <input  disabled type="text" class="form-control" placeholder="<%=items.getItemqty()%>" name="itemqty">
+                </div>
+                <div class="col-xs-1">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemvolume()%>" name="itemvolume">
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemweight()%> ( kg)" name="itemweight">
+                    </div>
+                    <div class="col-xs-3">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemprice()%> $" name="itemprice">               
+                </div>
+              </div>    
+        
+        </div>                
+                  <%} };%></p>
  
-                 
+         
    
     </form>
-                    <%//iner loop
+                  
+                  <% if( element.getStatusid()==5 )  
+                        out.println("LEAVE FEEDBACK");  
+                  else {%>
+                    
+                  GPS Map Position of the vehicle:<br>
+                                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7907.473460473553!2d-73.67186102280644!3d45.51583456793833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1470278955167" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                    <% }//iner loop
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                         out.println("  </div></div></div></div>");  
                     };%>
+                    
+      
+           
+           
+           
               </table>
             
             </div>
