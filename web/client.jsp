@@ -86,10 +86,13 @@ public void showIem(Orders Tmp){
 
     <link rel='stylesheet' href='plugins/fullcalendar/fullcalendar.css' /> 
     <script src='dist/js/moment.js'></script>
+    
     <script src='plugins/fullcalendar/fullcalendar.min.js'></script>
     <link href='plugins/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
- 
-
+    
+    <script src='dist/js/jquery.mousewheel.js'></script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -476,14 +479,40 @@ function calcCost(){
                   <th>Driver Id</th>
                   <th>Request Date</th>
                    <th>Distance </th>
+   <script>
+  $( function() {
+    $( "#spinner" ).spinner({
+      spin: function( event, ui ) {
+        if ( ui.value > 10 ) {
+          $( this ).spinner( "value", -10 );
+          return false;
+        } else if ( ui.value < -10 ) {
+          $( this ).spinner( "value", 10 );
+          return false;
+        }
+      }
+    });
+  } );
+  </script>
+  
+  <p>
+  <label for="spinner">Select a value:</label>
+  <input id="spinner" name="value">
+</p>
                 </tr>
                     <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
+                                        if( element.getStatusid()==5) {
+                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a> <img src=https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/alert-triangle-red-128.png width=15 title='Please leave a feedback' alt='Please leave a feedback'>");                     }
+                    else {
+                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
+                                        }
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
-                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
+
+                        out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
+ 
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
                     out.println("<td>"+element.getDistance()+"</td>");
