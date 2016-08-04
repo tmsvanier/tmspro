@@ -89,10 +89,7 @@ public void showIem(Orders Tmp){
     
     <script src='plugins/fullcalendar/fullcalendar.min.js'></script>
     <link href='plugins/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
-    
-    <script src='dist/js/jquery.mousewheel.js'></script>
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+ 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -356,13 +353,13 @@ public void showIem(Orders Tmp){
    <label class="btn btn-primary">
     <input type="radio" name="radiobtn"  autocomplete="off" value="4"> Carrier Reputation  
    </label> &nbsp;
-             <select class="form-control-static " name="transportType" id="transportType">
-                    <option value="0">Transport type</option>
+                <select class="form-control-static " name="transportType" id="transportType">
+                    <option value="0"> Transport type</option>
                     <option value="2"> Airplane</option>
                     <option value="3"> Train</option>
                     <option value="4"> Truck</option>
                     <option value="5"> Marine</option> 
-                  </select>
+                </select>
       
 </div>
     <p>
@@ -411,7 +408,7 @@ function calcCost(){
                   <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                  <input disabled type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price">
+                  <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()">
                 </div>
               </div>    
         
@@ -517,9 +514,8 @@ function calcCost(){
              
 <form action="Client_order"  method="post" class="form-update" name="order" >
   
-  <% if( element.getStatusid()==5 ) { 
-  
-
+  <% if( element.getStatusid()==5 ) {  
+      
   for (Item items:element.getItemCollection()) {%>  
 
  
@@ -580,9 +576,91 @@ for (Item items:element.getItemCollection()) {%>
    
     </form>
                   
-                  <% if( element.getStatusid()==5 )  
-                        out.println("LEAVE FEEDBACK");  
-                  else {%>
+                  <% if( element.getStatusid()==5 ) { %>
+                  
+                  <script>
+                    function feedback() {
+                        var dropcost = document.getElementById('costfeedbackweight');
+                        var droptime = document.getElementById('timefeedbackweight');
+                        var dropnod = document.getElementById('nodfeedbackweight');
+                        var cost = dropcost.options[dropcost.selectedIndex].value;
+                        var time = droptime.options[droptime.selectedIndex].value;
+                        var nod = dropnod.options[dropnod.selectedIndex].value;
+                        alert(nod)
+                         var sum =  cost+time+nod;
+                            if(sum != 100)
+                                alert("Total weight % must be exactly 100")
+                    }
+                  </script>
+                  
+                <form role="form">
+                    <label for="sel1">Please Leave a Feedback based on your satisfaction of our Service, the total number of weight should be 100%</label>
+                    <div class="input-group">
+   
+                     <div class="row"> 
+                    <div class="col-xs-7">
+                        <select class="form-control" id="costt" name="costfeedbackweight" onchange="feedback()">
+                       <option  value="0">Choose Cost Weight</option>
+                       <script>for(i=0; i<=100; i=i+5) {
+                           if(i==0) document.writeln("<option value='1'>1</option>"); 
+                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
+                       </script>
+                     </select>
+                                           
+                     </div>
+                      
+                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" id="costfeedback"  ></div>
+                     
+                     
+                      </div> 
+                        
+                     <div class="row"> 
+                    <div class="col-xs-7">
+                     <select class="form-control" id="timee" name="timefeedbackweight" onchange="feedback()">
+                       <option  value="0">Choose Time Weight</option>
+                       <script>for(i=0; i<=100; i=i+5) {
+                           if(i==0) document.writeln("<option value='1'>1</option>"); 
+                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
+                       </script>
+                     </select>
+                                           
+                     </div>
+                      
+                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" id="timefeedback" ></div>
+                     
+                     
+                      </div>     
+                        
+                        
+                     <div class="row"> 
+                    <div class="col-xs-7">
+                     <select class="form-control" id="timee" name="nodfeedbackweight" onchange="feedback()">
+                       <option  value="0">Choose Weight Number of Defects</option>
+                       <script>for(i=0; i<=100; i=i+5) {
+                           if(i==0) document.writeln("<option value='1'>1</option>"); 
+                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
+                       </script>
+                     </select>
+                                           
+                     </div>
+                      
+                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback"  ></div>
+                     
+                     
+                      </div>                          
+     <div class="row"> 
+                    <div class="col-xs-12">
+                        <input type="submit" value="Leave a Feedback" class="col-xs-12" name="feedbackbutton">
+                                           
+                     </div>
+  
+                      </div>           
+                  </div>
+                 </form>
+ 
+ 
+                
+                <% } else {%>
                     
                   GPS Map Position of the vehicle:<br>
                                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7907.473460473553!2d-73.67186102280644!3d45.51583456793833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1470278955167" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -592,13 +670,8 @@ for (Item items:element.getItemCollection()) {%>
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
                         out.println("  </div></div></div></div>");  
                     };%>
-                    
-      
-           
-           
-           
-              </table>
-            
+                     
+              </table> 
             </div>
             
           </div>
