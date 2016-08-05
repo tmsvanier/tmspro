@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
+import tmsModelLayer.ClientConsider;
 import tmsModelLayer.Driver;
 import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Orders;
@@ -95,8 +96,10 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
                loginSession.setAttribute("providerpage", user_2);
                loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
                loginSession.setAttribute("category",getUserOrder().getCategory());
-                loginSession.setAttribute("clients",getLogin().clientList());
-                loginSession.setAttribute("carrierlist",getLogin().carrierList());
+               loginSession.setAttribute("clients",getLogin().clientList());
+               loginSession.setAttribute("carrierlist",getLogin().carrierList());
+               ClientConsider test=new ClientConsider();
+               loginSession.setAttribute("OrderKPI",getKPI().getBestCarriers(test));
                response.sendRedirect("provider.jsp");
                
            }//redirect to provider page
@@ -132,6 +135,10 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
     private UserOrderItem getUserOrder(){
         client_Order=new UserOrderItem();
         return client_Order;
+    }
+    private UserOrderItem getKPI(){
+        UserOrderItem OrderKPI=new UserOrderItem();
+        return OrderKPI;
     }
     @Override
     public String getServletInfo() {

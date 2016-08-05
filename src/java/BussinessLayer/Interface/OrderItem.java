@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import tmsModelLayer.Carrier;
+import tmsModelLayer.ClientConsider;
 import tmsModelLayer.Item;
 import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Orders;
@@ -27,5 +28,5 @@ public interface OrderItem {
     public Set<Orders> getProviderOrder(int pR_Id);
     public int getPosition(long orderId);
     public ArrayList<Itemcategory> getCategory();
-    public ArrayList<Carrier> getBestCarriers(int transportid);
+    public ArrayList<Carrier> getBestCarriers(ClientConsider temp);
 }

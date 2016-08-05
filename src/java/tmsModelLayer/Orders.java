@@ -84,6 +84,7 @@ public class Orders implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "orders")
     private Gps gps;
     private float orderKPI;
+   ArrayList<Carrier> OptionList;
     Carrier orderCarrier;
     Driver OrderDriver;
     Provider OrderProvidr;
@@ -263,5 +264,12 @@ public class Orders implements Serializable {
     public void makeCopy(Orders tOrder){
         
         orderid=tOrder.getOrderid();
+    }
+    public ArrayList<Carrier> Get_CarrierOption(){                
+        return OptionList;
+    }
+     public void set_CarrierOption(ArrayList<Carrier> temp){                
+          this.OptionList=temp;
+     
     }
 }

@@ -242,10 +242,12 @@ public String gettype(int num){
                     out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
                     out.println(" <div class='modal-header'>"); 
                     out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                    out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4> </div>"); 
+                    out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4>");                                   
                     out.println(" <div class='modal-body'>");
-
-                        
+                    
+                    //store best carrier in iterator
+                Iterator it=element.Get_CarrierOption().listIterator();
+                       
                  %>
              
 <form action="Client_order"  method="post" class="form-update" name="order" >
@@ -295,30 +297,20 @@ public String gettype(int num){
               </div>    
         
         </div>
+    
                   <% };%></p>
  
-                 
+
     &nbsp;<p></p>
-                
+             
                 <select class="form-control-static " name="carrier" id="transportType">
                     <option value="0">Choose Carrier</option>
-                    <optgroup label="Airplane">
-                        <option>Choose Carrier</option>
-                        <option>Choose Carrier</option>
+                    <optgroup label="best Carrier">
+                        <%while(it.hasNext()){
+                        out.println("<option>"+it.next()+"</option>");
+                        }%>
                     </optgroup>
-                    <optgroup label="Train">
-                        <option>Choose Carrier</option>
-                        <option>Choose Carrier</option>
-                    </optgroup>
-                    <optgroup label="Truck">
-                        <option>Choose Carrier</option>
-                        <option>Choose Carrier</option>
-                    </optgroup>
-                    <optgroup label="Marine">
-                        <option>Choose Carrier</option>
-                         <option>Choose Carrier</option>
-                    </optgroup>
-
+                  
                   </select>
  
         <p></p>

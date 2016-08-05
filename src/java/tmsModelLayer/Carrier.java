@@ -58,5 +58,8 @@ public class Carrier extends Person{
       super.setPassword(tmp.getPassword());
       super.setPhone(tmp.getPhone());
     }
-    
+    @Override
+    public String toString() {
+        return super.getFullName()+"// transportid: "+transportId;
+    }
 }
