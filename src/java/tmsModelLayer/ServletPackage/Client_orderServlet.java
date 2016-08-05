@@ -68,9 +68,13 @@ public class Client_orderServlet extends HttpServlet {
         //GPS value
         String departure=request.getParameter("departure");
         String destination=request.getParameter("destination");
-        int considerid=Integer.parseInt(request.getParameter("radiobtn"));
-        int trasportid=Integer.parseInt(request.getParameter("transportType"));
-              
+       
+    
+         int cosiderid =Integer.parseInt(request.getParameter("radiobtn"));
+         int clinetTransid =Integer.parseInt(request.getParameter("transportType")); 
+         if(clinetTransid==0)
+             clinetTransid=6;
+        
        for(int i=1;i<3;i++){
            String cat,itemdes,itemqty,itemvol,itemweight,itemcost;
            cat="item"+i+"category";itemdes="item"+i+"desc";
@@ -87,7 +91,7 @@ public class Client_orderServlet extends HttpServlet {
            orderItem.add(record);
        }
         //item1
-        setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem);
+        setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
         
         processRequest(request, response);
     }

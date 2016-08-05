@@ -199,7 +199,7 @@ public class UserOrderItem implements OrderItem{
     }
 
     @Override
-    public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival,ArrayList<Item> items) {
+    public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival,ArrayList<Item> items,int cosiderid,int clinetTransid) {
         Client_Conn=new Oracle();
         Client_Conn.connect("scott", "tiger");
         query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
@@ -213,6 +213,11 @@ public class UserOrderItem implements OrderItem{
         } catch (SQLException ex) {
             Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //set a recoord for clientConsider Table
+        
+        query="Insert into clientConsider Values("+cosiderid+",'NULL',"+clinetTransid+","+NewOrderId+")";
+        Client_Conn.setQuery(query);
         //set orderId for selected item
         for(int i=0;i<2;i++){//i must be changed to 5
             query="insert into item values("+NewOrderId+","+items.get(i).getItemcategory()+","+
