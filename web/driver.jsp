@@ -1,11 +1,11 @@
  
 
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
+<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*,tmsModelLayer.Driver" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <% 
-           Client myuser=(Client) session.getAttribute("clientpage");
+           Driver myuser=(Driver) session.getAttribute("driverpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            //List<Item> items_request=new ArrayList();
@@ -62,7 +62,7 @@ public void showIem(Orders Tmp){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TMS | Client's Dashboard</title>
+  <title>TMS | Driver's Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -109,7 +109,7 @@ public void showIem(Orders Tmp){
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>T</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Client Dashboard </b>TMS</span>
+      <span class="logo-lg"><b>Driver Dashboard </b>TMS</span>
     </a>
 
     <!-- Header Navbar -->
@@ -174,11 +174,11 @@ public void showIem(Orders Tmp){
 
                 <p>
                     
-                  <%= myuser.getFullName()%> - Client
+                  <%= myuser.getFullName()%> - Driver
                   <small>
                          <% 
   
-           out.println("Client ID: "+myuser.getClientId()); %><br>
+           out.println("Driver ID: "+myuser.getDriverId()); %><br>
           <%  out.println("Address: "+myuser.getAddress());%><br>
            <%  out.println("Email: "+myuser.getEmail());%><br>
          <%   out.println("Telephone: "+myuser.getPhone());
@@ -243,7 +243,7 @@ public void showIem(Orders Tmp){
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Main page for Clients</small>
+        <small>Main page for Drivers</small>
       </h1>
         
        
@@ -323,8 +323,8 @@ public void showIem(Orders Tmp){
     <!-- Main content -->
     <section class="content">
 
-<form action="Client_order"  method="post" class="form-update" name="order" >
-    <input type=hidden id="client_id" name="client_id" value=<%=myuser.getClientId()%>>
+<form action="Driver_order"  method="post" class="form-update" name="order" >
+    <input type=hidden id="driver_id" name="driver_id" value=<%=myuser.getDriverId()%>>
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
         <label for="departure" class="sr-only" >Departure(Enter Address)</label>
         <input type="text" id="departure" class="form-control" placeholder="Departure (Enter Address)" required autofocus name="departure">
@@ -512,7 +512,7 @@ function calcCost(){
                         
                  %>
              
-<form action="Client_order"  method="post" class="form-update" name="order" >
+<form action="Driver_order"  method="post" class="form-update" name="order" >
   
   <% if( element.getStatusid()==5 ) {  
       

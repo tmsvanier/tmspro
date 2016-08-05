@@ -101,6 +101,17 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
                
            }//redirect to provider page
            
+            
+            if(check==1 &&role==4)//correct information
+           {
+               user_4.makeCopy(getLogin().getDriver(username));
+               loginSession.setAttribute("driverpage", user_4);
+               loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_4.getDriverId()));
+               loginSession.setAttribute("category",getUserOrder().getCategory()); 
+                loginSession.setAttribute("carrierlist",getLogin().carrierList());
+               response.sendRedirect("driver.jsp");
+               
+           }//redirect to driver page            
            
            else if(check==0)//meets username only
               response.sendRedirect("index.jsp");

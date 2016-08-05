@@ -11,7 +11,7 @@ import BussinessLayer.Interface.Person;
  *
  * @author cstuser
  */
-public class Driver extends Person {
+public class Driver extends Person implements java.io.Serializable {
     private int driverId;
     private int carreirId;
 

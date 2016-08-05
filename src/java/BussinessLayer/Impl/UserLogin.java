@@ -253,7 +253,27 @@ public class UserLogin implements LoginUser {
           provLog.terminate();
        return allClient;
     }
-
+ 
+    public ArrayList<Driver> driverList() {
+       ArrayList<Driver> allDriver=new ArrayList();
+        Oracle provLog = new Oracle();
+       provLog.connect("scott", "tiger");
+       query="Select * from driver";
+       rslt=provLog.getResult(query);
+          try {
+              while(rslt.next()){
+                  Driver record=new Driver();
+                  record.setDriverId(rslt.getInt("driverid"));record.setAddress(rslt.getString("address"));
+                  record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
+                  record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
+                  record.setPassword(rslt.getString("password"));
+                  allDriver.add(record);
+              }  } catch (SQLException ex) {
+              Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          provLog.terminate();
+       return allDriver;
+    }
     
     
 //    @Override
