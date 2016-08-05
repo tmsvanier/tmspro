@@ -1,6 +1,7 @@
  
 
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*,tmsModelLayer.Driver" %>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,java.util.Date, tmsModelLayer.*,tmsModelLayer.Driver" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -179,8 +180,10 @@ public void showIem(Orders Tmp){
                          <% 
   
            out.println("Driver ID: "+myuser.getDriverId()); %><br>
+           <%  out.println("Carrier ID: "+myuser.getCarreirId());%><br>
           <%  out.println("Address: "+myuser.getAddress());%><br>
            <%  out.println("Email: "+myuser.getEmail());%><br>
+           
          <%   out.println("Telephone: "+myuser.getPhone());
        %></small>
        
@@ -222,9 +225,9 @@ public void showIem(Orders Tmp){
        <!-- <li class="header">Main Menu</li>
          Optionally, you can add icons to the links -->
         <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
-        <li><a data-toggle="pill" href="#order"><i class="fa fa-plus"></i> <span>Place an Order</span></a></li>
+ 
  	<li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
-<li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
+ 
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -251,52 +254,11 @@ public void showIem(Orders Tmp){
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-        
-            <div class="col-md-4">
-                 <div id="orderstats"   ></div>  </div>
+ dfdf
  
  
  
  
- 
- 
- <div class="col-md-4">
-          <div class="box box-primary">
-            <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <div id="calendar" class="fc fc-ltr fc-unthemed"><div class="fc-toolbar"><div class="fc-left"><div class="fc-button-group"><button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div><button type="button" class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled" disabled="disabled">today</button></div><div class="fc-right"><div class="fc-button-group"><button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left fc-state-active">month</button><button type="button" class="fc-agendaWeek-button fc-button fc-state-default">week</button><button type="button" class="fc-agendaDay-button fc-button fc-state-default fc-corner-right">day</button></div></div><div class="fc-center"><h2>July 2016</h2></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-month-view fc-basic-view"><table><thead><tr><td class="fc-widget-header"><div class="fc-row fc-widget-header" style=""><table><thead><tr><th class="fc-day-header fc-widget-header fc-sun">Sun</th><th class="fc-day-header fc-widget-header fc-mon">Mon</th><th class="fc-day-header fc-widget-header fc-tue">Tue</th><th class="fc-day-header fc-widget-header fc-wed">Wed</th><th class="fc-day-header fc-widget-header fc-thu">Thu</th><th class="fc-day-header fc-widget-header fc-fri">Fri</th><th class="fc-day-header fc-widget-header fc-sat">Sat</th></tr></thead></table></div></td></tr></thead><tbody><tr><td class="fc-widget-content"><div class="fc-day-grid-container"><div class="fc-day-grid"><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-other-month fc-past" data-date="2016-06-26"></td><td class="fc-day fc-widget-content fc-mon fc-other-month fc-past" data-date="2016-06-27"></td><td class="fc-day fc-widget-content fc-tue fc-other-month fc-past" data-date="2016-06-28"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-past" data-date="2016-06-29"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-past" data-date="2016-06-30"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-07-01"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-07-02"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-other-month fc-past" data-date="2016-06-26">26</td><td class="fc-day-number fc-mon fc-other-month fc-past" data-date="2016-06-27">27</td><td class="fc-day-number fc-tue fc-other-month fc-past" data-date="2016-06-28">28</td><td class="fc-day-number fc-wed fc-other-month fc-past" data-date="2016-06-29">29</td><td class="fc-day-number fc-thu fc-other-month fc-past" data-date="2016-06-30">30</td><td class="fc-day-number fc-fri fc-past" data-date="2016-07-01">1</td><td class="fc-day-number fc-sat fc-past" data-date="2016-07-02">2</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable" style="background-color:#f56954;border-color:#f56954"><div class="fc-content"><span class="fc-time">12a</span> <span class="fc-title">All Day Event</span></div></a></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-07-03"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-07-04"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-07-05"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-07-06"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-07-07"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-07-08"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-07-09"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-07-03">3</td><td class="fc-day-number fc-mon fc-past" data-date="2016-07-04">4</td><td class="fc-day-number fc-tue fc-past" data-date="2016-07-05">5</td><td class="fc-day-number fc-wed fc-past" data-date="2016-07-06">6</td><td class="fc-day-number fc-thu fc-past" data-date="2016-07-07">7</td><td class="fc-day-number fc-fri fc-past" data-date="2016-07-08">8</td><td class="fc-day-number fc-sat fc-past" data-date="2016-07-09">9</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-07-10"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-07-11"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-07-12"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-07-13"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-07-14"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-07-15"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-07-16"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-07-10">10</td><td class="fc-day-number fc-mon fc-past" data-date="2016-07-11">11</td><td class="fc-day-number fc-tue fc-past" data-date="2016-07-12">12</td><td class="fc-day-number fc-wed fc-past" data-date="2016-07-13">13</td><td class="fc-day-number fc-thu fc-past" data-date="2016-07-14">14</td><td class="fc-day-number fc-fri fc-past" data-date="2016-07-15">15</td><td class="fc-day-number fc-sat fc-past" data-date="2016-07-16">16</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-07-17"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-07-18"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-07-19"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-07-20"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-07-21"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-07-22"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-07-23"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-07-17">17</td><td class="fc-day-number fc-mon fc-past" data-date="2016-07-18">18</td><td class="fc-day-number fc-tue fc-past" data-date="2016-07-19">19</td><td class="fc-day-number fc-wed fc-past" data-date="2016-07-20">20</td><td class="fc-day-number fc-thu fc-past" data-date="2016-07-21">21</td><td class="fc-day-number fc-fri fc-past" data-date="2016-07-22">22</td><td class="fc-day-number fc-sat fc-past" data-date="2016-07-23">23</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td class="fc-event-container" colspan="2"><a class="fc-day-grid-event fc-event fc-start fc-not-end fc-draggable" style="background-color:#f39c12;border-color:#f39c12"><div class="fc-content"><span class="fc-time">12a</span> <span class="fc-title">Long Event</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-07-24"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-07-25"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-07-26"></td><td class="fc-day fc-widget-content fc-wed fc-today fc-state-highlight" data-date="2016-07-27"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2016-07-28"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2016-07-29"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2016-07-30"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-07-24">24</td><td class="fc-day-number fc-mon fc-past" data-date="2016-07-25">25</td><td class="fc-day-number fc-tue fc-past" data-date="2016-07-26">26</td><td class="fc-day-number fc-wed fc-today fc-state-highlight" data-date="2016-07-27">27</td><td class="fc-day-number fc-thu fc-future" data-date="2016-07-28">28</td><td class="fc-day-number fc-fri fc-future" data-date="2016-07-29">29</td><td class="fc-day-number fc-sat fc-future" data-date="2016-07-30">30</td></tr></thead><tbody><tr><td class="fc-event-container" rowspan="2"><a class="fc-day-grid-event fc-event fc-not-start fc-end fc-draggable" style="background-color:#f39c12;border-color:#f39c12"><div class="fc-content"> <span class="fc-title">Long Event</span></div></a></td><td rowspan="2"></td><td rowspan="2"></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable" style="background-color:#0073b7;border-color:#0073b7"><div class="fc-content"><span class="fc-time">10:30a</span> <span class="fc-title">Meeting</span></div></a></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable" href="http://google.com/" style="background-color:#3c8dbc;border-color:#3c8dbc"><div class="fc-content"><span class="fc-time">12a</span> <span class="fc-title">Click for Google</span></div></a></td><td rowspan="2"></td><td rowspan="2"></td></tr><tr><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable" style="background-color:#00c0ef;border-color:#00c0ef"><div class="fc-content"><span class="fc-time">12p</span> <span class="fc-title">Lunch</span></div></a></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable" style="background-color:#00a65a;border-color:#00a65a"><div class="fc-content"><span class="fc-time">7p</span> <span class="fc-title">Birthday Party</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content" style="height: 59px;"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2016-07-31"></td><td class="fc-day fc-widget-content fc-mon fc-other-month fc-future" data-date="2016-08-01"></td><td class="fc-day fc-widget-content fc-tue fc-other-month fc-future" data-date="2016-08-02"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-future" data-date="2016-08-03"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-future" data-date="2016-08-04"></td><td class="fc-day fc-widget-content fc-fri fc-other-month fc-future" data-date="2016-08-05"></td><td class="fc-day fc-widget-content fc-sat fc-other-month fc-future" data-date="2016-08-06"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-future" data-date="2016-07-31">31</td><td class="fc-day-number fc-mon fc-other-month fc-future" data-date="2016-08-01">1</td><td class="fc-day-number fc-tue fc-other-month fc-future" data-date="2016-08-02">2</td><td class="fc-day-number fc-wed fc-other-month fc-future" data-date="2016-08-03">3</td><td class="fc-day-number fc-thu fc-other-month fc-future" data-date="2016-08-04">4</td><td class="fc-day-number fc-fri fc-other-month fc-future" data-date="2016-08-05">5</td><td class="fc-day-number fc-sat fc-other-month fc-future" data-date="2016-08-06">6</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div></div></div></td></tr></tbody></table></div></div></div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-        </div>
- 
- 
- 
- 
- 
- 
- 
-        </div>
- <script>
-     
-     new Morris.Donut({ 
-  element: 'orderstats',
-  data: [
-    {label: "Created", value: 5},
-    {label: "Confirmed", value: 7},
-    {label: "Shipped", value: 12},
-    {label: "Delivered", value: 9},
-    {label: "Cancelled", value: 2}],
-  colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
- 
-}); 
- </script>
- 
- 
-<div id='calendar' style="max-width: 600px; margin: 0 auto;"></div>
-
  
  
     </section>
@@ -308,130 +270,7 @@ public void showIem(Orders Tmp){
     </div> 
      
      
-    <div id="order" class="tab-pane fade">
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-          Place an Order
-        <small>You can place your order here</small>
-      </h1>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-<form action="Driver_order"  method="post" class="form-update" name="order" >
-    <input type=hidden id="driver_id" name="driver_id" value=<%=myuser.getDriverId()%>>
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
-        <label for="departure" class="sr-only" >Departure(Enter Address)</label>
-        <input type="text" id="departure" class="form-control" placeholder="Departure (Enter Address)" required autofocus name="departure">
-        </div>
-
-         
-        <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
-        <label for="destination" class="sr-only" >Destination(Enter Address)</label>
-        <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
-        </div>
     
-    <p > </br>To carry your order, which following options do you prefer to be considered ? (optional)</p>
-    
-    
-      <div class="btn-group" data-toggle="buttons"> 
-   
-  <label class="btn btn-primary active">
-    <input type="radio" name="radiobtn"  autocomplete="off" checked value="1">TMS Suggestion
-  </label>
-    <label class="btn btn-primary">
-    <input type="radio" name="radiobtn"  autocomplete="off" value="2"> Cost  
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="radiobtn"  autocomplete="off" value="3"> Time
-  </label>
-   <label class="btn btn-primary">
-    <input type="radio" name="radiobtn"  autocomplete="off" value="4"> Carrier Reputation  
-   </label> &nbsp;
-                <select class="form-control-static " name="transportType" id="transportType">
-                    <option value="0"> Transport type</option>
-                    <option value="2"> Airplane</option>
-                    <option value="3"> Train</option>
-                    <option value="4"> Truck</option>
-                    <option value="5"> Marine</option> 
-                </select>
-      
-</div>
-    <p>
-        
-        <script type="text/javascript">
-                  
-function calcCost(){
-    for(var i=1;i<3;i++){
-   document.getElementById('order'+i+'price').value=
-           document.getElementById('order'+i+'qty').value
-          *(document.getElementById('order'+i+'weight').value*5
-           +document.getElementById('order'+i+'volume').value*5);
-    
-   // price=parseFloat( document.getElementById('order'+i+'qty').value
-           // *(document.getElementById('order'+i+'weight').value*5
-           // +document.getElementById('order'+i+'volume').value*5));
-    //return price;
-   }
-}
-
-</script>
- 
- <% for (int i = 1; i<3; i++) { %>
- 
-  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
-                           <div class="col-xs-4">
-                  <input type="text" class="form-control" placeholder="Item <% out.print(i); %>. Description" name="item<% out.print(i); %>desc" >
-                </div>
-                <div class="col-xs-2" >
-                  <select class="form-control" name="item<% out.print(i); %>category">
-                    <option value="0">Category</option>
-                    <% for (int j = 1; j<7; j++) { %>
-                    <option value="<% out.print(j+1); %>"> <%=myCategory.get(j-1).getItemcategorydesc()%></option>
-                        <% } %>
-
-                  </select>
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onblur="calcCost()">
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onblur="calcCost()">
-                </div>
-                <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onblur="calcCost()">
-                </div>
-                <div class="col-xs-2">
-                  <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()">
-                </div>
-              </div>    
-        
-        </div>
-                  <% } %>
-    <p>
-
-                  
-                  
-    
-  
-
-        <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="orderbtn" value="order">Place an Order</button>
-      </form>
-        
-        
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-    </div>
- 
  
  
      
@@ -576,121 +415,27 @@ for (Item items:element.getItemCollection()) {%>
    
     </form>
                   
-                  <% if( element.getStatusid()==5 ) { %>
-                  
-                  <script>
-                    function feedback() {
-                       var dropcost = document.getElementById('costfeedbackweight');
-                        var droptime = document.getElementById('timefeedbackweight');
-                        var dropnod = document.getElementById('nodfeedbackweight');
-                        var cost = dropcost.options[dropcost.selectedIndex].value;
-                        var time = droptime.options[droptime.selectedIndex].value;
-                        var nod = dropnod.options[dropnod.selectedIndex].value; 
-           
-                         var sum =  parseInt(cost)+parseInt(time)+parseInt(nod);
-                            if(sum == 100 && cost!=0 && nod!=0 && time!=0) {
-                                document.getElementById('costfeedbackweight').style.borderColor="green";
-                                document.getElementById('timefeedbackweight').style.borderColor="green";
-                                document.getElementById('nodfeedbackweight').style.borderColor="green";
-                            }
-                            else if (sum != 100 && cost!=0 && nod!=0 && time!=0){
-                                alert("Total weight % must be exactly 100");
-                                document.getElementById('costfeedbackweight').style.borderColor="red";
-                                document.getElementById('timefeedbackweight').style.borderColor="red";
-                                document.getElementById('nodfeedbackweight').style.borderColor="red";
-                            }
-                            else
-                            return 0;
-                    }
-                    function feedbackvalue() {
-                        if (parseInt(document.getElementById('costfeedback').value)>100 || parseInt(document.getElementById('costfeedback').value)<0) {
-                            document.getElementById('costfeedback').style.borderColor="red";
-                            alert("Please enter value between 0 and 100");
-                        }
-                        else if(parseInt(document.getElementById('costfeedback').value)<100 && parseInt(document.getElementById('costfeedback').value)>0) 
-                            document.getElementById('costfeedback').style.borderColor="green";
-                        
-                        if (parseInt(document.getElementById('timefeedback').value)>100 || parseInt(document.getElementById('timefeedback').value)<0) {
-                            document.getElementById('timefeedback').style.borderColor="red";
-                            alert("Please enter value between 0 and 100");
-                        }
-                        else if(parseInt(document.getElementById('timefeedback').value)<100 && parseInt(document.getElementById('timefeedback').value)>0) 
-                            document.getElementById('timefeedback').style.borderColor="green";
-                        
-                        if (parseInt(document.getElementById('nodfeedback').value)> 100 || parseInt(document.getElementById('nodfeedback').value)<0) {
-                            document.getElementById('nodfeedback').style.borderColor="red";
-                            alert("Please enter value between 0 and 100");
-                        }
-                        else if(parseInt(document.getElementById('nodfeedback').value)<100 && parseInt(document.getElementById('nodfeedback').value)>0)
-                            document.getElementById('nodfeedback').style.borderColor="green";                        
-                    }
-                  </script>
-                  
-                <form role="form">
-                    <label for="sel1">Please Leave a Feedback based on your satisfaction of our Service, the total number of weight should be 100%</label>
-                    <div class="input-group">
-   
-                     <div class="row"> 
-                    <div class="col-xs-7">
-                        <select class="form-control" id="costfeedbackweight" onchange="feedback()">
-                       <option  value="0">Choose Cost Weight</option>
-                       <script>for(i=0; i<=100; i=i+5) {
-                           if(i==0) document.writeln("<option value='1'>1</option>"); 
-                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
-                       </script>
-                     </select>
-                                           
-                     </div>
-                      
-                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" id="costfeedback"  onblur="feedbackvalue()"></div>
-                     
-                     
-                      </div> 
-                        
-                     <div class="row"> 
-                    <div class="col-xs-7">
-                     <select class="form-control" id="timefeedbackweight" onchange="feedback()">
-                       <option  value="0">Choose Time Weight</option>
-                       <script>for(i=0; i<=100; i=i+5) {
-                           if(i==0) document.writeln("<option value='1'>1</option>"); 
-                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
-                       </script>
-                     </select>
-                                           
-                     </div>
-                      
-                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" id="timefeedback" onblur="feedbackvalue()"></div>
-                     
-                     
-                      </div>     
-                        
-                        
-                     <div class="row"> 
-                    <div class="col-xs-7">
-                     <select class="form-control" id="nodfeedbackweight" onchange="feedback()">
-                       <option  value="0">Choose Weight Number of Defects</option>
-                       <script>for(i=0; i<=100; i=i+5) {
-                           if(i==0) document.writeln("<option value='1'>1</option>"); 
-                           else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
-                       </script>
-                     </select>
-                                           
-                     </div>
-                      
-                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback"  onblur="feedbackvalue()"></div>
-                     
-                     
-                      </div>                          
-     <div class="row"> 
-                    <div class="col-xs-12">
-                        <input type="submit" value="Leave a Feedback" class="col-xs-12" name="feedbackbutton">
-                                           
-                     </div>
-  
-                      </div>           
-                  </div>
-                 </form>
+                  <% if( element.getStatusid()!=5 ) { %>
+             
+                  <form class="form-inline" action="setgps">
+                    
+  <div class="form-group">
+    <label class="sr-only" for="latitude">Latitude</label>
+    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter Latitude (x)">
+  </div>
+   <div class="form-group">
+    <label class="sr-only" for="longitude">Longitude</label>
+    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Enter Longitude (y)">
+  </div>
+   <div class="form-group"> 
+       <input disabled type="text" class="form-control" id="dategps" name="dategps" value="<% SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+           Date date = new Date(); out.println(dateFormat.format(date)); %>">
+  </div>                     
  
+  <button type="submit" class="btn btn-primary" name="setgps">Set position</button>
+  <button type="submit" class="btn btn-primary" name="confirmdelivery">Confirm Delivery</button>
+</form>  
+                  
  
                 
                 <% } else {%>
@@ -717,34 +462,8 @@ for (Item items:element.getItemCollection()) {%>
   <!-- /.content-wrapper -->
     </div>
  
-
  
- 
- 
- 
-  <div id="report" class="tab-pane fade">
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Generate a Report
-        <small>Specify a report</small>
-      </h1>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Your Page Content Here -->dfff
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-    </div>
- 
+   
       <div id="profile" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" width="600">
