@@ -244,10 +244,7 @@ public String gettype(int num){
                     out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
                     out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4>");                                   
                     out.println(" <div class='modal-body'>");
-                    
-                    //store best carrier in iterator
-                Iterator it=element.Get_CarrierOption().listIterator();
-                       
+                                                         
                  %>
              
 <form action="Client_order"  method="post" class="form-update" name="order" >
@@ -302,21 +299,44 @@ public String gettype(int num){
  
 
     &nbsp;<p></p>
+    <select class="form-control-static" name="carrier" id="transportType">;
+                   
+              <option value="0">Choose Carrier</option>
+              <% for (Carrier cr:element.Get_CarrierOption()){
+                  if(element.getStatusid()==2){
+                 
+                       
+                           if(cr.getTransportId()==2){
+                                out.println("<optgroup label='Best Airline'>");
+                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println(" </optgroup>");                               
+                           }
+                           else if(cr.getTransportId()==3){
+                                out.println("<optgroup label='Best Train'>");
+                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println(" </optgroup>");                               
+                           }
+                           else if(cr.getTransportId()==4){
+                                out.println("<optgroup label='Best Truck'>");
+                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println(" </optgroup>");                               
+                           }
+                           else if(cr.getTransportId()==5){
+                                out.println("<optgroup label='Best Marine'>");
+                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println(" </optgroup>");                               
+                           }  
+                             
+                 
+                       }}
+              out.println(" </select> ");    
+              if(element.getStatusid()==2){
+                 out.println("  <p></p>");        
+                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Confirm an Order</button>"); 
+                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>Cancel an Order</button>");
+              } %>
              
-                <select class="form-control-static " name="carrier" id="transportType">
-                    <option value="0">Choose Carrier</option>
-                    <optgroup label="best Carrier">
-                        <%while(it.hasNext()){
-                        out.println("<option>"+it.next()+"</option>");
-                        }%>
-                    </optgroup>
-                  
-                  </select>
- 
-        <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="confirmbtn" value="order">Confirm an Order</button>
-        <button class="btn btn-lg bg-red btn-primary btn-block" type="submit" name="cancelbtn" value="order">Cancel an Order</button>
-    </form>
+         </form>
                     <%//iner loop
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
