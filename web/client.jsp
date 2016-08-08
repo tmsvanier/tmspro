@@ -740,13 +740,13 @@ for (Item items:element.getItemCollection()) {%>
     <!-- Main content -->
     <section class="content">
 
-<div id="map"></div>
+<div id="map" style="height: 500px"></div>
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
     </div>
- 
+
       <div id="profile" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" width="600">
@@ -856,43 +856,62 @@ for (Item items:element.getItemCollection()) {%>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-
+ 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-<script>
 
-      // This example creates a 2-pixel-wide red polyline showing the path of William
-      // Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
-      // Brisbane, Australia.
-
-      function initMap() {
+    <script>
+	
+	 function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
-          center: {lat: 0, lng: -180},
+          zoom: 12,
+          center: {lat: 45.515675, lng: -73.675706},
           mapTypeId: 'terrain'
         });
-
-        var flightPlanCoordinates = [
-          {lat: 37.772, lng: -122.214},
-          {lat: 21.291, lng: -157.821},
-          {lat: -18.142, lng: 178.431},
-          {lat: -27.467, lng: 153.027}
+ 
+        var gpsPositions = [
+          {lat: 45.515675, lng: -73.675706},
+          {lat: 45.512547, lng: -73.685405},
+          {lat: 45.513652, lng: -73.687948},
+		  {lat: 45.517997, lng: -73.697422}
+		 
         ];
         var flightPath = new google.maps.Polyline({
-          path: flightPlanCoordinates,
+          path: gpsPositions,
           geodesic: true,
           strokeColor: '#FF0000',
           strokeOpacity: 1.0,
-          strokeWeight: 2
+          strokeWeight: 4
         });
-
+		
+		var DeparMarker = new google.maps.Marker ( {
+				position: new google.maps.LatLng(45.515675, -73.675706),
+				map: map,
+				title: 'Departure'
+			}
+		);		
+		
+		var DestinMarker = new google.maps.Marker ( {
+				position: new google.maps.LatLng(45.517997, -73.697422),
+				map: map,
+				title: 'Destination'
+			} 
+		);				
+		
+	 
         flightPath.setMap(map);
       }
+	  
+	  
+	
+	
+
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ZyWKvYh6o7k71azRp5LrOLToIIdN0q4&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjtVv6l5sx4Jl9gGjZWjE2q0HXLGit6KU&callback=initMap">
     </script>
+ 
 </body>
 </html>
