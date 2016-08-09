@@ -417,7 +417,7 @@ for (Item items:element.getItemCollection()) {%>
                   
                   <% if( element.getStatusid()!=5 ) { %>
              
-                  <form class="form-inline" action="setgps">
+                  <form class="form-inline" action="setgps" name="setgps">
                     
   <div class="form-group">
     <label class="sr-only" for="latitude">Latitude</label>
