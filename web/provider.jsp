@@ -247,7 +247,7 @@ public String gettype(int num){
                                                          
                  %>
              
-<form action="Client_order"  method="post" class="form-update" name="order" >
+<form action="Client_order"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
     
              <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
         <label for="fullname" class="sr-only" >Client's ID, Full Name and Order Date</label>
