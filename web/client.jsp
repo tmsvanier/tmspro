@@ -224,7 +224,9 @@ public void showIem(Orders Tmp){
         <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
         <li><a data-toggle="pill" href="#order"><i class="fa fa-plus"></i> <span>Place an Order</span></a></li>
  	<li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
-<li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
+        <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
+
+ 
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -482,26 +484,18 @@ function calcCost(){
                     <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
-                        
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>");  
                     out.println("<td>"+element.getDeparture()+"</td>");
-                    out.println("<td>"+element.getArrival()+"</td>");
-
-                        out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
- 
+                    out.println("<td>"+element.getArrival()+"</td>"); 
+                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>"); 
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>");
-                    
+                    out.println("<td>"+element.getDistance()+"</td>"); 
                             if( element.getStatusid()==5 ) {
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); 
-                            } else { 
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>"); 
-
-                    }
-                    out.println("</tr>"); 
-                
-                
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); } 
+                            else { 
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>"); } 
+                    out.println("</tr>");  
                     out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
                     out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
                     out.println(" <div class='modal-header'>"); 
@@ -546,8 +540,8 @@ function calcCost(){
                <% } } else {
 for (Item items:element.getItemCollection()) {%>
                 
-  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
-       <div class="row">
+                <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+                     <div class="row">
                            <div class="col-xs-3">
                                <input disabled type="text"  class="form-control" placeholder=" <%=items.getItemDesc()%>"name="itemdesc" >
                 </div>
@@ -681,7 +675,7 @@ for (Item items:element.getItemCollection()) {%>
                      
                      
                       </div>                          
-     <div class="row"> 
+                    <div class="row"> 
                     <div class="col-xs-12">
                         <input type="submit" value="Leave a Feedback" class="col-xs-12" name="feedbackbutton">
                                            
@@ -696,11 +690,8 @@ for (Item items:element.getItemCollection()) {%>
                 <% } else {%>
                     
                   GPS Map Position of the vehicle:<br>
-                      333
-
-
-                  
-                  
+                  <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=Montreal&destination=TOronto&waypoints=Laval|Ottawa" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                      
                     <% }//iner loop
                         out.println(" </div> <div class='modal-footer'>"); 
                         out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
@@ -740,7 +731,6 @@ for (Item items:element.getItemCollection()) {%>
     <!-- Main content -->
     <section class="content">
 
-<div id="map" style="height: 500px"></div>
     </section>
     <!-- /.content -->
   </div>
@@ -815,20 +805,7 @@ for (Item items:element.getItemCollection()) {%>
  
  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
   <!-- Main Footer -->
@@ -861,57 +838,54 @@ for (Item items:element.getItemCollection()) {%>
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-
+<!--
     <script>
-	
-	 function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: 45.515675, lng: -73.675706},
-          mapTypeId: 'terrain'
-        });
- 
-        var gpsPositions = [
-          {lat: 45.515675, lng: -73.675706},
-          {lat: 45.512547, lng: -73.685405},
-          {lat: 45.513652, lng: -73.687948},
-		  {lat: 45.517997, lng: -73.697422}
-		 
-        ];
-        var flightPath = new google.maps.Polyline({
-          path: gpsPositions,
-          geodesic: true,
-          strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 4
-        });
-		
-		var DeparMarker = new google.maps.Marker ( {
-				position: new google.maps.LatLng(45.515675, -73.675706),
-				map: map,
-				title: 'Departure'
-			}
-		);		
-		
-		var DestinMarker = new google.maps.Marker ( {
-				position: new google.maps.LatLng(45.517997, -73.697422),
-				map: map,
-				title: 'Destination'
-			} 
-		);				
-		
-	 
-        flightPath.setMap(map);
-      }
-	  
-	  
-	
-	
 
+        function initMap() { 
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: {lat: 45.515675, lng: -73.675706},
+              mapTypeId: 'terrain'
+            });
+
+            var gpsPositions = [
+              {lat: 45.515675, lng: -73.675706},
+              {lat: 45.512547, lng: -73.685405},
+              {lat: 45.513652, lng: -73.687948},
+              {lat: 45.517997, lng: -73.697422}
+
+            ];
+            var flightPath = new google.maps.Polyline({
+              path: gpsPositions,
+              geodesic: true,
+              strokeColor: '#FF0000',
+              strokeOpacity: 1.0,
+              strokeWeight: 4
+            });
+
+            var DeparMarker = new google.maps.Marker ( {
+                            position: new google.maps.LatLng(45.515675, -73.675706),
+                            map: map,
+                            title: 'Departure'
+                    }
+            );		
+
+            var DestinMarker = new google.maps.Marker ( {
+                            position: new google.maps.LatLng(45.517997, -73.697422),
+                            map: map,
+                            title: 'Destination'
+                    } 
+            );			 
+    
+            flightPath.setMap(map);
+        }
+	 
     </script>
+        
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjtVv6l5sx4Jl9gGjZWjE2q0HXLGit6KU&callback=initMap">
     </script>
- 
+ -->
 </body>
 </html>
