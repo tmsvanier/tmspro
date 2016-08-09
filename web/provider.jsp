@@ -308,22 +308,22 @@ public String gettype(int num){
                        
                            if(cr.getTransportId()==2){
                                 out.println("<optgroup label='Best Airline'>");
-                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
                                 out.println(" </optgroup>");                               
                            }
                            else if(cr.getTransportId()==3){
                                 out.println("<optgroup label='Best Train'>");
-                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
                                 out.println(" </optgroup>");                               
                            }
                            else if(cr.getTransportId()==4){
                                 out.println("<optgroup label='Best Truck'>");
-                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
                                 out.println(" </optgroup>");                               
                            }
                            else if(cr.getTransportId()==5){
                                 out.println("<optgroup label='Best Marine'>");
-                                out.println("<option>"+cr.getFullName()+"</option>");
+                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
                                 out.println(" </optgroup>");                               
                            }  
                              
