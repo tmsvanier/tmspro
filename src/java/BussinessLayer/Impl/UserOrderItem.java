@@ -312,107 +312,35 @@ public class UserOrderItem implements OrderItem{
                  }//end if client  select select trnsportid
                  
                  else{//if client don't selecttrnsportid
-                     int number=0;
-                      System.out.println("\nBest options with TMS suggestion with No transportaion");
-                      query =SelectTabeQuery("TMSAirlPlane",2,1);
+                       query =SelectTabeQuery("AllCarrier",temp.getTransportId(),1);
                       bestCarry.setQuery(query);
-                       query=SelectKPIQuery("TMSAirlPlane",1,temp.getTransportId());
+                        for(int i=2;i<6;i++){
+                        query=SelectKPIQuery("AllCarrier",1,i);
                        rslt3=bestCarry.getResult(query);
-                       try {
-                           while(rslt3.next()){
-                               if(number<2){
-                                   Carrier record =new Carrier();
-                                   record.setTransportId(2);
-                                   String CarrierInfo=rslt3.getString("N1");
-                                   CarrierInfo+=" KPI: "+rslt3.getDouble("AverageKPI");
-                                   CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
-                                   record.setCarrierId(rslt3.getInt("carrierid"));
-                                   record.setFullName(CarrierInfo);
-                                   best.add(record);
-                               }
-                               number++;
-                           }   } catch (SQLException ex) {
-                           Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                    //select 2 best Train Carriers
-                   DropTable("TMSTrain");
-                       number=0;
-                  query =SelectTabeQuery("TMSTrain",3,1);
-                  bestCarry.setQuery(query); 
-                  query=SelectKPIQuery("TMSTrain",1,temp.getTransportId());
-                  rslt3=bestCarry.getResult(query);
-                       try {
-                           while(rslt3.next()){
-                               if(number<2){
-                                   Carrier record =new Carrier();
-                                   record.setTransportId(3);
-                                   String CarrierInfo=rslt3.getString("N1");
-                                   CarrierInfo+=" KPI: "+rslt3.getDouble("AverageKPI");
-                                   CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
-                                   record.setCarrierId(rslt3.getInt("carrierid"));
-                                   record.setFullName(CarrierInfo);
-                                   best.add(record);
-                               }
-                               number++;
-                           }//end of adding 2 best train
-                       } catch (SQLException ex) {
-                           Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                   
-                    DropTable("TMSTruck");
-                   number=0;
-                  query =SelectTabeQuery("TMSTruck",4,1);
-                  bestCarry.setQuery(query);
-                  
-                   query=SelectKPIQuery("TMSTruck",1,temp.getTransportId());
-                  rslt3=bestCarry.getResult(query);
-                       try {
-                           while(rslt3.next()){
-                               if(number<2){
-                                   Carrier record =new Carrier();
-                                   record.setTransportId(4);
-                                   String CarrierInfo=rslt3.getString("N1");
-                                   CarrierInfo+=" KPI: "+rslt3.getDouble("AverageKPI");
-                                   CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
-                                   record.setCarrierId(rslt3.getInt("carrierid"));
-                                   record.setFullName(CarrierInfo);
-                                   best.add(record);
-                               }
-                               number++;
-                           }//end of adding 2 best truck
-                       } catch (SQLException ex) {
-                           Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                   
-                   DropTable("TMSMarine");
-                  query =SelectTabeQuery("TMSMarine",5,1);
-                  bestCarry.setQuery(query);
-                  number=0;
-                  query=SelectKPIQuery("TMSMarine",1,temp.getTransportId());
-                  rslt3=bestCarry.getResult(query);
-                   
-                       try {
-                           while(rslt3.next()){
-                               if(number<2){
-                                   Carrier record =new Carrier();
-                                   record.setTransportId(5);
-                                   String CarrierInfo=rslt3.getString("N1");
-                                   CarrierInfo+=" KPI: "+rslt3.getDouble("AverageKPI");
-                                   CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
-                                   record.setCarrierId(rslt3.getInt("carrierid"));
-                                   System.out.println(record.toString());
-                                   record.setFullName(CarrierInfo);
-                                   best.add(record);
-                               }
-                               number++;
-                           }//end of adding 2 best Marine
-                       } catch (SQLException ex) {
-                           Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                 }//if client does not select transportid
-   
-            break;
+                           try {
+                               while(rslt3.next()){
+                                   int number=0;
+                                   if(number<2){
+                                       Carrier record =new Carrier();
+                                       record.setTransportId(i);
+                                       String CarrierInfo=rslt3.getString("N1");
+                                       CarrierInfo+=" KPI: "+rslt3.getDouble("AverageKPI");
+                                       CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
+                                       record.setCarrierId(rslt3.getInt("carrierid"));
+                                       record.setFullName(CarrierInfo);
+                                       best.add(record);
+                                   }
+                                   number++;
+                               }//end while
+                           } catch (SQLException ex) {
+                               Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+                           }
+                      }//end for loop
+                        break;
+                 }//end of else TMS
            }//end of TMS Suggestion
+           
+           
           //cost
             case 2:{
                //select carrier with best cost
@@ -426,7 +354,7 @@ public class UserOrderItem implements OrderItem{
                   while(rslt3.next()){
                       if(number<2){
                           Carrier record =new Carrier();
-                          //record.setTransportId(id);
+                          record.setTransportId(rslt3.getInt("T1"));
                           String CarrierInfo=rslt3.getString("N1");
                           CarrierInfo+=" KPI: "+rslt3.getDouble("cost");
                           CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
@@ -453,7 +381,7 @@ public class UserOrderItem implements OrderItem{
                   while(rslt3.next()){
                       if(number<2){
                           Carrier record =new Carrier();
-                          record.setTransportId(temp.getTransportId());
+                          record.setTransportId(rslt3.getInt("T1"));
                           String CarrierInfo=rslt3.getString("N1");
                           CarrierInfo+=" KPI: "+rslt3.getDouble("Time");
                           CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
@@ -482,7 +410,7 @@ public class UserOrderItem implements OrderItem{
                   while(rslt3.next()){
                       if(number<2){
                           Carrier record =new Carrier();
-                          record.setTransportId(temp.getTransportId());
+                          record.setTransportId(rslt3.getInt("T1"));
                           String CarrierInfo=rslt3.getString("N1");
                           CarrierInfo+=" //Number of Orders: "+rslt3.getInt("NumberOfOrder");
                           record.setCarrierId(rslt3.getInt("carrierid"));
@@ -501,46 +429,61 @@ public class UserOrderItem implements OrderItem{
     }//end of bestcarrie
   
     public String SelectTabeQuery(String table, int transportid,int Case){
-        String query="";
-        DropTable(table);
+          DropTable(table);
+        String id=transportid+"";
         if(Case==1){//TMS suggestion
+            if(transportid==6)
+                id="2,3,4,5";
         query ="CREATE TABLE "+table+" as " +
-                  "SELECT outer.carrierid\"C1\",outer.orderid\"O1\"," +
+                  "SELECT c.transportId\"T1\",outer.carrierid\"C1\",outer.orderid\"O1\"," +
                   "COALESCE((select sum(KpiValue*(KpiWeight)) from kpilog where orderid=outer.orderid ),0)\"C2\" " +
-                  "from orders outer,carrier c where outer.carrierid=c.carrierid and c.transportId="+transportid+" and outer.statusId=5" +
-                  " order by 3 desc";
+                  "from orders outer,carrier c where outer.carrierid=c.carrierid and c.transportId in ("+id+") and outer.statusId=5" +
+                  " order by 4 desc";
+           System.out.println(query);
         }
         else{//Client Suggestion
+           
+            if(transportid==6)
+                id="2,3,4,5";
            query ="create table ClientKPI as " +
                "SELECT c.fullName\"N1\", c.transportId\"T1\",o.carrierid\"C1\",o.orderid\"O1\"," +
                 "COALESCE((select (KpiValue*KpiWeight) from kpilog where orderid=o.orderid and KpiParId=2),-1)\"C3\"," +
                 "COALESCE((select (KpiValue*KpiWeight) from kpilog where orderid=o.orderid and KpiParId=3),-1)\"C4\"," +
                 "COALESCE((select (KpiValue*KpiWeight) from kpilog where orderid=o.orderid and KpiParId=4),-1)\"C5\" " +
                 "from orders o ,carrier c where o.carrierid=c.carrierid " +
-                "and c.transportId="+transportid+" and o.statusId=5 " +
+                "and c.transportId in("+id+") and o.statusId=5 " +
                "order by 3 desc ";
+            System.out.println(query);
         }
+        
         return query;
     }//end of selectQuery 
     
     public String SelectKPIQuery(String table,int Case,int transid){
-        String query="";
+       
+       String id=""+transid;
+            if(transid==6)
+                id="2,3,4,5";
         if(Case==1){
              query="select outer.fullname\"N1\",COALESCE((select avg(C2) from "+table+" where C1 = outer.carrierid),-1)\"AverageKPI\",outer.carrierid," +
            "COALESCE((select count(C1) from "+table+" where C1 = outer.carrierid ),0)\"NumberOfOrder\" " +
-           "from carrier outer where COALESCE((select avg(C2) from "+table+" where C1 = outer.carrierid),-1)>0 " +
-           "order by COALESCE((select avg(C2) from "+table+" where C1 = outer.carrierid),-1) desc ";
+           "from carrier outer  where COALESCE((select avg(C2) from "+table+" where C1 = outer.carrierid),-1)>0 and outer.transportid="+id +
+           "  order by COALESCE((select avg(C2) from "+table+" where C1 = outer.carrierid),-1) desc ";
+           // System.out.println(query);
         }
         else if(Case==2){
-             query="select N1, avg(c3)\"Cost\",count(c1)\"numberoforder\", c1\"carrierid\",T1 from clientkpi where T1="+transid+"  group by c1,N1,T1  order by 2 desc ";
+             query="select T1, N1, avg(c3)\"Cost\",count(c1)\"numberoforder\", c1\"carrierid\",T1 from clientkpi where T1 in("+id+")  group by c1,N1,T1  order by 2 desc ";
+            //  System.out.println("case 2\n"+query);
         }
          else if(Case==3){
-            query="select N1, avg(c4)\"Time\",count(c1)\"numberoforder\", c1\"carrierid\",T1  from clientkpi where T1="+transid+"group by c1,N1,T1  order by 2 desc ";
+            query="select N1, avg(c4)\"Time\",count(c1)\"numberoforder\", c1\"carrierid\",T1  from clientkpi where T1 in("+id+") group by c1,N1,T1  order by 2 desc ";
+            //System.out.println("case 3\n"+query);
         }
          else if(Case==4){
-            query="select N1,count(c1)\"numberoforder\", c1\"carrierid\",T1 from clientkpi where T1="+transid+" group by c1,N1,T1  order by 2 desc ";
+            query="select N1,count(c1)\"numberoforder\", c1\"carrierid\",T1 from clientkpi where T1 in("+id+") group by c1,N1,T1  order by 2 desc ";
+            //System.out.println("case 4 +"+id+"\n"+query);
         }
-        //
+       
         return query;
     }//end of selectQuery 
     public void DropTable(String table){
