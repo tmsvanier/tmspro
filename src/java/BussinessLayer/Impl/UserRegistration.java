@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import tmsModelLayer.Oracle;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Provider;
 
 /**
@@ -152,7 +152,7 @@ public class UserRegistration implements RegisterUser {
     }
 
     @Override
-    public void sendToDB(Driver user) {
+    public void sendToDB(Drivers user) {
       regOracle = new Oracle();
        
        // regOracle.connect("system", "tiger");
@@ -165,13 +165,13 @@ public class UserRegistration implements RegisterUser {
     }
 
     @Override
-    public Driver getDriver(String Tusername) {
+    public Drivers getDriver(String Tusername) {
          regOracle = new Oracle();
           // regOracle.connect("system", "tiger");
           regOracle.connect("scott", "tiger");
           query="Select * from driver where userName='"+Tusername+"'";
           rslt=regOracle.getResult(query);
-          Driver retUser=new Driver();
+          Drivers retUser=new Drivers();
          try {
              while(rslt.next())
               {

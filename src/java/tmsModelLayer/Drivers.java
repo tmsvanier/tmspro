@@ -11,14 +11,14 @@ import BussinessLayer.Interface.Person;
  *
  * @author cstuser
  */
-public class Driver extends Person implements java.io.Serializable {
+public class Drivers extends Person implements java.io.Serializable {
     private int driverId;
     private int carreirId;
 
-    public Driver() {
+    public Drivers() {
         super();
         this.driverId = 0;
-        this.carreirId=8;
+        //this.carreirId = 0;
     }
 
     public int getCarreirId() {
@@ -37,7 +37,7 @@ public class Driver extends Person implements java.io.Serializable {
         this.driverId = driverId;
     }
     
-     public void makeCopy( Driver tmp){
+     public void makeCopy( Drivers tmp){
       driverId=tmp.getDriverId();
       carreirId=tmp.getCarreirId();
       super.setFullName(tmp.getFullName());

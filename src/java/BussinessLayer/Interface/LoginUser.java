@@ -7,7 +7,7 @@ package BussinessLayer.Interface;
 
 import java.util.ArrayList;
 import tmsModelLayer.Client;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Provider;
 import tmsModelLayer.Carrier;
 
@@ -23,8 +23,9 @@ public interface LoginUser {
     public Client getClient (String Tusername);
     public Provider getProvider(String Tusername);
     public Carrier getCarrier(String Tusername);
-    public Driver getDriver(String Tusername);
+    public Drivers getDriver(String Tusername);
     public ArrayList<Client> clientList();
     public ArrayList<Carrier> carrierList();
+    public ArrayList<Drivers> getCarrierDriver(int id);
     
 }

@@ -7,7 +7,7 @@ package BussinessLayer.Interface;
 
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Provider;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Client;
 
 
@@ -23,8 +23,8 @@ public interface RegisterUser {
      public Provider getProvider(String Tusername);
      public void sendToDB(Carrier user);
      public Carrier getCarrier(String Tusername);
-     public void sendToDB(Driver user);
-     public Driver getDriver(String Tusername);
+     public void sendToDB(Drivers user);
+     public Drivers getDriver(String Tusername);
      
     
     

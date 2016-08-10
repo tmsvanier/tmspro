@@ -6,6 +6,7 @@
 package tmsModelLayer;
 
 import BussinessLayer.Interface.Person;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,8 @@ public class Carrier extends Person{
     private int carrierId;
     private int transportId;
     private double KPIvalue;
-
+    ArrayList<Drivers> OptionList;
+    
     
     public Carrier() {
         super();
@@ -45,6 +47,14 @@ public class Carrier extends Person{
 
     public void setKPIvalue(double KPIvalue) {
         this.KPIvalue = KPIvalue;
+    }
+
+    public ArrayList<Drivers> getOptionList() {
+        return OptionList;
+    }
+
+    public void setOptionList(ArrayList<Drivers> OptionList) {
+        this.OptionList = OptionList;
     }
     
     public void makeCopy( Carrier tmp){

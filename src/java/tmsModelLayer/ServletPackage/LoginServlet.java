@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
 import tmsModelLayer.ClientConsider;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Itemcategory;
 import tmsModelLayer.Provider;
 
@@ -29,7 +29,7 @@ import tmsModelLayer.Provider;
  * @author omid
  */
 public class LoginServlet extends HttpServlet {
-UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
+UserLogin log;Client user_1;Carrier user_3;Provider user_2;Drivers user_4;
 UserOrderItem client_Order; List<Itemcategory> category=new ArrayList(); 
 HttpSession loginSession;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -75,7 +75,7 @@ HttpSession loginSession;
                 break;
             }
             case 4:{
-                user_4=new Driver();
+                user_4=new Drivers();
                 break;
             }
         }
@@ -111,9 +111,23 @@ HttpSession loginSession;
                loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_4.getDriverId()));
                loginSession.setAttribute("category",getUserOrder().getCategory()); 
                 loginSession.setAttribute("carrierlist",getLogin().carrierList());
+                
                response.sendRedirect("driver.jsp");
                
-           }//redirect to driver page            
+           }//redirect to driver page           
+            
+            
+          if(check==1 &&role==3)//correct information
+           {
+               user_3.makeCopy(getLogin().getCarrier(username));
+               loginSession.setAttribute("carrierpage", user_3);
+               loginSession.setAttribute("orders", getUserOrder().getCarrierOrder(user_3.getCarrierId()));
+               loginSession.setAttribute("category",getUserOrder().getCategory()); 
+               loginSession.setAttribute("drivers",getLogin().driverList());
+
+                response.sendRedirect("carrier.jsp");
+               
+           }//redirect to driver page 
            
            else if(check==0)//meets username only
               response.sendRedirect("index.jsp");

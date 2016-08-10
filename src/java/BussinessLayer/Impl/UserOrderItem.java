@@ -29,6 +29,7 @@ import tmsModelLayer.Orders;
 public class UserOrderItem implements OrderItem{
     Oracle Client_Conn=null;
      Oracle Provider_Conn=null;
+     Oracle Carrier_Conn=null;
      Oracle bestCarry=null;
      static ArrayList<Carrier> best;
     Set<Orders> orderSet=null;
@@ -181,7 +182,13 @@ public class UserOrderItem implements OrderItem{
 
     @Override
     public Set<Orders> getCarrierOrder(int cR_Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         Carrier_Conn=new Oracle();                
+        Carrier_Conn.connect("scott", "tiger");
+        query="SELECT *FROM ORDERS where statusid=2";
+        rslt=Carrier_Conn.getResult(query);
+        orderSet=new HashSet();
+        return null;
     }
 
     @Override

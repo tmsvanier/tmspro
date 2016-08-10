@@ -1,12 +1,12 @@
  
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,java.util.Date, tmsModelLayer.*,tmsModelLayer.Driver" %>
+<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,java.util.Date, tmsModelLayer.*,tmsModelLayer.Drivers" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <% 
-           Driver myuser=(Driver) session.getAttribute("driverpage");
+           Drivers myuser=(Drivers) session.getAttribute("driverpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            //List<Item> items_request=new ArrayList();

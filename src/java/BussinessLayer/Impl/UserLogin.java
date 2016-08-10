@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Provider;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletContext;
@@ -68,7 +68,7 @@ public class UserLogin implements LoginUser {
                 break;
             }//end of carrier case
             case 4:{
-               Driver myUser=new Driver();
+               Drivers myUser=new Drivers();
                myUser.makeCopy(getDriver(Tusername));//copy from database
                 if(myUser.getPassword().equals(pass))
                  exist=1;
@@ -187,6 +187,7 @@ public class UserLogin implements LoginUser {
              while(rslt.next())
                 {                              
                  tmp.setCarrierId(rslt.getInt("carrierid"));
+                // tmp.setOptionList(getCarrierDriver(tmp.getCarrierId()));
                  tmp.setTransportId(rslt.getInt("transportId"));
                  tmp.setFullName(rslt.getString("fullName"));
                  tmp.setAddress(rslt.getString("address"));
@@ -195,6 +196,7 @@ public class UserLogin implements LoginUser {
                  tmp.setUsername(rslt.getString("userName"));
                  tmp.setPassword(rslt.getString("password"));
                  tmp.setKPIvalue(rslt.getDouble("rslt.getInt"));
+                
                 }  //end of rslt while, choose Tools | Templates.
            }
              catch (SQLException ex) {
@@ -205,13 +207,13 @@ public class UserLogin implements LoginUser {
     }
 
     @Override
-    public Driver getDriver(String Tusername) {
+    public Drivers getDriver(String Tusername) {
          
        loginOrcl = new Oracle();
        loginOrcl.connect("scott", "tiger");
        query="Select * from Driver where username='"+Tusername+"'";
        rslt=loginOrcl.getResult(query);
-       Driver tmp=new Driver();           
+       Drivers tmp=new Drivers();           
        try {              
              while(rslt.next())
                 {                              
@@ -254,15 +256,15 @@ public class UserLogin implements LoginUser {
        return allClient;
     }
  
-    public ArrayList<Driver> driverList() {
-       ArrayList<Driver> allDriver=new ArrayList();
+    public ArrayList<Drivers> driverList() {
+       ArrayList<Drivers> allDriver=new ArrayList();
         Oracle provLog = new Oracle();
        provLog.connect("scott", "tiger");
        query="Select * from driver";
        rslt=provLog.getResult(query);
           try {
               while(rslt.next()){
-                  Driver record=new Driver();
+                  Drivers record=new Drivers();
                   record.setDriverId(rslt.getInt("driverid"));record.setAddress(rslt.getString("address"));
                   record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
                   record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
@@ -324,6 +326,25 @@ public class UserLogin implements LoginUser {
           }
           provLog.terminate();
        return allCarrier;
+    }
+
+    @Override
+    public ArrayList<Drivers> getCarrierDriver(int id) {
+        
+        ArrayList<Drivers> mylist=new ArrayList();
+        query="select driverid from driver where carrierid="+id;
+                 rslt=loginOrcl.getResult(query);
+          try {
+              while(rslt.next()){
+                  Drivers record=new Drivers();
+                  record.setDriverId(rslt.getInt("driverid"));
+                  mylist.add(record);
+              }
+          } catch (SQLException ex) {
+              Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+          }
+                 
+                 return mylist;
     }
    
     

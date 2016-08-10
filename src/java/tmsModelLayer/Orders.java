@@ -86,7 +86,7 @@ public class Orders implements Serializable {
     private float orderKPI;
    ArrayList<Carrier> OptionList;
     Carrier orderCarrier;
-    Driver OrderDriver;
+    Drivers OrderDriver;
     Provider OrderProvidr;
     
     public Orders() {
@@ -169,11 +169,11 @@ public class Orders implements Serializable {
         this.orderCarrier = orderCarrier;
     }
 
-    public Driver getOrderDriver() {
+    public Drivers getOrderDriver() {
         return OrderDriver;
     }
 
-    public void setOrderDriver(Driver OrderDriver) {
+    public void setOrderDriver(Drivers OrderDriver) {
         this.OrderDriver = OrderDriver;
     }
 

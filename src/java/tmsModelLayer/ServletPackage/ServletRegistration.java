@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import tmsModelLayer.Carrier;
 import tmsModelLayer.Client;
-import tmsModelLayer.Driver;
+import tmsModelLayer.Drivers;
 import tmsModelLayer.Provider;
 
  
@@ -79,7 +79,7 @@ public class ServletRegistration extends HttpServlet {
                 break;
             }
             case 4:{
-                Driver regDr=new Driver();
+                Drivers regDr=new Drivers();
                 regDr.setFullName(name);regDr.setAddress(address);regDr.setEmail(email);regDr.setPhone(telephone);
                 regDr.setUsername(usernamereg);regDr.setPassword(passwordreg);
                 getRegister().sendToDB(regDr);
