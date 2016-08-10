@@ -5,9 +5,12 @@
  */
 package tmsModelLayer.ServletPackage;
 
+import BussinessLayer.Impl.ProviderAction;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cstuser
  */
-public class ProviderActionServlet extends HttpServlet {
+public class ProviderActionServlet extends HttpServlet  {
 
+    ProviderAction prov;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,8 +34,8 @@ public class ProviderActionServlet extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet </title>");            
             out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet I am working on this requestt </h1>");
+            out.println("<body>");            
+            out.println("<h1>Servlet I am working on this requestt "+Integer.parseInt(request.getParameter("orderconf"))+"------"+Integer.parseInt(request.getParameter("carrier"))+" </h1>");
             out.println("</body>");
             out.println("</html>");
             
@@ -49,16 +53,22 @@ public class ProviderActionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        prov=new ProviderAction();
         
-     request.setAttribute("username","omid");
-     request.setAttribute("pass", "qwerty");
-     request.setAttribute("role", 2);
-
-      RequestDispatcher rd = request.getRequestDispatcher("Login/doFilter");
-      rd.include(request, response);
-      response.sendRedirect("provider.jsp");
+       int orderid=Integer.parseInt(request.getParameter("orderconf"));
+       int carrierid=Integer.parseInt(request.getParameter("carrier"));
+       if(carrierid!=0)
+           prov.confirmOrder(orderid,carrierid);
+       else
+          prov.cancelOrder(orderid);
+    
+   response.sendRedirect("provider.jsp");
        
-      
+        processRequest(request, response);
+        //returnOrder=new HashSet();
+      // request.setAttribute("orders", returnOrder);
+    //ServletContext app2 = getServletContext().getContext("tms");
+    //RequestDispatcher rd;
        
     }
 

@@ -6,6 +6,7 @@
 package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.Actions;
+import tmsModelLayer.Oracle;
 
 /**
  *
@@ -13,14 +14,26 @@ import BussinessLayer.Interface.Actions;
  */
 public class ProviderAction implements Actions {
 
-    @Override
-    public void confirmOrder() {
-        
+   Oracle con;
+   String query;
+   @Override
+    public void confirmOrder(int orderid,int Carrierid) {
+       con=new Oracle();
+       con.connect("scott","tiger");
+       query="update Orders set statusid=3,carrierid="+Carrierid+" where orderid="+orderid;
+       con.setQuery(query);
+       
+       con.terminate();
     }
 
     @Override
-    public void cancelOrder() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cancelOrder(int orderid) {
+       con=new Oracle();
+       con.connect("scott","tiger");
+        query="update Orders set statusid=6 where orderid="+orderid;
+       con.setQuery(query);
+       
+       con.terminate();
     }
 
     @Override

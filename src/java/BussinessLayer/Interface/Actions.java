@@ -10,8 +10,8 @@ package BussinessLayer.Interface;
  * @author cstuser
  */
 public interface Actions {
-    public void confirmOrder();
-    public void cancelOrder();
+    public void confirmOrder(int orderid,int Carrierid);
+    public void cancelOrder(int orderid);
     public void sendEmail();
     public void modifyUsers();
     
