@@ -374,11 +374,7 @@ function calcCost(){
            document.getElementById('order'+i+'qty').value
           *(document.getElementById('order'+i+'weight').value*5
            +document.getElementById('order'+i+'volume').value*5);
-    
-   // price=parseFloat( document.getElementById('order'+i+'qty').value
-           // *(document.getElementById('order'+i+'weight').value*5
-           // +document.getElementById('order'+i+'volume').value*5));
-    //return price;
+   
    }
 }
 
@@ -401,16 +397,16 @@ function calcCost(){
                   </select>
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onblur="calcCost()">
+                    <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onkeypress="calcCost()">
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onblur="calcCost()">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onkeypress="calcCost()">
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onblur="calcCost()">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onkeypress="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                  <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()">
+                    <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()" >
                 </div>
               </div>    
         

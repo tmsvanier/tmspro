@@ -1,5 +1,4 @@
  
-
 <%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -10,6 +9,7 @@
            List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            List<Carrier> mycarrier=(ArrayList<Carrier>)session.getAttribute("carrierlist");
+           
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -247,7 +247,7 @@ public String gettype(int num){
                                                          
                  %>
              
-<form action="Client_order"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
+<form action="ProviderActionServlet"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
     
              <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
         <label for="fullname" class="sr-only" >Client's ID, Full Name and Order Date</label>

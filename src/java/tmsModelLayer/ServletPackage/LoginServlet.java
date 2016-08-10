@@ -7,15 +7,14 @@ import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
@@ -23,7 +22,6 @@ import tmsModelLayer.Client;
 import tmsModelLayer.ClientConsider;
 import tmsModelLayer.Driver;
 import tmsModelLayer.Itemcategory;
-import tmsModelLayer.Orders;
 import tmsModelLayer.Provider;
 
 /**
@@ -33,6 +31,7 @@ import tmsModelLayer.Provider;
 public class LoginServlet extends HttpServlet {
 UserLogin log;Client user_1;Carrier user_3;Provider user_2;Driver user_4;
 UserOrderItem client_Order; List<Itemcategory> category=new ArrayList(); 
+HttpSession loginSession;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,7 +53,7 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       HttpSession loginSession =request.getSession();
+        loginSession =request.getSession();
           
        String username = request.getParameter("username");
        String password = request.getParameter("pass");
@@ -145,4 +144,32 @@ UserOrderItem client_Order; List<Itemcategory> category=new ArrayList();
         return "Short description";
     }// </editor-fold>
 
+  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    if (servletRequest instanceof HttpServletRequest) {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        // Check wether the current request needs to be able to support the body to be read multiple times
+      
+            filterChain.doFilter(new HttpServletRequestWrapper(request), servletResponse);
+             user_2.makeCopy(getLogin().getProvider(request.getParameter("omid")));
+               loginSession.setAttribute("providerpage", user_2);
+               loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
+               loginSession.setAttribute("category",getUserOrder().getCategory());
+               loginSession.setAttribute("clients",getLogin().clientList());
+               loginSession.setAttribute("carrierlist",getLogin().carrierList());
+               ClientConsider test=new ClientConsider();
+               loginSession.setAttribute("OrderKPI",getKPI().getBestCarriers(test));
+                      
+    }
+    filterChain.doFilter(servletRequest, servletResponse);
 }
+}
+
+
+
+
+//  public void mypost(HttpServletRequest request, HttpServletResponse response)  
+//            throws ServletException, IOException {  
+//   
+//      
+//     
+//  }
