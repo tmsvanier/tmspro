@@ -629,13 +629,13 @@ for (Item items:element.getItemCollection()) {%>
                     }
                   </script>
                   
-                <form role="form">
+                <form role="form" name="feedbackform" action="feedbackservlet">
                     <label for="sel1">Please Leave a Feedback based on your satisfaction of our Service, the total number of weight should be 100%</label>
                     <div class="input-group">
    
                      <div class="row"> 
                     <div class="col-xs-7">
-                        <select class="form-control" id="costfeedbackweight" onchange="feedback()">
+                        <select class="form-control" id="costfeedbackweight" name="weightcost" onchange="feedback()">
                        <option  value="0">Choose Cost Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -645,14 +645,14 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" id="costfeedback"  onblur="feedbackvalue()"></div>
+                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" name="valuecost" id="costfeedback"  onblur="feedbackvalue()"></div>
                      
                      
                       </div> 
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="timefeedbackweight" onchange="feedback()">
+                     <select class="form-control" id="timefeedbackweight" name="weighttime" onchange="feedback()">
                        <option  value="0">Choose Time Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -662,7 +662,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" id="timefeedback" onblur="feedbackvalue()"></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" name="valuetime" id="timefeedback" onblur="feedbackvalue()"></div>
                      
                      
                       </div>     
@@ -670,7 +670,7 @@ for (Item items:element.getItemCollection()) {%>
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="nodfeedbackweight" onchange="feedback()">
+                     <select class="form-control" id="nodfeedbackweight" name="weightnod" onchange="feedback()">
                        <option  value="0">Choose Weight Number of Defects</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -680,7 +680,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback"  onblur="feedbackvalue()"></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback" name="valuenod" onblur="feedbackvalue()"></div>
                      
                      
                       </div>                          
