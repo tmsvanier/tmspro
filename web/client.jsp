@@ -473,8 +473,8 @@ function calcCost(){
                   <th>Status</th>
                   <th>Driver Id</th>
                   <th>Request Date</th>
-                   <th>Distance </th>
-                   <th>Track/Feedback </th>
+                  <th>Distance </th>
+                  <th>Track/Feedback </th>
  
                 </tr>
                     <% for(Orders element:myorder){    
@@ -685,13 +685,15 @@ for (Item items:element.getItemCollection()) {%>
                 
                 <% } else {%>
                     
-                  GPS Map Position of the vehicle:<br>
-                  <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=Montreal&destination=TOronto&waypoints=Laval|Ottawa" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                      
-                    <% }//iner loop
-                        out.println(" </div> <div class='modal-footer'>"); 
-                        out.println("   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
-                        out.println("  </div></div></div></div>");  
+                GPS Map Position of the vehicle:<br>
+                
+               
+                <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); %>&waypoints=ottawa|44.222416, -77.143885" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                    <% }//iner loop 
+                        out.println("</div><div class='modal-footer'>"); 
+                        out.println("<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
+                        out.println("</div></div></div></div>");  
                     };%>
                      
               </table> 
