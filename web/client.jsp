@@ -1,6 +1,6 @@
  
 
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
+<%@ page import="java.net.*,java.util.Date, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -21,6 +21,7 @@
                else if(test.getStatusid()==5)deliverd++;
                if(test.getStatusid()==6)cancel++;}
            
+           Date date = new Date();
            
       %>    
 <%!
@@ -141,15 +142,15 @@ public void showIem(Orders Tmp){
               <span class="label label-danger"><%=confirm%></span>
             </a>
             <ul class="dropdown-menu">
-                <li class="header">You have<%=deliverd%> tasks</li>
-              <li>
+                <li class="header"><b>You have <i><%=confirm%> </i>  confirmed orders </br> From now you can track your confirmed orders in List of orders section</b></li>
+                <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
                   <li><!-- Task item -->
                     <a href="#">
                       <!-- Task title and progress text -->
                       <h3>
-                        Design some buttons
+                        
                         <small class="pull-right">20%</small>
                       </h3>
                       <!-- The progress bar -->
@@ -165,7 +166,7 @@ public void showIem(Orders Tmp){
                 </ul>
               </li>
               <li class="footer">
-                <a href="#">View all Orders</a>
+                <a href="#list">View all Orders</a>
               </li>
             </ul>
           </li>
@@ -255,7 +256,7 @@ public void showIem(Orders Tmp){
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Main page for Clients</small>
+        <small>Main page for Clients  Time      <%=date.toString()%></small>
       </h1>
         
        
@@ -456,7 +457,7 @@ function calcCost(){
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" >
 
  
           <div class="box">
