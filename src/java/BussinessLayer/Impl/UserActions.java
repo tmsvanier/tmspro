@@ -6,6 +6,7 @@
 package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.Actions;
+import java.util.ArrayList;
 import tmsModelLayer.Oracle;
 
 /**
@@ -57,6 +58,11 @@ public class UserActions implements Actions {
 
     @Override
     public void noDriver(int orderid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void orderFeedBack(int orderid, ArrayList feedbackList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

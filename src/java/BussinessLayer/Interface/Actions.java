@@ -5,6 +5,8 @@
  */
 package BussinessLayer.Interface;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author cstuser
@@ -16,6 +18,7 @@ public interface Actions {
     public void noDriver(int orderid);
     public void sendEmail();
     public void modifyUsers();
+    public void orderFeedBack(int orderid, ArrayList feedbackList);
     
     
 }
