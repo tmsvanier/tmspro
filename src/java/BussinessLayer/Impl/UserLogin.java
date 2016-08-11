@@ -276,33 +276,8 @@ public class UserLogin implements LoginUser {
           provLog.terminate();
        return allDriver;
     }
-    
-    
-//    @Override
-//    public ArrayList<Carrier> carrierList() {
-//         ArrayList<Carrier> allCarrier=new ArrayList();              
-//        Oracle provLog = new Oracle();
-//       provLog.connect("scott", "tiger");
-//       query="Select * from carrier";
-//       rslt=provLog.getResult(query);
-//          try {
-//              while(rslt.next()){
-//                   Carrier record=new Carrier();                
-//                 record.setCarrierId(rslt.getInt("carrierid"));record.setAddress(rslt.getString("address"));
-//                  record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
-//                  record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
-//                  record.setPassword(rslt.getString("password")); record.setKPIvalue(rslt.getDouble("kpivalue"));
-//                  record.setTransportId(rslt.getInt("transportId"));
-//                  allCarrier.add(record);
-//              }  } catch (SQLException ex) {
-//              Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
-//          }
-//          provLog.terminate();
-//       return allCarrier;
-//    }
-
-    
-     @Override
+  
+   @Override
     public ArrayList<Carrier> carrierList() {
          ArrayList<Carrier> allCarrier=new ArrayList();              
         Oracle provLog = new Oracle();
@@ -330,21 +305,27 @@ public class UserLogin implements LoginUser {
 
     @Override
     public ArrayList<Drivers> getCarrierDriver(int id) {
-        
+        Oracle getList=new Oracle();
         ArrayList<Drivers> mylist=new ArrayList();
-        query="select driverid from driver where carrierid="+id;
-                 rslt=loginOrcl.getResult(query);
+        query="select * from driver where carrierid="+id;
+          getList.connect("scott", "tiger");
+                 rslt=getList.getResult(query);
           try {
               while(rslt.next()){
                   Drivers record=new Drivers();
-                  record.setDriverId(rslt.getInt("driverid"));
+                  record.setDriverId(rslt.getInt("driverid"));record.setAddress(rslt.getString("address"));
+                  record.setFullName(rslt.getString("fullname"));record.setEmail(rslt.getString("email"));
+                  record.setPhone(rslt.getString("phonenumber"));record.setUsername(rslt.getString("username"));
+                  record.setPassword(rslt.getString("password"));
                   mylist.add(record);
               }
-          } catch (SQLException ex) {
+          } 
+          catch (SQLException ex) {
               Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
           }
-                 
-                 return mylist;
+          getList.terminate();
+      return mylist;
+      
     }
    
     

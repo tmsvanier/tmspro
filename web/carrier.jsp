@@ -267,13 +267,13 @@ public String gettype(int num){
     <p>
          
    
-    <select class="form-control-static" name="Choose Driver" id="transportType">;
+    <select class="form-control-static" name="ChooseDriver" id="transportType">;
                    
-              <option value="0">Choose Carrier</option>
+              <option value="0">Choose One Driver</option>
               <% for (Drivers Dr:mydriver){
                   if(element.getStatusid()==2){
                  
-                       out.println("<option value="+Dr.getDriverId()+">"+Dr.getFullName()+"</option>");
+                       out.println("<option value="+Dr.getDriverId()+">"+Dr.getDriverId()+"</option>");
             
                        }
               }
@@ -356,7 +356,6 @@ public String gettype(int num){
                     out.println("<td>"+element.getAddress()+"</td>");
                     out.println("<td>"+element.getPhone()+"</td>");
                     out.println("<td>"+element.getUsername()+"</td>");
-                    out.println("<td>"+element.getCarreirId()+"</td>");
                     out.println("</tr>"); 
              
               

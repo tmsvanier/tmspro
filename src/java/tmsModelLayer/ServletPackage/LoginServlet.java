@@ -123,7 +123,7 @@ HttpSession loginSession;
                loginSession.setAttribute("carrierpage", user_3);
                 loginSession.setAttribute("orders", getUserOrder().getCarrierOrder(user_3.getCarrierId()));
                loginSession.setAttribute("category",getUserOrder().getCategory()); 
-               loginSession.setAttribute("drivers",getLogin().driverList());
+               loginSession.setAttribute("drivers",getLogin().getCarrierDriver(user_3.getCarrierId()));
 
                 response.sendRedirect("carrier.jsp");
                
@@ -158,32 +158,5 @@ HttpSession loginSession;
         return "Short description";
     }// </editor-fold>
 
-//  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//    if (servletRequest instanceof HttpServletRequest) {
-//        HttpServletRequest request = (HttpServletRequest) servletRequest;
-//        // Check wether the current request needs to be able to support the body to be read multiple times
-//      
-//            filterChain.doFilter(new HttpServletRequestWrapper(request), servletResponse);
-//             user_2.makeCopy(getLogin().getProvider(request.getParameter("omid")));
-//               loginSession.setAttribute("providerpage", user_2);
-//               loginSession.setAttribute("orders", getUserOrder().getProviderOrder(user_2.getProviderId()));
-//               loginSession.setAttribute("category",getUserOrder().getCategory());
-//               loginSession.setAttribute("clients",getLogin().clientList());
-//               loginSession.setAttribute("carrierlist",getLogin().carrierList());
-//               ClientConsider test=new ClientConsider();
-//               loginSession.setAttribute("OrderKPI",getKPI().getBestCarriers(test));
-//                      
-//    }
-//    filterChain.doFilter(servletRequest, servletResponse);
-//}
+
 }
-
-
-
-
-//  public void mypost(HttpServletRequest request, HttpServletResponse response)  
-//            throws ServletException, IOException {  
-//   
-//      
-//     
-//  }
