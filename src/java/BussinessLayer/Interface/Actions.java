@@ -12,6 +12,8 @@ package BussinessLayer.Interface;
 public interface Actions {
     public void confirmOrder(int orderid,int Carrierid);
     public void cancelOrder(int orderid);
+    public void shipOrder(int orderid,int driverid);
+    public void noDriver(int orderid);
     public void sendEmail();
     public void modifyUsers();
     

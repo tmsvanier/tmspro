@@ -222,7 +222,7 @@ public String gettype(int num){
                    <th>Distance </th>
                 </tr>
                 
-                <% for(Orders element:myorder){    
+       <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
@@ -230,7 +230,11 @@ public String gettype(int num){
                     out.println("<td>"+element.getArrival()+"</td>");
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
                      out.println("<td>"+element.getCarrierid()+"</td>");
-                    out.println("<td>"+element.getDriverid()+"</td>");
+                     for(Drivers d:mydriver){
+                         if(element.getDriverid()==d.getDriverId())
+                             out.println("<td>"+ d.getFullName()  +"</td>");
+                     }
+                   
                     out.println("<td>"+element.getOrderdate()+"</td>");
                     out.println("<td>"+element.getDistance()+"</td>");
                     out.println("</tr>"); 
@@ -245,8 +249,8 @@ public String gettype(int num){
                                                          
                  %>
              
-<form action="CarrierActionServlet"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
-    
+<form action="carrierActionServlet"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
+            
              <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
         <label for="fullname" class="sr-only" >Client's ID, Full Name and Order Date</label>
         <input type="text" id="fullname" disabled  class="form-control" placeholder="Order #<%= element.getOrderid() %>, created on <%= element.getOrderdate() %>, by client #<%= element.getClientid() %>" required autofocus name="departure">
@@ -256,8 +260,7 @@ public String gettype(int num){
         <label for="departure" class="sr-only" >Departure(Enter Address)</label>
         <input type="text" id="departure" disabled class="form-control" placeholder="<%= element.getDeparture() %>" required autofocus name="departure">
         </div>
-
-         
+        <input  type="hidden" id="orderNum" class="form-control" name="ordership"  value="<%=element.getOrderid()%>">
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
         <label for="destination" class="sr-only" >Destination(Enter Address)</label>
         <input type="text" id="destination" disabled class="form-control" placeholder="<%= element.getArrival() %>" required autofocus name="destination">
@@ -266,8 +269,38 @@ public String gettype(int num){
  
     <p>
          
-   
-    <select class="form-control-static" name="ChooseDriver" id="transportType">;
+  <% for (Item items:element.getItemCollection()) { %>
+ 
+  <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
+       <div class="row">
+                           <div class="col-xs-3">
+                               <input disabled type="text"  class="form-control" placeholder=" <%=items.getItemDesc()%>"name="itemdesc" >
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" size="30" class="form-control" placeholder="<%=items.getCategoryDetail()%>" name="itemqty">
+                </div>
+                
+                <div class="col-xs-1">
+                  <input  disabled type="text" class="form-control" placeholder="<%=items.getItemqty()%>" name="itemqty">
+                </div>
+                <div class="col-xs-1">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemvolume()%>" name="itemvolume">
+                </div>
+                <div class="col-xs-2">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemweight()%> ( kg)" name="itemweight">
+                    </div>
+                    <div class="col-xs-3">
+                  <input disabled type="text" class="form-control" placeholder="<%=items.getItemprice()%> $" name="itemprice">               
+                </div>
+              </div>    
+        
+        </div>
+    
+                  <% };%></p>
+ 
+
+    &nbsp;<p></p>
+    <select class="form-control-static" name="Driver" id="transportType">;
                    
               <option value="0">Choose One Driver</option>
               <% for (Drivers Dr:mydriver){

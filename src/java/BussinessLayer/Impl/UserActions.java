@@ -12,9 +12,9 @@ import tmsModelLayer.Oracle;
  *
  * @author cstuser
  */
-public class ProviderAction implements Actions {
+public class UserActions implements Actions {
 
-   Oracle con;
+  static Oracle  con;
    String query;
    @Override
     public void confirmOrder(int orderid,int Carrierid) {
@@ -43,6 +43,20 @@ public class ProviderAction implements Actions {
 
     @Override
     public void modifyUsers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void shipOrder(int orderid, int driverid) {
+        con=new Oracle();
+       con.connect("scott","tiger");
+        query="update Orders set statusid=4,driverid="+driverid+" where orderid="+orderid;
+       con.setQuery(query);       
+       con.terminate();
+    }
+
+    @Override
+    public void noDriver(int orderid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

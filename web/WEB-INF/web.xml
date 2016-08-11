@@ -16,6 +16,10 @@
         <servlet-name>ProviderActionServlet</servlet-name>
         <servlet-class>tmsModelLayer.ServletPackage.ProviderActionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>carrierActionServlet</servlet-name>
+        <servlet-class>tmsModelLayer.ServletPackage.carrierActionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Registration</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ProviderActionServlet</servlet-name>
         <url-pattern>/ProviderActionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>carrierActionServlet</servlet-name>
+        <url-pattern>/carrierActionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

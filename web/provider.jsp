@@ -258,7 +258,7 @@ public String gettype(int num){
         <label for="departure" class="sr-only" >Departure(Enter Address)</label>
         <input type="text" id="departure" disabled class="form-control" placeholder="<%= element.getDeparture() %>" required autofocus name="departure">
         </div>
-        <input hidden type="text" id="orderNum" class="form-control" name="orderconf"  value="<%=element.getOrderid()%>">
+        <input  type="hidden" id="orderNum" class="form-control" name="orderconf"  value="<%=element.getOrderid()%>">
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-send"></i></div>    
         <label for="destination" class="sr-only" >Destination(Enter Address)</label>
         <input type="text" id="destination" disabled class="form-control" placeholder="<%= element.getArrival() %>" required autofocus name="destination">

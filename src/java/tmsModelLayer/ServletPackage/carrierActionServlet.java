@@ -8,9 +8,6 @@ package tmsModelLayer.ServletPackage;
 import BussinessLayer.Impl.UserActions;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashSet;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cstuser
  */
-public class ProviderActionServlet extends HttpServlet  {
+public class carrierActionServlet extends HttpServlet {
 
-    UserActions prov;
+   UserActions Carr;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,17 +29,15 @@ public class ProviderActionServlet extends HttpServlet  {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet </title>");            
+            out.println("<title>Servlet carrierActionServlet</title>");            
             out.println("</head>");
-            out.println("<body>");            
-            out.println("<h1>Servlet I am working on this requestt "+Integer.parseInt(request.getParameter("orderconf"))+"------"+Integer.parseInt(request.getParameter("carrier"))+" </h1>");
+            out.println("<body>");
+            out.println("<h1>Servlet carrierActionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            
         }
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,26 +48,23 @@ public class ProviderActionServlet extends HttpServlet  {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        prov=new UserActions();
         
-       int orderid=Integer.parseInt(request.getParameter("orderconf"));
-       int carrierid=Integer.parseInt(request.getParameter("carrier"));
-       if(carrierid!=0)
-           prov.confirmOrder(orderid,carrierid);
+        
+          Carr=new UserActions();
+        
+       int orderid=Integer.parseInt(request.getParameter("ordership"));
+       int driverid=Integer.parseInt(request.getParameter("Driver"));
+       if(driverid!=0)
+           Carr.shipOrder(orderid,driverid);
        else
-          prov.cancelOrder(orderid);
+          Carr.noDriver(orderid);
     
-   response.sendRedirect("provider.jsp");
-       
+   response.sendRedirect("carrier.jsp");
+        
         processRequest(request, response);
-        //returnOrder=new HashSet();
-      // request.setAttribute("orders", returnOrder);
-    //ServletContext app2 = getServletContext().getContext("tms");
-    //RequestDispatcher rd;
-       
     }
 
-    
+   
     @Override
     public String getServletInfo() {
         return "Short description";
