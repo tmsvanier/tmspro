@@ -273,7 +273,7 @@ public class UserOrderItem implements OrderItem{
     public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival,ArrayList<Item> items,int cosiderid,int clinetTransid) {
         Client_Conn=new Oracle();
         Client_Conn.connect("scott", "tiger");
-        depart+=cosiderid+" "+clinetTransid;
+      //  depart+=cosiderid+" "+clinetTransid;
         query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
               clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2)";     
         Client_Conn.setQuery(query);

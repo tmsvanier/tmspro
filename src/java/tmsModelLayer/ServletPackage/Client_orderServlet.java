@@ -47,6 +47,7 @@ public class Client_orderServlet extends HttpServlet {
             
             out.println("<h1>radiobtn is=" +request.getParameter("radiobtn") + "</h1>");
             out.println("<h1>Transport  is=" +request.getParameter("transportType") + "</h1>");
+                out.println("<h1>Departure  is=" +request.getParameter("departure") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
