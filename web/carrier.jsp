@@ -271,17 +271,17 @@ public String gettype(int num){
                    
               <option value="0">Choose One Driver</option>
               <% for (Drivers Dr:mydriver){
-                  if(element.getStatusid()==2){
+                  if(element.getStatusid()==3){
                  
-                       out.println("<option value="+Dr.getDriverId()+">"+Dr.getDriverId()+"</option>");
+                       out.println("<option value="+Dr.getDriverId()+"> Driver Id: "+Dr.getDriverId()+" , Driver Name: "+Dr.getFullName()+"</option>");
             
                        }
               }
               out.println(" </select> ");    
-              if(element.getStatusid()==2){
+              if(element.getStatusid()==3){
                  out.println("  <p></p>");        
-                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>send to driver an Order</button>"); 
-                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>waiting List</button>");
+                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Send This Order to selected Driver</button>"); 
+                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>I have No Driver Right Now</button>");
               } %>
              
          </form>
