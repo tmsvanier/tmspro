@@ -1,5 +1,6 @@
  
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.net.*,java.util.Date, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -21,7 +22,8 @@
                else if(test.getStatusid()==5)deliverd++;
                if(test.getStatusid()==6)cancel++;}
            
-           Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM yyyy hh:mm:ss a");
+        Date date=new Date();
            
       %>    
 <%!
@@ -257,8 +259,9 @@ public void showIem(Orders Tmp){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
+       
+          <span>    <%=sdf.format(date).toString()%></span> </br>
         Dashboard
-        <small> </br>   <%=date.toString()%></small>
       </h1>
         
        
