@@ -53,7 +53,7 @@ public String getStatusDesc(int num){
 }
 public String gettype(int num){
     String type="";
-    if(num==2)type="label-info" ;else if(num==3)type="label-info" ;
+    if(num==2)type="label-default" ;else if(num==3)type="label-info" ;
      else if(num==4)type="label-primary"; else if(num==5)type="label-success";
      else if(num==6)type="label-danger";
     return type;
@@ -72,7 +72,7 @@ public void showIem(Orders Tmp){
 <html  >
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>TMS | Client's Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -142,7 +142,9 @@ public void showIem(Orders Tmp){
               <span class="label label-danger"><%=confirm%></span>
             </a>
             <ul class="dropdown-menu">
-                <li class="header"><b>You have <i><%=confirm%> </i>  confirmed orders </br> From now you can track your confirmed orders in List of orders section</b></li>
+                <%if (confirm!=0)
+                 out.println("<li class='header'><b>You have <i>"+confirm+" </i>  confirmed orders </br> From now you can track your confirmed orders in List of orders section</b></li>");
+                %>
                 <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -165,8 +167,8 @@ public void showIem(Orders Tmp){
                   <!-- end task item -->
                 </ul>
               </li>
-              <li class="footer">
-                <a href="#list">View all Orders</a>
+              <li class="footer" >
+                <a data-toggle="pill" href="#list">View all Orders</a>
               </li>
             </ul>
           </li>
@@ -256,7 +258,7 @@ public void showIem(Orders Tmp){
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Main page for Clients  Time      <%=date.toString()%></small>
+        <small> </br>   <%=date.toString()%></small>
       </h1>
         
        
@@ -297,7 +299,7 @@ public void showIem(Orders Tmp){
      new Morris.Donut({ 
   element: 'orderstats',
   data: [
-      {label: "Created", value: <%=placing%>},
+      {label: "submited", value: <%=placing%>},
     {label: "Confirmed", value:<%=confirm%>},
     {label: "Shipped", value: <%=ship%>},
     {label: "Delivered", value: <%=deliverd%>},
