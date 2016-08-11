@@ -5,12 +5,22 @@
 
 <!DOCTYPE html>
 <% 
+         int placing,confirm,cancel,deliverd,ship;
+         confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
            Client myuser=(Client) session.getAttribute("clientpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            //List<Item> items_request=new ArrayList();
           // Orders order_Request=new Orders();
-           //Iterator it=myCategory.listIterator();
+          // Iterator it=myorder.iterator();
+            
+           for(Orders test:myorder){
+               if(test.getStatusid()==2)placing++;
+               else if(test.getStatusid()==3)confirm++;
+               else if(test.getStatusid()==4)ship++;
+               else if(test.getStatusid()==5)deliverd++;
+               if(test.getStatusid()==6)cancel++;}
+           
            
       %>    
 <%!
@@ -128,10 +138,10 @@ public void showIem(Orders Tmp){
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <span class="label label-danger"><%=confirm%></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+                <li class="header">You have<%=deliverd%> tasks</li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -286,11 +296,11 @@ public void showIem(Orders Tmp){
      new Morris.Donut({ 
   element: 'orderstats',
   data: [
-    {label: "Created", value: 5},
-    {label: "Confirmed", value: 7},
-    {label: "Shipped", value: 12},
-    {label: "Delivered", value: 9},
-    {label: "Cancelled", value: 2}],
+      {label: "Created", value: <%=placing%>},
+    {label: "Confirmed", value:<%=confirm%>},
+    {label: "Shipped", value: <%=ship%>},
+    {label: "Delivered", value: <%=deliverd%>},
+    {label: "Cancelled", value:<%=cancel%>}],
   colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
  
 }); 
