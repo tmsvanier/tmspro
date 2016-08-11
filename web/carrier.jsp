@@ -267,41 +267,21 @@ public String gettype(int num){
     <p>
          
    
-    <select class="form-control-static" name="carrier" id="transportType">;
+    <select class="form-control-static" name="Choose Driver" id="transportType">;
                    
               <option value="0">Choose Carrier</option>
-              <% for (Carrier cr:element.Get_CarrierOption()){
+              <% for (Drivers Dr:mydriver){
                   if(element.getStatusid()==2){
                  
-                       
-                           if(cr.getTransportId()==2){
-                                out.println("<optgroup label='Best Airline'>");
-                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
-                                out.println(" </optgroup>");                               
-                           }
-                           else if(cr.getTransportId()==3){
-                                out.println("<optgroup label='Best Train'>");
-                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
-                                out.println(" </optgroup>");                               
-                           }
-                           else if(cr.getTransportId()==4){
-                                out.println("<optgroup label='Best Truck'>");
-                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
-                                out.println(" </optgroup>");                               
-                           }
-                           else if(cr.getTransportId()==5){
-                                out.println("<optgroup label='Best Marine'>");
-                                out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
-                                out.println(" </optgroup>");                               
-                           }  
-                             
-                 
-                       }}
+                       out.println("<option value="+Dr.getDriverId()+">"+Dr.getFullName()+"</option>");
+            
+                       }
+              }
               out.println(" </select> ");    
               if(element.getStatusid()==2){
                  out.println("  <p></p>");        
-                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Confirm an Order</button>"); 
-                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>Cancel an Order</button>");
+                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>send to driver an Order</button>"); 
+                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>waiting List</button>");
               } %>
              
          </form>

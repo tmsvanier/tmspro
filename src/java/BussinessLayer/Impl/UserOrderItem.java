@@ -106,7 +106,7 @@ public class UserOrderItem implements OrderItem{
         try {
             while(rslt.next()){
                 Orders record=new Orders();               
-                record.setOrderid(rslt.getLong("orderId"));record.setClientid(cL_Id);
+                record.setOrderid(rslt.getLong("orderId"));record.setClientid(rslt.getInt("clientid"));
                 record.setProviderid(rslt.getShort("providerid"));
                 record.setStatusid(rslt.getInt("statusId"));
                 record.setArrival(rslt.getString("arrival"));
@@ -183,12 +183,55 @@ public class UserOrderItem implements OrderItem{
     @Override
     public Set<Orders> getCarrierOrder(int cR_Id) {
         
-         Carrier_Conn=new Oracle();                
+         Carrier_Conn=new Oracle();   
+          orderSet=new HashSet();
         Carrier_Conn.connect("scott", "tiger");
-        query="SELECT *FROM ORDERS where statusid=2";
+        query="SELECT *FROM ORDERS where statusid in(3,4) and carrierid="+cR_Id;
         rslt=Carrier_Conn.getResult(query);
-        orderSet=new HashSet();
-        return null;
+         try {
+            while(rslt.next()){
+                Orders record=new Orders();               
+                record.setOrderid(rslt.getLong("orderId"));record.setClientid(rslt.getInt("clientid"));
+                record.setProviderid(rslt.getShort("providerid"));
+                record.setStatusid(rslt.getInt("statusId"));
+                record.setArrival(rslt.getString("arrival"));
+                record.setDeparture(rslt.getString("departure"));
+                record.setOrderdate(rslt.getDate("orderdate"));
+                record.setCarrierid(rslt.getInt("carrierid"));
+                record.setDriverid(rslt.getInt("driverid"));
+                record.setDistance(rslt.getBigDecimal("distance"));
+                query="Select i.*,ic.itemCategoryDesc " +
+                        "from " +
+                        "item i,itemcategory ic " +
+                         "Where " +
+                         "ic.itemCategoryId=i.itemCategoryId and i.orderid="+record.getOrderid();
+                rslt1=Carrier_Conn.getResult(query); 
+                orderItems=new ArrayList();
+                while(rslt1.next()){                    
+                    Item element=new Item();
+                    element.setOrderId(rslt1.getLong("orderid"));
+                    element.setCategoryDetail(rslt1.getString("itemCategoryDesc"));
+                    element.setItemprice(rslt1.getDouble("itemprice"));
+                    element.setItemvolume(rslt1.getInt("itemvolume"));
+                    element.setItemqty(rslt1.getInt("itemqty"));
+                    element.setItemweight(rslt1.getDouble("itemweight"));
+                    element.setItemDesc(rslt1.getString("itemdesc"));                                                         
+                    orderItems.add(element);                    
+                }
+                
+                //add items to its order                       
+                    
+                record.setItemCollection(orderItems);
+                
+                orderSet.add(record);
+          
+            }//end of orderset pushing
+         } 
+        catch (SQLException ex) {
+                Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        Carrier_Conn.terminate();
+       return  orderSet; 
     }
 
     @Override

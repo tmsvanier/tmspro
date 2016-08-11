@@ -325,15 +325,17 @@ public String gettype(int num){
                                 out.println("<option value="+cr.getCarrierId()+">"+cr.getFullName()+"</option>");
                                 out.println(" </optgroup>");                               
                            }  
-                             
-                 
-                       }}
+                       }
+                
+                   }
               out.println(" </select> ");    
               if(element.getStatusid()==2){
                  out.println("  <p></p>");        
                  out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Confirm an Order</button>"); 
                 out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>Cancel an Order</button>");
-              } %>
+              } 
+              
+              %>
              
          </form>
                     <%//iner loop
