@@ -73,15 +73,18 @@ public class UserActions implements Actions {
 
     @Override
     public void orderFeedBack(ArrayList<Kpilog> feedbackList) {
-   
+       double kpivalue=0;
        con=new Oracle();
        con.connect("scott","tiger");
        for(Kpilog element:feedbackList){
+           kpivalue+=element.getKpivalue()*element.getKpiweight();
            query="insert into KPILOG Values("+element.getOrderid()+","+element.getKpiparid1()+","+element.getKpivalue()+
                    ","+element.getKpiweight()+")";
                
            con.setQuery(query);
-      }
+        }
+       query="update Orders set orderkpi="+kpivalue+" where orderid="+feedbackList.get(0).getOrderid();
+       con.setQuery(query);
        con.terminate();
      
     }
