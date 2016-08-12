@@ -269,7 +269,7 @@ public void showIem(Orders Tmp){
                   <th>Status</th>
    
                   <th>Request Date</th>
-                   <th>Distance </th>
+           
                    <th>Position </th>
  
                 </tr>
@@ -285,7 +285,7 @@ public void showIem(Orders Tmp){
  
  
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>");
+              
                     
                             if( element.getStatusid()==5 ) {
                      out.println("<td>Completed"); 
