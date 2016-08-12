@@ -226,7 +226,6 @@ public void showIem(Orders Tmp){
          Optionally, you can add icons to the links -->
         <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
  
- 	<li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
  
       </ul>
       <!-- /.sidebar-menu -->
@@ -240,41 +239,6 @@ public void showIem(Orders Tmp){
 
  <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Main page for Drivers</small>
-      </h1>
-        
-       
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
- dfdf
- 
- 
- 
- 
- 
- 
-    </section>
-    <!-- /.content -->
-    
-    
-  </div>
-  <!-- /.content-wrapper -->
-    </div> 
-     
-     
-    
- 
- 
-     
-    <div id="list" class="tab-pane fade">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -312,10 +276,10 @@ public void showIem(Orders Tmp){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
-                  <th>Driver Id</th>
+   
                   <th>Request Date</th>
                    <th>Distance </th>
-                   <th>Track/Feedback </th>
+                   <th>Position </th>
  
                 </tr>
                     <% for(Orders element:myorder){    
@@ -328,14 +292,14 @@ public void showIem(Orders Tmp){
 
                         out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
  
-                    out.println("<td>"+element.getDriverid()+"</td>");
+ 
                     out.println("<td>"+element.getOrderdate()+"</td>");
                     out.println("<td>"+element.getDistance()+"</td>");
                     
                             if( element.getStatusid()==5 ) {
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); 
+                     out.println("<td>Completed"); 
                             } else { 
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>"); 
+                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Set position</a>"); 
 
                     }
                     out.println("</tr>"); 
@@ -460,7 +424,9 @@ for (Item items:element.getItemCollection()) {%>
             
   </div>
   <!-- /.content-wrapper -->
-    </div>
+    </div> 
+     
+ 
  
  
    
