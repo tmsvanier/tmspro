@@ -7,6 +7,7 @@ package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.Actions;
 import java.util.ArrayList;
+import tmsModelLayer.Kpilog;
 import tmsModelLayer.Oracle;
 
 /**
@@ -66,8 +67,18 @@ public class UserActions implements Actions {
     }
 
     @Override
-    public void orderFeedBack(int orderid, ArrayList feedbackList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void orderFeedBack(ArrayList<Kpilog> feedbackList) {
+   
+       con=new Oracle();
+       con.connect("scott","tiger");
+       for(Kpilog element:feedbackList){
+           query="insert into KPILOG Values("+element.getOrderid()+","+element.getKpiparid1()+","+element.getKpivalue()+
+                   ","+element.getKpiweight()+")";
+               
+           con.setQuery(query);
+      }
+       con.terminate();
+     
     }
     
 }

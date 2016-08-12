@@ -10,12 +10,14 @@ import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import tmsModelLayer.Item;
+import tmsModelLayer.Kpilog;
 
 /**
  *
@@ -26,6 +28,7 @@ public class OrderAction extends HttpServlet {
   ArrayList<Item> orderItem=new ArrayList();
   UserActions prov;
   UserActions Carr;
+   UserActions clientFeedback;
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,16 +43,40 @@ public class OrderAction extends HttpServlet {
             out.println("<title>Servlet Client_orderServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-         if(request.getParameter("feedbackbutton")!=null){ 
-            out.println("<h1>Servlet OrderAction at " + request.getContextPath() + "</h1>");
-            out.println("<h1>weight is=" +request.getParameter("weightcost") + "</h1>");
-            out.println("<h1>WValue is=" +request.getParameter("valuecost")+ "</h1>");
-            out.println("<h1>Wtinme is=" + request.getParameter("weighttime")+ "</h1>");
-            out.println("<h1>TimeValue is=" + request.getParameter("valuetime") + "</h1>");
-                 
-             out.println("<h1>WNOD is=" +request.getParameter("weightnod") + "</h1>");
-             out.println("<h1>NODValue is=" + request.getParameter("valuenod") + "</h1>");
-         }
+//         if(request.getParameter("feedbackbutton")!=null){ 
+//             
+//             
+//                long orderid= Long.parseLong(request.getParameter("idfeedback"));
+//              ArrayList<Kpilog> feedbackList=new ArrayList(); 
+//             //set 1st item fro kpi
+//              Kpilog constFeedback=new Kpilog();
+//              double costWeight=  Double.parseDouble(request.getParameter("weightcost"));//parameter1 weight
+//              double costValue= Double.parseDouble(request.getParameter("valuecost"));//parameter1 value
+//           feedbackList.add(constFeedback);
+//              constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight/100);constFeedback.setKpivalue(costValue);
+//               //set 2st item fro kpi
+//              Kpilog timeFeedback=new Kpilog();
+//              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"));//parameter2 weight
+//              double timeValue=  Double.parseDouble(request.getParameter("valuetime"));//parameter value
+//              timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight/100);timeFeedback.setKpivalue(timeValue);
+//              
+//               //set 3st item fro kpi
+//             feedbackList.add(timeFeedback);
+//             Kpilog defectFeedback=new Kpilog();
+//             double NODweight= Double.parseDouble(request.getParameter("weightnod"));//parameter3 weight
+//             double valuenod= Double.parseDouble(request.getParameter("valuenod"));//parameter3 value           
+//             defectFeedback.setOrderid(orderid);defectFeedback.setKpiparid1(4);defectFeedback.setKpiweight(NODweight/100);defectFeedback.setKpivalue(valuenod);
+//            feedbackList.add(defectFeedback);
+//            clientFeedback=new  UserActions();
+//            for(Kpilog test:feedbackList){
+//                   out.println("<h1>id is=" +test.getOrderid() + "</h1>");
+//                   out.println("<h1>parid is=" +test.getKpiparid1() + "</h1>");
+//                   out.println("<h1>value is=" +test.getKpivalue()+ "</h1>");
+//                   out.println("<h1>weight is=" +test.getKpiweight()+ "</h1>");
+//            }
+////          
+//             
+//         }
               
            if(request.getParameter("orderbtn")!=null){
             for(int i=0;i<2;i++){
@@ -123,17 +150,37 @@ public class OrderAction extends HttpServlet {
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
         }//end of placing an order
         
-          if(request.getParameter("feedbackbutton")!=null){ 
-            int weightcost= Integer.parseInt(request.getParameter("weightcost"));
-            int valuecost= Integer.parseInt(request.getParameter("valuecost"));
+        else if(request.getParameter("feedbackbutton")!=null){ 
             
-             int weighttime= Integer.parseInt(request.getParameter("weighttime"));
-            int valuetime= Integer.parseInt(request.getParameter("valuetime"));
+              long orderid= Long.parseLong(request.getParameter("idfeedback"));
+              ArrayList<Kpilog> feedbackList=new ArrayList(); 
+             //set 1st item fro kpi
+              Kpilog constFeedback=new Kpilog();
+              double costWeight=  Double.parseDouble(request.getParameter("weightcost"));//parameter1 weight
+              double costValue= Double.parseDouble(request.getParameter("valuecost"));//parameter1 value
+           feedbackList.add(constFeedback);
+              constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight);constFeedback.setKpivalue(costValue);
+               //set 2st item fro kpi
+              Kpilog timeFeedback=new Kpilog();
+              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"));//parameter2 weight
+              double timeValue=  Double.parseDouble(request.getParameter("valuetime"));//parameter value
+              timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight);timeFeedback.setKpivalue(timeValue);
+              
+               //set 3st item fro kpi
+             feedbackList.add(timeFeedback);
+             Kpilog defectFeedback=new Kpilog();
+             double NODweight= Double.parseDouble(request.getParameter("weightnod"));//parameter3 weight
+             double valuenod= Double.parseDouble(request.getParameter("valuenod"));//parameter3 value           
+             defectFeedback.setOrderid(orderid);defectFeedback.setKpiparid1(4);defectFeedback.setKpiweight(NODweight/100);defectFeedback.setKpivalue(valuenod);
+            feedbackList.add(defectFeedback);
             
-             int weightnod= Integer.parseInt(request.getParameter("weightnod"));
-            int valuenod= Integer.parseInt(request.getParameter("valuenod"));
-           
-           
+             
+            clientFeedback=new  UserActions();
+            clientFeedback.orderFeedBack(feedbackList);
+             
+             response.sendRedirect("client.jsp");
+             
+            
           }//end of feedback
           
           
@@ -142,7 +189,7 @@ public class OrderAction extends HttpServlet {
           
           //////////////////////////////////////provider actions//////////////////////////////////////////////
           
-          if(request.getParameter("confirmbtn")!=null){           
+        else if(request.getParameter("confirmbtn")!=null){           
                 prov=new UserActions();        
                 int orderid=Integer.parseInt(request.getParameter("orderconf"));
                 int carrierid=Integer.parseInt(request.getParameter("carrier"));
@@ -157,7 +204,7 @@ public class OrderAction extends HttpServlet {
           
           
          //////////////////////////////////////carrier actions//////////////////////////////////////////////
-       if(request.getParameter("shipmentbtn")!=null){  
+        else if(request.getParameter("shipmentbtn")!=null || request.getParameter("waitingbtn")!=null){  
           Carr=new UserActions();        
        int orderid=Integer.parseInt(request.getParameter("ordership"));
        int driverid=Integer.parseInt(request.getParameter("Driver"));

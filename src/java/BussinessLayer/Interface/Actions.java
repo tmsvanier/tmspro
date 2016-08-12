@@ -6,6 +6,7 @@
 package BussinessLayer.Interface;
 
 import java.util.ArrayList;
+import tmsModelLayer.Kpilog;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface Actions {
     public void noDriver(int orderid);
     public void sendEmail();
     public void modifyUsers();
-    public void orderFeedBack(int orderid, ArrayList feedbackList);
+    public void orderFeedBack(ArrayList<Kpilog> feedbackList);
     
     
 }

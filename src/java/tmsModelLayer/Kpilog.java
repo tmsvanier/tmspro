@@ -39,17 +39,17 @@ public class Kpilog implements Serializable {
     protected KpilogPK kpilogPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "KPIVALUE")
-    private BigDecimal kpivalue;
+    private double kpivalue;
     @Column(name = "KPIWEIGHT")
-    private Short kpiweight;
+    private double kpiweight;
     @Basic(optional = false)
     @NotNull
     @Column(name = "KPIPARID")
-    private short kpiparid1;
+    private int kpiparid1;
     @JoinColumn(name = "ORDERID", referencedColumnName = "ORDERID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Orders orders;
-
+    private long orderid;
     public Kpilog() {
     }
 
@@ -57,11 +57,19 @@ public class Kpilog implements Serializable {
         this.kpilogPK = kpilogPK;
     }
 
-    public Kpilog(KpilogPK kpilogPK, short kpiparid1) {
+    public Kpilog(KpilogPK kpilogPK, int kpiparid1) {
         this.kpilogPK = kpilogPK;
         this.kpiparid1 = kpiparid1;
     }
 
+    public long getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(long orderid) {
+        this.orderid = orderid;
+    }
+ 
     public Kpilog(long orderid, short kpiparid) {
         this.kpilogPK = new KpilogPK(orderid, kpiparid);
     }
@@ -74,27 +82,27 @@ public class Kpilog implements Serializable {
         this.kpilogPK = kpilogPK;
     }
 
-    public BigDecimal getKpivalue() {
+    public double getKpivalue() {
         return kpivalue;
     }
 
-    public void setKpivalue(BigDecimal kpivalue) {
+    public void setKpivalue(double kpivalue) {
         this.kpivalue = kpivalue;
     }
 
-    public Short getKpiweight() {
+    public double getKpiweight() {
         return kpiweight;
     }
 
-    public void setKpiweight(Short kpiweight) {
+    public void setKpiweight(double kpiweight) {
         this.kpiweight = kpiweight;
     }
 
-    public short getKpiparid1() {
+    public int getKpiparid1() {
         return kpiparid1;
     }
 
-    public void setKpiparid1(short kpiparid1) {
+    public void setKpiparid1(int kpiparid1) {
         this.kpiparid1 = kpiparid1;
     }
 

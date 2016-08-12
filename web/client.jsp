@@ -323,7 +323,7 @@ public void showIem(Orders Tmp){
     <!-- Main content -->
     <section class="content">
 
-<form action="OrderAction"  method="post" class="form-update" name="order" >
+<form action="OrderAction"  method="post" class="form-update" name="placeorder" >
     <input type=hidden id="client_id" name="client_id" value=<%=myuser.getClientId()%>>
         <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-home"></i></div>  
         <label for="departure" class="sr-only" >Departure(Enter Address)</label>
@@ -500,7 +500,7 @@ function calcCost(){
                         
                  %>
              
-<form action="OrderAction"  method="post" class="form-update" name="order" >
+<form action="OrderAction"  method="post" class="form-update" name="items" >
   
   <% if( element.getStatusid()==5 ) {  
       
@@ -614,9 +614,10 @@ for (Item items:element.getItemCollection()) {%>
                     }
                   </script>
                   
-                <form role="form" name="feedbackform" action="OrderAction">
+                <form action="OrderAction" method="post" name="feedbackform" >
                     <label for="sel1">Please Leave a Feedback based on your satisfaction of our Service, the total number of weight should be 100%</label>
                     <div class="input-group">
+                    <input  type="hidden" id="orderNum" class="form-control" name="idfeedback"  value="<%=element.getOrderid()%>">
    
                      <div class="row"> 
                     <div class="col-xs-7">
