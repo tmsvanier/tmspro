@@ -49,16 +49,20 @@ public class UserActions implements Actions {
 
     @Override
     public void shipOrder(int orderid, int driverid) {
-        con=new Oracle();
+       con=new Oracle();
        con.connect("scott","tiger");
-        query="update Orders set statusid=4,driverid="+driverid+" where orderid="+orderid;
+       query="update Orders set statusid=4,driverid="+driverid+" where orderid="+orderid;
        con.setQuery(query);       
        con.terminate();
     }
 
     @Override
     public void noDriver(int orderid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       con=new Oracle();
+       con.connect("scott","tiger");
+       query="update Orders set statusid=2 where orderid="+orderid;
+       con.setQuery(query);       
+       con.terminate();
     }
 
     @Override

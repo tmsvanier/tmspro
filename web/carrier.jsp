@@ -249,7 +249,7 @@ public String gettype(int num){
                                                          
                  %>
              
-<form action="carrierActionServlet"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
+<form action="OrderAction"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
             
              <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>  
         <label for="fullname" class="sr-only" >Client's ID, Full Name and Order Date</label>
@@ -313,8 +313,8 @@ public String gettype(int num){
               out.println(" </select> ");    
               if(element.getStatusid()==3){
                  out.println("  <p></p>");        
-                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Send This Order to selected Driver</button>"); 
-                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>I have No Driver Right Now</button>");
+                 out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='shipmentbtn' value='order'>Send This Order to selected Driver</button>"); 
+                out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='waitingbtn' value='order'>I have No Driver Right Now</button>");
               } %>
              
          </form>

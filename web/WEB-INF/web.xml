@@ -4,13 +4,13 @@
         <servlet-name>Registration</servlet-name>
         <servlet-class>tmsModelLayer.ServletPackage.ServletRegistration</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>Client_order</servlet-name>
+        <servlet-class>tmsModelLayer.ServletPackage.Client_orderServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>tmsModelLayer.ServletPackage.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Client_order</servlet-name>
-        <servlet-class>tmsModelLayer.ServletPackage.Client_orderServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProviderActionServlet</servlet-name>
@@ -19,6 +19,10 @@
     <servlet>
         <servlet-name>carrierActionServlet</servlet-name>
         <servlet-class>tmsModelLayer.ServletPackage.carrierActionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderAction</servlet-name>
+        <servlet-class>tmsModelLayer.ServletPackage.OrderAction</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>carrierActionServlet</servlet-name>
         <url-pattern>/carrierActionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderAction</servlet-name>
+        <url-pattern>/OrderAction</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
