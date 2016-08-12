@@ -26,10 +26,8 @@ import tmsModelLayer.Kpilog;
 public class OrderAction extends HttpServlet {
  UserOrderItem setClient_order=new UserOrderItem();
   ArrayList<Item> orderItem=new ArrayList();
-  UserActions prov;
-  UserActions Carr;
-   UserActions clientFeedback;
-   
+  UserActions prov,Carr,clientFeedback,driv;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,6 +41,10 @@ public class OrderAction extends HttpServlet {
             out.println("<title>Servlet Client_orderServlet</title>");            
             out.println("</head>");
             out.println("<body>");
+             out.println("<h1>gpsid is=" +request.getParameter("ordergpsid") + "</h1>");
+             out.println("<h1>x is=" +request.getParameter("latitude") + "</h1>");
+              out.println("<h1>y is=" +request.getParameter("longitude") + "</h1>");
+         
 //         if(request.getParameter("feedbackbutton")!=null){ 
 //             
 //             
@@ -150,7 +152,7 @@ public class OrderAction extends HttpServlet {
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
         }//end of placing an order
         
-        else if(request.getParameter("feedbackbutton")!=null){ 
+         if(request.getParameter("feedbackbutton")!=null){ 
             
               long orderid= Long.parseLong(request.getParameter("idfeedback"));
               ArrayList<Kpilog> feedbackList=new ArrayList(); 
@@ -159,12 +161,12 @@ public class OrderAction extends HttpServlet {
               double costWeight=  Double.parseDouble(request.getParameter("weightcost"));//parameter1 weight
               double costValue= Double.parseDouble(request.getParameter("valuecost"));//parameter1 value
            feedbackList.add(constFeedback);
-              constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight);constFeedback.setKpivalue(costValue);
+              constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight/100);constFeedback.setKpivalue(costValue);
                //set 2st item fro kpi
               Kpilog timeFeedback=new Kpilog();
               double timeWeight=  Double.parseDouble(request.getParameter("weighttime"));//parameter2 weight
               double timeValue=  Double.parseDouble(request.getParameter("valuetime"));//parameter value
-              timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight);timeFeedback.setKpivalue(timeValue);
+              timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight/100);timeFeedback.setKpivalue(timeValue);
               
                //set 3st item fro kpi
              feedbackList.add(timeFeedback);
@@ -189,7 +191,7 @@ public class OrderAction extends HttpServlet {
           
           //////////////////////////////////////provider actions//////////////////////////////////////////////
           
-        else if(request.getParameter("confirmbtn")!=null){           
+        if(request.getParameter("confirmbtn")!=null|| request.getParameter("cancelbtn")!=null){           
                 prov=new UserActions();        
                 int orderid=Integer.parseInt(request.getParameter("orderconf"));
                 int carrierid=Integer.parseInt(request.getParameter("carrier"));
@@ -204,7 +206,7 @@ public class OrderAction extends HttpServlet {
           
           
          //////////////////////////////////////carrier actions//////////////////////////////////////////////
-        else if(request.getParameter("shipmentbtn")!=null || request.getParameter("waitingbtn")!=null){  
+        if(request.getParameter("shipmentbtn")!=null || request.getParameter("waitingbtn")!=null){  
           Carr=new UserActions();        
        int orderid=Integer.parseInt(request.getParameter("ordership"));
        int driverid=Integer.parseInt(request.getParameter("Driver"));
@@ -216,8 +218,27 @@ public class OrderAction extends HttpServlet {
         response.sendRedirect("carrier.jsp");
        } 
           //////////////////////////////////////end of carrier action////////////////////////////////////////////// 
+        
+        
+        
+         //////////////////////////////////////driver actions//////////////////////////////////////////////
+        if(request.getParameter("setgps")!=null){  
+            driv=new UserActions();        
+            long orderid=Long.parseLong(request.getParameter("ordergpsid"));
+            double gpsx=Double.parseDouble(request.getParameter("latitude"));
+            double gpsy=Double.parseDouble(request.getParameter("longitude"));     
+          driv.SetPositoin(orderid, gpsx, gpsy);
+    
+        response.sendRedirect("driver.jsp");
+       } 
+        if(request.getParameter("confirmdelivery")!=null){
+              driv=new UserActions();        
+            long orderid=Long.parseLong(request.getParameter("ordergpsid"));
+            driv.deliverOrder(orderid);
+        }
+          //////////////////////////////////////end of driver action////////////////////////////////////////////// 
           
-          
+           
         processRequest(request, response);
     }
    

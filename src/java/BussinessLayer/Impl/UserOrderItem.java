@@ -114,7 +114,7 @@ public class UserOrderItem implements OrderItem{
                 record.setOrderdate(rslt.getDate("orderdate"));
                 record.setCarrierid(rslt.getInt("carrierid"));
                 record.setDriverid(rslt.getInt("driverid"));
-                record.setDistance(rslt.getBigDecimal("distance"));
+                record.setDistance(rslt.getBigDecimal("distance"));                
                 query="Select i.*,ic.itemCategoryDesc " +
                         "from " +
                         "item i,itemcategory ic " +
@@ -235,8 +235,56 @@ public class UserOrderItem implements OrderItem{
     }
 
     @Override
-    public Orders getDriverOrder(int dR_Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<Orders> getDriverOrder(int dR_Id) {
+          Oracle Driver=new Oracle();   
+          orderSet=new HashSet();
+        Driver.connect("scott", "tiger");
+        query="SELECT *FROM ORDERS where statusid in(4,5) and carrierid="+dR_Id;
+        rslt=Driver.getResult(query);
+         try {
+            while(rslt.next()){
+                Orders record=new Orders();               
+                record.setOrderid(rslt.getLong("orderId"));record.setClientid(rslt.getInt("clientid"));
+                record.setProviderid(rslt.getShort("providerid"));
+                record.setStatusid(rslt.getInt("statusId"));
+                record.setArrival(rslt.getString("arrival"));
+                record.setDeparture(rslt.getString("departure"));
+                record.setOrderdate(rslt.getDate("orderdate"));
+                record.setCarrierid(rslt.getInt("carrierid"));
+                record.setDriverid(rslt.getInt("driverid"));
+                record.setDistance(rslt.getBigDecimal("distance"));
+                query="Select i.*,ic.itemCategoryDesc " +
+                        "from " +
+                        "item i,itemcategory ic " +
+                         "Where " +
+                         "ic.itemCategoryId=i.itemCategoryId and i.orderid="+record.getOrderid();
+                rslt1=Driver.getResult(query); 
+                orderItems=new ArrayList();
+                while(rslt1.next()){                    
+                    Item element=new Item();
+                    element.setOrderId(rslt1.getLong("orderid"));
+                    element.setCategoryDetail(rslt1.getString("itemCategoryDesc"));
+                    element.setItemprice(rslt1.getDouble("itemprice"));
+                    element.setItemvolume(rslt1.getInt("itemvolume"));
+                    element.setItemqty(rslt1.getInt("itemqty"));
+                    element.setItemweight(rslt1.getDouble("itemweight"));
+                    element.setItemDesc(rslt1.getString("itemdesc"));                                                         
+                    orderItems.add(element);                    
+                }
+                
+                //add items to its order                       
+                    
+                record.setItemCollection(orderItems);
+                
+                orderSet.add(record);
+          
+            }//end of orderset pushing
+         } 
+        catch (SQLException ex) {
+                Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        Driver.terminate();
+       return  orderSet; 
     }
 
 
@@ -273,8 +321,8 @@ public class UserOrderItem implements OrderItem{
     public void setClientOrder(int clientid,int providerid,int driverid,String depart,String arrival,ArrayList<Item> items,int cosiderid,int clinetTransid) {
         Client_Conn=new Oracle();
         Client_Conn.connect("scott", "tiger");
-        query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId) VALUES(orderId_seq.nextval,"+
-              clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2)";     
+        query="INSERT INTO orders (orderId,clientId,providerid,driverid,departure,arrival,statusId,orderdate) VALUES(orderId_seq.nextval,"+
+              clientid+","+providerid+","+driverid+",'"+depart+"','"+arrival+"',2,(select sysdate from dual))";     
         Client_Conn.setQuery(query);
         query="select max(orderid)from orders";
            int NewOrderId=-1;
@@ -541,5 +589,7 @@ public class UserOrderItem implements OrderItem{
         bestCarry.setQuery(query);
                   
     }//end of drop table
+
+    
     
 }

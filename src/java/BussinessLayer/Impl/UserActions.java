@@ -6,7 +6,12 @@
 package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.Actions;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tmsModelLayer.Gps;
 import tmsModelLayer.Kpilog;
 import tmsModelLayer.Oracle;
 
@@ -79,6 +84,51 @@ public class UserActions implements Actions {
       }
        con.terminate();
      
+    }
+    @Override
+    public void SetPositoin(long orderid, double x, double y) {
+       Oracle drCon=new Oracle();
+      drCon.connect("scott", "tiger");      
+      query="insert into gps values("+orderid+","+x+","+y+",(select sysdate from dual))";
+      drCon.setQuery(query);
+      drCon.terminate();
+      
+    }
+
+    @Override
+    public ArrayList<Gps> getPosition(int orderid) {
+        ArrayList<Gps> positionList=new ArrayList();
+        ResultSet rslpos;
+         Oracle pos=new Oracle();
+      pos.connect("scott", "tiger");      
+      query="select* from gps where gpsorderid="+orderid;
+      rslpos=pos.getResult(query);
+      try {
+          while(rslpos.next()){
+              Gps record=new Gps();
+              record.setGpsorderid(rslpos.getLong("gpsorderid"));
+              record.setGpsx(rslpos.getDouble("gpsx"));
+              record.setGpsy(rslpos.getDouble("gpsy"));
+              record.setGpsdate(rslpos.getDate("gpsdate"));
+              positionList.add(record);
+              
+          }
+      } 
+      catch (SQLException ex) {
+          Logger.getLogger(UserActions.class.getName()).log(Level.SEVERE, null, ex);
+      }
+       
+      pos.terminate();
+      return positionList;
+    }
+
+    @Override
+    public void deliverOrder(long orderid) {
+         con=new Oracle();
+       con.connect("scott","tiger");
+       query="update Orders set statusid=5 where orderid="+orderid;
+       con.setQuery(query);       
+       con.terminate();
     }
     
 }

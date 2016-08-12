@@ -42,9 +42,9 @@ public class Gps implements Serializable {
     @Column(name = "GPSORDERID")
     private Long gpsorderid;
     @Column(name = "GPSX")
-    private Integer gpsx;
+    private double gpsx;
     @Column(name = "GPSY")
-    private Integer gpsy;
+    private double gpsy;
     @Column(name = "GPSDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date gpsdate;
@@ -67,19 +67,19 @@ public class Gps implements Serializable {
         this.gpsorderid = gpsorderid;
     }
 
-    public Integer getGpsx() {
+    public double getGpsx() {
         return gpsx;
     }
 
-    public void setGpsx(Integer gpsx) {
+    public void setGpsx(double gpsx) {
         this.gpsx = gpsx;
     }
 
-    public Integer getGpsy() {
+    public double getGpsy() {
         return gpsy;
     }
 
-    public void setGpsy(Integer gpsy) {
+    public void setGpsy(double gpsy) {
         this.gpsy = gpsy;
     }
 

@@ -306,7 +306,7 @@ public void showIem(Orders Tmp){
                         
                  %>
              
-<form action="Driver_order"  method="post" class="form-update" name="order" >
+<form action="OrderAction"  method="post" class="form-update" name="order" >
   
   <% if( element.getStatusid()==5 ) {  
       
@@ -372,9 +372,10 @@ for (Item items:element.getItemCollection()) {%>
                   
                   <% if( element.getStatusid()!=5 ) { %>
              
-                  <form class="form-inline" action="setgps" name="setgps">
+                  <form class="form-inline" action="OrderAction" method="post" name="setgpsform">
                     
-  <div class="form-group">
+  <div class="form-group" >
+      <input type="hidden" class="form-control" id="latitude" name="ordergpsid" value="<%=element.getOrderid()%>">
     <label class="sr-only" for="latitude">Latitude</label>
     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter Latitude (x)">
   </div>

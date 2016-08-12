@@ -24,9 +24,10 @@ public interface OrderItem {
     public void setClientOrder(int clientid,int providerid,int driver_id,String deprt,String arrival,ArrayList<Item> ClItem,int cosiderid,int clinetTransid);
     public Item setOrderItem(long orderId,int catNo,double Weight,int Volume,double Price,int Qnty);
     public Set<Orders> getCarrierOrder(int cR_Id);
-    public Orders getDriverOrder(int dR_Id);
+    public Set<Orders> getDriverOrder(int dR_Id);
     public Set<Orders> getProviderOrder(int pR_Id);
     public int getPosition(long orderId);
     public ArrayList<Itemcategory> getCategory();
     public ArrayList<Carrier> getBestCarriers(ClientConsider temp);
+   
 }
