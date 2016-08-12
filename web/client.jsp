@@ -239,7 +239,7 @@ public void showIem(Orders Tmp){
         <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
         <li><a data-toggle="pill" href="#order"><i class="fa fa-plus"></i> <span>Place an Order</span></a></li>
  	<li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
-        <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
+        <!-- <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li> -->
 
  
       </ul>
@@ -489,7 +489,7 @@ function calcCost(){
                   <th>Status</th>
                   <th>Driver Id</th>
                   <th>Request Date</th>
-                  <th>Distance </th>
+               
                   <th>Track/Feedback </th>
  
                 </tr>
@@ -502,7 +502,7 @@ function calcCost(){
                     out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>"); 
                     out.println("<td>"+element.getDriverid()+"</td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>"); 
+               
                             if( element.getStatusid()==5 ) {
                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); } 
                             else { 

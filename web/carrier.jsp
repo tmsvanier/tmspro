@@ -216,10 +216,10 @@ public String gettype(int num){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
-                   <th>carrier Id</th>
+             
                   <th>Driver Id</th>
                   <th>Request Date</th>
-                   <th>Distance </th>
+ 
                 </tr>
                 
        <% for(Orders element:myorder){    
@@ -236,7 +236,7 @@ public String gettype(int num){
                      }
                    
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>");
+ 
                     out.println("</tr>"); 
                 
                 
@@ -377,7 +377,7 @@ public String gettype(int num){
                   <th>Drivers Address</th>
                   <th>Drivers Phone</th>
                   <th>Drivers UserName</th>
-                  <th>Carrier Id</th>
+                   
                 </tr>
              <% 
                    for( Drivers element:mydriver){

@@ -6,13 +6,20 @@
 
 <!DOCTYPE html>
 <% 
+             int placing,confirm,cancel,deliverd,ship;
+confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
            Drivers myuser=(Drivers) session.getAttribute("driverpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            //List<Item> items_request=new ArrayList();
           // Orders order_Request=new Orders();
            //Iterator it=myCategory.listIterator();
-           
+            for(Orders test:myorder){
+               if(test.getStatusid()==2)placing++;
+               else if(test.getStatusid()==3)confirm++;
+               else if(test.getStatusid()==4)ship++;
+               else if(test.getStatusid()==5)deliverd++;
+               if(test.getStatusid()==6)cancel++;}
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -129,34 +136,18 @@ public void showIem(Orders Tmp){
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <span class="label label-danger"><% out.print(ship); %></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
+                <%if (ship!=0)
+                 out.println("<li class='header'><b>You have <i>"+ship+" </i>  shipped orders </br> Please don't forget to set positions</b></li>");
+                %>
+                <li>
                 <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
+                
               </li>
-              <li class="footer">
-                <a href="#">View all Orders</a>
+              <li class="footer" >
+                <a data-toggle="pill" href="#list">View all Orders</a>
               </li>
             </ul>
           </li>
@@ -405,7 +396,7 @@ for (Item items:element.getItemCollection()) {%>
                 <% } else {%>
                     
                   GPS Map Position of the vehicle:<br>
-                                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7907.473460473553!2d-73.67186102280644!3d45.51583456793833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1470278955167" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); %>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
                     <% }//iner loop
                         out.println(" </div> <div class='modal-footer'>"); 

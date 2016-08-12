@@ -165,7 +165,7 @@ public String gettype(int num){
         <li class="active"><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
         <li><a data-toggle="pill" href="#clients"><i class="fa fa-list-ul"></i> <span>List of Clients</span></a></li>
         <li><a data-toggle="pill" href="#carriers"><i class="fa fa-list-ul"></i> <span>List of Carriers</span></a></li>
-<li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li>
+        <!-- <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li> -->
       </ul>
       <!-- /.sidebar-menu -->
     </section>
