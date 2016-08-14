@@ -6,7 +6,6 @@
 package BussinessLayer.Impl;
 
 import BussinessLayer.Interface.OrderItem;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,11 +41,7 @@ public class UserOrderItem implements OrderItem{
         Client_Conn=new Oracle();
         
         
-//        query="SELECT o.orderid,ic.itemCategoryDesc,o.clientId,c.fullName"+
-//               "from client c,orders o,item i, itemcategory ic"+
-//               "where c.clientId=o.clientId and o.orderid=i.orderid and ic.itemCategoryId=i.itemCategoryId and c.clientId="+
-//                cL_Id+
-//                "and i.orderid in(select orderid from item )";
+
         Client_Conn.connect("scott", "tiger");
         query="SELECT *FROM ORDERS WHERE CLIENTID="+cL_Id;
         rslt=Client_Conn.getResult(query);
@@ -70,6 +65,7 @@ public class UserOrderItem implements OrderItem{
                          "ic.itemCategoryId=i.itemCategoryId and i.orderid="+record.getOrderid();
                 rslt1=Client_Conn.getResult(query); 
                 orderItems=new ArrayList();
+               
                 while(rslt1.next()){                    
                     Item element=new Item();
                     element.setOrderId(rslt1.getLong("orderid"));
@@ -83,6 +79,8 @@ public class UserOrderItem implements OrderItem{
                     orderItems.add(element);                    
                 }
                 record.setItemCollection(orderItems);
+                UserActions clientgps=new UserActions();
+                record.setGpsList(clientgps.getPosition(rslt.getLong("orderId"),Client_Conn));
                 orderSet.add(record);
                 
              
@@ -133,7 +131,9 @@ public class UserOrderItem implements OrderItem{
                     element.setItemDesc(rslt1.getString("itemdesc"));                                                         
                     orderItems.add(element);                    
                 }
-                
+                //add gps cordinate to the order
+              UserActions  gpsprovider=new UserActions();
+                record.setGpsList(gpsprovider.getPosition(rslt.getLong("orderId"),Provider_Conn));
                 //add items to its order                       
                     
                 record.setItemCollection(orderItems);
@@ -155,10 +155,10 @@ public class UserOrderItem implements OrderItem{
                     }//end if orderid=2 means statusid=2;
                 else{
                     Carrier test=new Carrier();
-                    test.setFullName("Confirmed Before.AttentionAslanBek");
+                    test.setFullName("No Carrier");
                     ArrayList<Carrier> myArray=new ArrayList();
                     myArray.add(test);
-                    test.setFullName("Attention AslanBek");
+                    test.setFullName("Wrong selection");
                     myArray.add(test);
                     record.set_CarrierOption(myArray);
                 }  
@@ -218,7 +218,8 @@ public class UserOrderItem implements OrderItem{
                     element.setItemDesc(rslt1.getString("itemdesc"));                                                         
                     orderItems.add(element);                    
                 }
-                
+             UserActions  gpsCarrier=new UserActions();
+                record.setGpsList(gpsCarrier.getPosition(rslt.getLong("orderId"),Carrier_Conn));
                 //add items to its order                       
                     
                 record.setItemCollection(orderItems);
@@ -239,7 +240,7 @@ public class UserOrderItem implements OrderItem{
           Oracle Driver=new Oracle();   
           orderSet=new HashSet();
         Driver.connect("scott", "tiger");
-        query="SELECT *FROM ORDERS where statusid in(4,5) and carrierid="+dR_Id;
+        query="SELECT *FROM ORDERS where statusid in(4,5) and driverid="+dR_Id;
         rslt=Driver.getResult(query);
          try {
             while(rslt.next()){
@@ -272,6 +273,9 @@ public class UserOrderItem implements OrderItem{
                     orderItems.add(element);                    
                 }
                 
+                //add gps values to the order
+            UserActions  gpsdriver=new UserActions();
+                record.setGpsList(gpsdriver.getPosition(rslt.getLong("orderId"),Driver));
                 //add items to its order                       
                     
                 record.setItemCollection(orderItems);

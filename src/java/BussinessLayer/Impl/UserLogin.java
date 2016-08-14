@@ -5,7 +5,6 @@
  */
 package BussinessLayer.Impl;
 import BussinessLayer.Interface.LoginUser;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 
 import tmsModelLayer.Oracle;
 import java.sql.ResultSet;

@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -82,7 +81,7 @@ public class Orders implements Serializable {
     @ManyToOne
     private int statusid;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "orders")
-    private Gps gps;
+    private ArrayList<Gps> gpsList;
     private float orderKPI;
    ArrayList<Carrier> OptionList;
     Carrier orderCarrier;
@@ -229,12 +228,12 @@ public class Orders implements Serializable {
         this.statusid = states;
     }
 
-    public Gps getGps() {
-        return gps;
+    public ArrayList<Gps> getGps() {
+        return gpsList;
     }
 
-    public void setGps(Gps gps) {
-        this.gps = gps;
+    public void setGpsList(ArrayList<Gps> gps) {
+        this.gpsList = gps;
     }
 
     @Override

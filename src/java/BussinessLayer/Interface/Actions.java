@@ -6,8 +6,10 @@
 package BussinessLayer.Interface;
 
 import java.util.ArrayList;
+import java.util.List;
 import tmsModelLayer.Gps;
 import tmsModelLayer.Kpilog;
+import tmsModelLayer.Oracle;
 
 /**
  *
@@ -22,7 +24,7 @@ public interface Actions {
     public void modifyUsers();
     public void orderFeedBack(ArrayList<Kpilog> feedbackList);
     public void SetPositoin(long orderid, double x,double y);
-    public ArrayList<Gps> getPosition(int orderid);
+    public ArrayList<Gps> getPosition(long orderid, Oracle pos);
     public void deliverOrder(long orderid);
     
 }

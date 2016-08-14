@@ -1,6 +1,7 @@
 
 package tmsModelLayer.ServletPackage;
 
+import BussinessLayer.Impl.UserActions;
 import BussinessLayer.Impl.UserLogin;
 import BussinessLayer.Impl.UserOrderItem;
 
@@ -8,13 +9,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.FilterChain;
+
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import tmsModelLayer.Carrier;
@@ -31,6 +30,7 @@ import tmsModelLayer.Provider;
 public class LoginServlet extends HttpServlet {
 UserLogin log;Client user_1;Carrier user_3;Provider user_2;Drivers user_4;
 UserOrderItem client_Order; List<Itemcategory> category=new ArrayList(); 
+
 HttpSession loginSession;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,6 +85,7 @@ HttpSession loginSession;
                loginSession.setAttribute("clientpage", user_1);
                loginSession.setAttribute("orders", getUserOrder().getClientOrder(user_1.getClientId()));
                loginSession.setAttribute("category",getUserOrder().getCategory());
+              
                response.sendRedirect("client.jsp");
                
            }//redirect to client page

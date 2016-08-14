@@ -9,7 +9,7 @@
            List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            List<Carrier> mycarrier=(ArrayList<Carrier>)session.getAttribute("carrierlist");
-           
+           boolean find=false;
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -218,23 +218,32 @@ public String gettype(int num){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
-                   <th>carrier Id</th>
-                  <th>Driver Id</th>
+                   <th>carrier Name</th>                
                   <th>Request Date</th>
-                   <th>Distance </th>
+                   <th>gps First position </th>
                 </tr>
                 
                 <% for(Orders element:myorder){    
-                    
+                    find=false;
                     out.println("<tr>");
                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>"); 
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>");
-                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");
-                     out.println("<td>"+element.getCarrierid()+"</td>");
-                    out.println("<td>"+element.getDriverid()+"</td>");
+                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");               
+                    for(Carrier cr:mycarrier){
+                        if(cr.getCarrierId()==element.getCarrierid()){
+                             out.println("<td>"+ cr.getFullName()  +"</td>");
+                             find=true;
+                            break;
+                         }}
+                             
+                     if(!find)
+                            out.println("<td> Carrier has not been chosen  </td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                    out.println("<td>"+element.getDistance()+"</td>");
+                     if(element.getGps().get(0).getGpsx()!=0.00){
+                     out.println("<td> X: "+element.getGps().get(0).getGpsx()+" Y: "+element.getGps().get(0).getGpsy()+"</td>"); }
+                            else{
+                                 out.println("<td><sup> This order  does not have any cordinate</sup></td>"); }
                     out.println("</tr>"); 
                 
                 

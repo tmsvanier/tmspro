@@ -11,10 +11,7 @@ confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
            Drivers myuser=(Drivers) session.getAttribute("driverpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
-           //List<Item> items_request=new ArrayList();
-          // Orders order_Request=new Orders();
-           //Iterator it=myCategory.listIterator();
-            for(Orders test:myorder){
+           for(Orders test:myorder){
                if(test.getStatusid()==2)placing++;
                else if(test.getStatusid()==3)confirm++;
                else if(test.getStatusid()==4)ship++;
@@ -271,7 +268,7 @@ public void showIem(Orders Tmp){
                   <th>Request Date</th>
            
                    <th>Position </th>
- 
+                   <th> GPS position</th>
                 </tr>
                     <% for(Orders element:myorder){    
                     
@@ -288,11 +285,17 @@ public void showIem(Orders Tmp){
               
                     
                             if( element.getStatusid()==5 ) {
-                     out.println("<td>Completed"); 
+                     out.println("<td>Completed</td>"); 
                             } else { 
-                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Set position</a>"); 
-
+                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Set position</a></td>"); 
+                      
                     }
+                        if(element.getGps().get(0).getGpsx()!=0.00){
+                             out.println("<td> X: "+element.getGps().get(0).getGpsx()+
+                                     " Y: "+element.getGps().get(0).getGpsy()+"</td>"); }
+                        else{
+                                out.println("<td><sup> This order  does not have any cordinate</sup></td>"); }
+                            
                     out.println("</tr>"); 
                 
                 

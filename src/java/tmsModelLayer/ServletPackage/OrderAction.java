@@ -9,8 +9,6 @@ import BussinessLayer.Impl.UserActions;
 import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -150,6 +148,7 @@ public class OrderAction extends HttpServlet {
        }
         //item1
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
+         response.sendRedirect("client.jsp");
         }//end of placing an order
         
          if(request.getParameter("feedbackbutton")!=null){ 
@@ -179,12 +178,10 @@ public class OrderAction extends HttpServlet {
              
             clientFeedback=new  UserActions();
             clientFeedback.orderFeedBack(feedbackList);
-             
+           
              response.sendRedirect("client.jsp");
-             
-            
           }//end of feedback
-          
+           
           
          //////////////////////////////////////end of clien action//////////////////////////////////////////////
           

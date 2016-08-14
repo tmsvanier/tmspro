@@ -83,7 +83,7 @@ public class UserActions implements Actions {
                
            con.setQuery(query);
         }
-       query="update Orders set orderkpi="+kpivalue+" where orderid="+feedbackList.get(0).getOrderid();
+       query="update Orders set orderkpi="+kpivalue+",statusid=7 where orderid="+feedbackList.get(0).getOrderid();
        con.setQuery(query);
        con.terminate();
      
@@ -99,21 +99,37 @@ public class UserActions implements Actions {
     }
 
     @Override
-    public ArrayList<Gps> getPosition(int orderid) {
+    public ArrayList<Gps> getPosition(long orderid,Oracle pos) {
         ArrayList<Gps> positionList=new ArrayList();
+        Gps Nulltest=new Gps();
+        long test=0;
+        Nulltest.setGpsorderid(test);Nulltest.setGpsx(0.00);Nulltest.setGpsy(0.00);
+        positionList.add(Nulltest);
         ResultSet rslpos;
-         Oracle pos=new Oracle();
-      pos.connect("scott", "tiger");      
+         //Oracle pos=new Oracle();
+      //pos.connect("scott", "tiger");      
       query="select* from gps where gpsorderid="+orderid;
       rslpos=pos.getResult(query);
       try {
           while(rslpos.next()){
-              Gps record=new Gps();
+              if(positionList.get(0).getGpsx()==0.00){
+                  positionList.remove(0);
+                  Gps record=new Gps();
+                  record.setGpsorderid(rslpos.getLong("gpsorderid"));
+                  record.setGpsx(rslpos.getDouble("gpsx"));
+                  record.setGpsy(rslpos.getDouble("gpsy"));
+                  record.setGpsdate(rslpos.getDate("gpsdate"));
+                  positionList.add(0, record);
+              }
+              else{
+                  Gps record=new Gps();
               record.setGpsorderid(rslpos.getLong("gpsorderid"));
               record.setGpsx(rslpos.getDouble("gpsx"));
               record.setGpsy(rslpos.getDouble("gpsy"));
               record.setGpsdate(rslpos.getDate("gpsdate"));
               positionList.add(record);
+              }
+               
               
           }
       } 
@@ -121,7 +137,7 @@ public class UserActions implements Actions {
           Logger.getLogger(UserActions.class.getName()).log(Level.SEVERE, null, ex);
       }
        
-      pos.terminate();
+      //pos.terminate();
       return positionList;
     }
 

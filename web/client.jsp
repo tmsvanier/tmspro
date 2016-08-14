@@ -46,8 +46,8 @@ public String getStatusDesc(int num){
           case 6:{
             str="Cancelled";break;
         }
-          default:{
-               str="undefined";break;
+          case 7:{
+               str="completed";break;
           }
           
     }//end switch
@@ -58,6 +58,7 @@ public String gettype(int num){
     if(num==2)type="label-default" ;else if(num==3)type="label-info" ;
      else if(num==4)type="label-primary"; else if(num==5)type="label-success";
      else if(num==6)type="label-danger";
+     else if(num==7)type="label-default";
     return type;
 }
 public void showIem(Orders Tmp){
@@ -289,6 +290,7 @@ public void showIem(Orders Tmp){
     {label: "Shipped", value: <%=ship%>},
     {label: "Delivered", value: <%=deliverd%>},
     {label: "Cancelled", value:<%=cancel%>}],
+        
   colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
  
 }); 
@@ -468,27 +470,38 @@ function calcCost(){
                   <th>Order ID</th>
                   <th>Departure</th>
                   <th>Arrival</th>
-                  <th>Status</th>
-                  <th>Driver Id</th>
+                  <th>Status</th>                
                   <th>Request Date</th>
-               
+                 
                   <th>Track/Feedback </th>
- 
+                  <th>first gps position </th>
                 </tr>
                     <% for(Orders element:myorder){    
                     
                     out.println("<tr>");
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a>");  
+                    if(element.getStatusid()==7){
+                         out.println("<td>"+element.getOrderid()+"</td>"); 
+                    }
+                    else{
+                         out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">"+element.getOrderid()+ "</a></td>");  
+                    }
+                   
                     out.println("<td>"+element.getDeparture()+"</td>");
                     out.println("<td>"+element.getArrival()+"</td>"); 
-                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>"); 
-                    out.println("<td>"+element.getDriverid()+"</td>");
+                    out.println("<td class='"+gettype(element.getStatusid())+"'>"+getStatusDesc(element.getStatusid())+"</td>");                   
                     out.println("<td>"+element.getOrderdate()+"</td>");
                
                             if( element.getStatusid()==5 ) {
                     out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Leave a feedback</a>"); } 
-                            else { 
-                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>"); } 
+                            else if(element.getStatusid()==3 || element.getStatusid()==4) { 
+                    out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track</a>");
+                            if(element.getGps().get(0).getGpsx()!=0.00){
+                     out.println("<td> X: "+element.getGps().get(0).getGpsx()+" Y: "+element.getGps().get(0).getGpsy()+"</td>"); }
+                            else{
+                                 out.println("<td><sup> This order  does not have any cordinate</sup></td>"); }} 
+                            else{
+                                out.println("<td>No loger access</td>");
+                            }
                     out.println("</tr>");  
                     out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
                     out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
@@ -576,12 +589,12 @@ for (Item items:element.getItemCollection()) {%>
                         var nod = dropnod.options[dropnod.selectedIndex].value; 
            
                          var sum =  parseInt(cost)+parseInt(time)+parseInt(nod);
-                            if(sum == 100 && cost!=0 && nod!=0 && time!=0) {
+                            if(sum === 100 && cost!==0 && nod!==0 && time!==0) {
                                 document.getElementById('costfeedbackweight').style.borderColor="green";
                                 document.getElementById('timefeedbackweight').style.borderColor="green";
                                 document.getElementById('nodfeedbackweight').style.borderColor="green";
                             }
-                            else if (sum != 100 && cost!=0 && nod!=0 && time!=0){
+                            else if (sum !== 100 && cost!==0 && nod!==0 && time!==0){
                                 alert("Total weight % must be exactly 100");
                                 document.getElementById('costfeedbackweight').style.borderColor="red";
                                 document.getElementById('timefeedbackweight').style.borderColor="red";
