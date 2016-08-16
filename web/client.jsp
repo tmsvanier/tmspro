@@ -363,6 +363,7 @@ public void showIem(Orders Tmp){
         <script type="text/javascript">
                   
 function calcCost(){
+ 
     for(var i=1;i<3;i++){
    document.getElementById('order'+i+'price').value=
            document.getElementById('order'+i+'qty').value
@@ -372,9 +373,13 @@ function calcCost(){
    }
 }
 
+function additem2() {
+    alert('test');
+ }
+
 </script>
  
- <% for (int i = 1; i<3; i++) { %>
+ <% for (int i = 1; i<2; i++) { %>
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
@@ -401,6 +406,9 @@ function calcCost(){
                 </div>
                 <div class="col-xs-2">
                     <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()">
+                </div>
+                      <div class="col-xs-1">
+                  <button class="btn btn-primary btn-block" type="button" name="additem" value="order" onclick="additem2()">Add an Item</button>
                 </div>
               </div>    
         
