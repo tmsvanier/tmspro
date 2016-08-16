@@ -23,7 +23,7 @@ import tmsModelLayer.Kpilog;
  */
 public class OrderAction extends HttpServlet {
  UserOrderItem setClient_order=new UserOrderItem();
-  ArrayList<Item> orderItem=new ArrayList();
+ 
   UserActions prov,Carr,clientFeedback,driv;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -79,12 +79,7 @@ public class OrderAction extends HttpServlet {
          }
               
            if(request.getParameter("orderbtn")!=null){
-            for(int i=0;i<2;i++){
-            out.println("<p> order:"+orderItem.get(i).getItemcategory()+"//"+orderItem.get(i).getItemqty()+
-                    "//"+orderItem.get(i).getOrderId()+"//"+orderItem.get(i).getItemvolume()+"//"+orderItem.get(i).getItemprice()+
-                    "//"+orderItem.get(i).getItemDesc()+
-                    "</p>");
-            }
+           
              out.println("<h1>ordercost is=" +request.getParameter("item1price") + "</h1>");
                out.println("<h1>ordercost is=" +request.getParameter("item2price") + "</h1>");
             
@@ -130,7 +125,7 @@ public class OrderAction extends HttpServlet {
          int clinetTransid =Integer.parseInt(request.getParameter("transportType")); 
          if(clinetTransid==0)
              clinetTransid=6;
-        
+         ArrayList<Item> orderItem=new ArrayList();
        for(int i=1;i<3;i++){
            String cat,itemdes,itemqty,itemvol,itemweight,itemcost;
            cat="item"+i+"category";itemdes="item"+i+"desc";
