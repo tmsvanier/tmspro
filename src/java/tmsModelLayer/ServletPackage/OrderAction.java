@@ -148,7 +148,7 @@ public class OrderAction extends HttpServlet {
        }
         //item1
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
-         response.sendRedirect("client.jsp");
+        // response.sendRedirect("client.jsp");
         }//end of placing an order
         
          if(request.getParameter("feedbackbutton")!=null){ 
