@@ -406,7 +406,7 @@ function calcCost(){
                   <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onkeypress="calcCost()" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                    <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" >
+                    <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onkeypress="calcCost()" onblur="calcCost()">
                 </div>
               </div>    
         
