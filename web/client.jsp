@@ -338,7 +338,7 @@ public void showIem(Orders Tmp){
         <input type="text" id="destination" class="form-control" placeholder="Destination (Enter Address)" required autofocus name="destination">
         </div>
     
-    <p > </br>To carry your order, which following options do you prefer to be considered ? (optional)</p>
+        <p></br>To carry your order, which following options do you prefer to be considered ? (optional)</p>
     
     
       <div class="btn-group" data-toggle="buttons"> 
@@ -397,16 +397,16 @@ function calcCost(){
                   </select>
                 </div>
                 <div class="col-xs-1">
-                    <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onkeypress="calcCost()">
+                    <input type="text" class="form-control" id="order<% out.print(i); %>qty" placeholder="Qty" name="item<% out.print(i); %>qty" onkeypress="calcCost()" onblur="calcCost()" >
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onkeypress="calcCost()">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>volume" placeholder="volume (in liters)" name="item<% out.print(i); %>volume" onkeypress="calcCost()" onblur="calcCost()">
                 </div>
                 <div class="col-xs-1">
-                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onkeypress="calcCost()">
+                  <input type="text" class="form-control" id="order<% out.print(i); %>weight" placeholder="weight (in kg)" name="item<% out.print(i); %>weight" onkeypress="calcCost()" onblur="calcCost()">
                 </div>
                 <div class="col-xs-2">
-                    <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" onblur="calcCost()" >
+                    <input   type="text" class="form-control" id="order<% out.print(i); %>price"  placeholder="Price" name="item<% out.print(i); %>price" >
                 </div>
               </div>    
         
