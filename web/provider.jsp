@@ -1,15 +1,27 @@
- 
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.net.*,java.util.Date, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <% 
+     int placing,confirm,cancel,deliverd,ship;
+         confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
            Provider myuser1=(Provider) session.getAttribute("providerpage");
            Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
            List<Client> myclient=(ArrayList<Client>)session.getAttribute("clients");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
            List<Carrier> mycarrier=(ArrayList<Carrier>)session.getAttribute("carrierlist");
            boolean find=false;
+           
+        for(Orders test:myorder){
+               if(test.getStatusid()==2)placing++;
+               else if(test.getStatusid()==3)confirm++;
+               else if(test.getStatusid()==4)ship++;
+               else if(test.getStatusid()==5)deliverd++;
+               if(test.getStatusid()==6)cancel++;}
+           
+        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM yyyy hh:mm:ss a");
+        Date date=new Date();
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -67,16 +79,24 @@ public String gettype(int num){
         apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
+    <link rel='stylesheet' href='plugins/fullcalendar/fullcalendar.css' /> 
+    <script src='dist/js/moment.js'></script>
+    
+    <script src='plugins/fullcalendar/fullcalendar.min.js'></script>
+    <link href='plugins/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+ 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  
-    
-  
 </head>
  
 <body class="hold-transition skin-blue sidebar-mini">
@@ -162,7 +182,8 @@ public String gettype(int num){
       <ul class="sidebar-menu">
        <!-- <li class="header">Main Menu</li>
          Optionally, you can add icons to the links -->
-        <li class="active"><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
+        <li class="active"><a data-toggle="pill" href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
+        <li><a data-toggle="pill" href="#list"><i class="fa fa-list-ul"></i> <span>List of Orders</span></a></li>
         <li><a data-toggle="pill" href="#clients"><i class="fa fa-list-ul"></i> <span>List of Clients</span></a></li>
         <li><a data-toggle="pill" href="#carriers"><i class="fa fa-list-ul"></i> <span>List of Carriers</span></a></li>
         <!-- <li><a data-toggle="pill" href="#report"><i class="fa fa-bar-chart "></i> <span>Generate Report</span></a></li> -->
@@ -178,9 +199,80 @@ public String gettype(int num){
 
  <div class="tab-content">
  
-      
+        <div id="home" class="tab-pane fade in active">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       
+          <span>    <%=sdf.format(date).toString()%></span> </br>
+        Dashboard
+      </h1>
+        
+       
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+        
+            <div class="col-md-4">
+                 <div id="orderstats"   ></div>  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <iframe src="https://flightaware.com/live/map" width="700" height="500"></iframe>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+        </div>
+ <script>
      
-    <div id="list" class="tab-pane fade in active">
+     new Morris.Donut({ 
+  element: 'orderstats',
+  data: [
+      {label: "submited", value: <%=placing%>},
+    {label: "Confirmed", value:<%=confirm%>},
+    {label: "Shipped", value: <%=ship%>},
+    {label: "Delivered", value: <%=deliverd%>},
+    {label: "Cancelled", value:<%=cancel%>}],
+        
+  colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
+ 
+}); 
+ </script>
+ 
+ 
+<div id='calendar' style="max-width: 600px; margin: 0 auto;"></div>
+
+ 
+ 
+    </section>
+    <!-- /.content -->
+    
+    
+  </div>
+  <!-- /.content-wrapper -->
+    </div> 
+     
+    <div id="list" class="tab-pane fade in">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

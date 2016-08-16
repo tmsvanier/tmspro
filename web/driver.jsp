@@ -1,7 +1,6 @@
  
-
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.net.*, java.io.*, java.sql.*, java.util.*,java.util.Date, tmsModelLayer.*,tmsModelLayer.Drivers" %>
+<%@ page import="java.net.*,java.util.Date, java.io.*, java.sql.*, java.util.*,tmsModelLayer.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -17,6 +16,9 @@ confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
                else if(test.getStatusid()==4)ship++;
                else if(test.getStatusid()==5)deliverd++;
                if(test.getStatusid()==6)cancel++;}
+           
+     SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM yyyy hh:mm:ss a");
+        Date date=new Date();
       %>    
 <%!
 public String getStatusDesc(int num){
@@ -212,7 +214,9 @@ public void showIem(Orders Tmp){
       <ul class="sidebar-menu">
        <!-- <li class="header">Main Menu</li>
          Optionally, you can add icons to the links -->
-        <li class="active"><a data-toggle="pill"s href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
+                      <li class="active"><a data-toggle="pill" href="#home"><i class="fa fa-home"></i> <span>Main Page</span></a></li>
+
+        <li><a data-toggle="pill"s href="#list"><i class="fa fa-list-ul"></i> <span>List of orders</span></a></li>
  
  
       </ul>
@@ -226,7 +230,80 @@ public void showIem(Orders Tmp){
 
 
  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
+     
+      <div id="home" class="tab-pane fade in active">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       
+          <span>    <%=sdf.format(date).toString()%></span> </br>
+        Dashboard
+      </h1>
+        
+       
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+        
+            <div class="col-md-4">
+                 <div id="orderstats"   ></div>  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <iframe src="https://flightaware.com/live/map" width="700" height="500"></iframe>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+        </div>
+ <script>
+     
+     new Morris.Donut({ 
+  element: 'orderstats',
+  data: [
+      {label: "submited", value: <%=placing%>},
+    {label: "Confirmed", value:<%=confirm%>},
+    {label: "Shipped", value: <%=ship%>},
+    {label: "Delivered", value: <%=deliverd%>},
+    {label: "Cancelled", value:<%=cancel%>}],
+        
+  colors: ['#f39c12', '#00c0ef', '#3c8dbc', '#00a65a', '#dd4b39' ]
+ 
+}); 
+ </script>
+ 
+ 
+<div id='calendar' style="max-width: 600px; margin: 0 auto;"></div>
+
+ 
+ 
+    </section>
+    <!-- /.content -->
+    
+    
+  </div>
+  <!-- /.content-wrapper -->
+    </div> 
+    <div id="list" class="tab-pane fade in">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -388,7 +465,7 @@ for (Item items:element.getItemCollection()) {%>
   </div>
    <div class="form-group"> 
        <input disabled type="text" class="form-control" id="dategps" name="dategps" value="<% SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-           Date date = new Date(); out.println(dateFormat.format(date)); %>">
+           Date date2 = new Date(); out.println(dateFormat.format(date2)); %>">
   </div>                     
  
   <button type="submit" class="btn btn-primary" name="setgps">Set position</button>
