@@ -227,6 +227,7 @@ public class OrderAction extends HttpServlet {
               driv=new UserActions();        
             long orderid=Long.parseLong(request.getParameter("ordergpsid"));
             driv.deliverOrder(orderid);
+            response.sendRedirect("driver.jsp");
         }
           //////////////////////////////////////end of driver action////////////////////////////////////////////// 
           
