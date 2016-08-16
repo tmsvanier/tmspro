@@ -591,12 +591,12 @@ for (Item items:element.getItemCollection()) {%>
                         var nod = dropnod.options[dropnod.selectedIndex].value; 
            
                          var sum =  parseInt(cost)+parseInt(time)+parseInt(nod);
-                            if(sum === 100 && cost!==0 && nod!==0 && time!==0) {
+                            if(sum === 100 && cost!=0 && nod!=0 && time!=0) {
                                 document.getElementById('costfeedbackweight').style.borderColor="green";
                                 document.getElementById('timefeedbackweight').style.borderColor="green";
                                 document.getElementById('nodfeedbackweight').style.borderColor="green";
                             }
-                            else if (sum !== 100 && cost!==0 && nod!==0 && time!==0){
+                            else if (sum !== 100 && cost!=0 && nod!=0 && time!=0){
                                 alert("Total weight % must be exactly 100");
                                 document.getElementById('costfeedbackweight').style.borderColor="red";
                                 document.getElementById('timefeedbackweight').style.borderColor="red";
