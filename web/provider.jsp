@@ -303,9 +303,9 @@ public String gettype(int num){
                   <th>Departure</th>
                   <th>Arrival</th>
                   <th>Status</th>
-                   <th>carrier Name</th>                
+                  <th>carrier Name</th>                
                   <th>Request Date</th>
-                   <th>gps First position </th>
+                  <th>gps First position </th>
                 </tr>
                 
                 <% for(Orders element:myorder){    
