@@ -700,10 +700,11 @@ for (Item items:element.getItemCollection()) {%>
                 <% } else {%>
                     
                 GPS Map Position of the vehicle:<br>
-                
-                       <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); %>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
+                      
+                 <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); 
+                      %>&waypoints=<% out.print(element.getDeparture()); %> <% for(Gps gprecord:element.getGps()){
+                     out.print("|" + gprecord.getGpsx()+","+gprecord.getGpsy()); }%>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>               
+             
                     <% }//iner loop 
                         out.println("</div><div class='modal-footer'>"); 
                         out.println("<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"); 
