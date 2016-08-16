@@ -263,13 +263,7 @@ public void showIem(Orders Tmp){
  
  
  <div class="col-md-4">
-          <div class="box box-primary">
-            <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <iframe src="https://flightaware.com/live/map" width="700" height="500"></iframe>
-            </div>
-            <!-- /.box-body -->
-          </div>
+           
           <!-- /. box -->
         </div>
  
@@ -700,7 +694,6 @@ for (Item items:element.getItemCollection()) {%>
                 GPS Map Position of the vehicle:<br>
                 
                
-                <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); %>&waypoints=<% out.print(element.getDeparture()); %>|<% out.print(element.getGps().get(0).getGpsx()+","+element.getGps().get(0).getGpsy()); %>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
                     <% }//iner loop 
                         out.println("</div><div class='modal-footer'>"); 

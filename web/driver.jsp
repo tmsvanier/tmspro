@@ -258,14 +258,7 @@ public void showIem(Orders Tmp){
  
  
  <div class="col-md-4">
-          <div class="box box-primary">
-            <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <iframe src="https://flightaware.com/live/map" width="700" height="500"></iframe>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
+         
         </div>
  
  
