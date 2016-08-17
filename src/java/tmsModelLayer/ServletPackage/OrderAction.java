@@ -117,26 +117,29 @@ HttpSession ordersession;
        
           ordersession=request.getSession();
            Set<Orders> myorder=(Set<Orders>)ordersession.getAttribute("orders");
+            HttpSession clinetsession;
+          clinetsession=request.getSession();
+          LinkedHashSet<Orders> clinetorders=(LinkedHashSet<Orders>) clinetsession.getAttribute("clinetorder");
         
          //////////////////////////////////////client order Action  ////////////////////////////////////////////// //
         if(request.getParameter("orderbtn")!=null){
-         
-       
+          Orders test=new Orders();
+     
         //client_info
         int clientId=Integer.parseInt(request.getParameter("client_id"));
        
         //GPS value
         String departure=request.getParameter("departure");
         String destination=request.getParameter("destination");
-        Orders test=new Orders();
-        test.setArrival(destination);
-        test.setDeparture(departure);
-         test.setClientid(clientId);
-        test.setStatusid(2);
-        test.setProviderid(2);
        
-        test.setDriverid(10);
-        
+//        test.setArrival(destination);
+//        test.setDeparture(departure);
+//         test.setClientid(clientId);
+//        test.setStatusid(2);
+//        test.setProviderid(2);
+//       
+//        test.setDriverid(10);
+//        
         
          int cosiderid =Integer.parseInt(request.getParameter("radiobtn"));
          int clinetTransid =Integer.parseInt(request.getParameter("transportType")); 
@@ -164,21 +167,16 @@ HttpSession ordersession;
 
         test.setItemCollection(orderItem);
        
-        
-      
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
      
-         test.setOrderid(setClient_order.getlastid());
-
-        //clinetorders.add(test);
+        // test.setOrderid(setClient_order.getlastid());
+       //clinetorders.add(test);
       
          response.sendRedirect("client.jsp");
         }//end of placing an order
         
         else if(request.getParameter("feedbackbutton")!=null){ 
-             HttpSession clinetsession;
-          clinetsession=request.getSession();
-          LinkedHashSet<Orders> clinetorders=(LinkedHashSet<Orders>) clinetsession.getAttribute("clinetorder");
+            
               long orderid= Long.parseLong(request.getParameter("idfeedback"));
               ArrayList<Kpilog> feedbackList=new ArrayList(); 
              //set 1st item fro kpi
@@ -204,9 +202,9 @@ HttpSession ordersession;
              
             clientFeedback=new  UserActions();
             clientFeedback.orderFeedBack(feedbackList);
-                  for(Orders cord:clinetorders){
-           if(cord.getOrderid()==orderid)
-               cord.setStatusid(7);
+                  for(Orders feedbackorder:clinetorders){
+           if(feedbackorder.getOrderid()==orderid)
+               feedbackorder.setStatusid(7);
        }
              response.sendRedirect("client.jsp");
           }//end of feedback
