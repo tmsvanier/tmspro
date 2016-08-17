@@ -580,23 +580,27 @@ for (Item items:element.getItemCollection()) {%>
     </form>
                   
                   <% if( element.getStatusid()==5 ) { %>
-                  
                   <script>
-                    function feedback() {
-                       var dropcost = document.getElementById('costfeedbackweight');
-                        var droptime = document.getElementById('timefeedbackweight');
-                        var dropnod = document.getElementById('nodfeedbackweight');
-                        var cost = dropcost.options[dropcost.selectedIndex].value;
-                        var time = droptime.options[droptime.selectedIndex].value;
-                        var nod = dropnod.options[dropnod.selectedIndex].value; 
-           
-                         var sum =  parseInt(cost)+parseInt(time)+parseInt(nod);
-                            if(sum === 100 && cost!=0 && nod!=0 && time!=0) {
+                 function feedback1() {
+                     
+                       var dropcost1 = document.getElementById('costfeedbackweight'); 
+                        var droptime1 = document.getElementById('timefeedbackweight');
+                        var dropnod1 = document.getElementById('nodfeedbackweight');
+                        var cost1 = dropcost1.options[dropcost1.selectedIndex].value;
+                      
+                        var time1 = droptime1.options[droptime1.selectedIndex].value;
+                        
+                        var nod1 = dropnod1.options[dropnod1.selectedIndex].value; 
+                        
+                         var sum1 =  parseInt(cost1)+parseInt(time1)+parseInt(nod1);
+
+                         
+                            if(sum1 == 100 && cost1!=0 && nod1!=0 && time1!=0) {
                                 document.getElementById('costfeedbackweight').style.borderColor="green";
                                 document.getElementById('timefeedbackweight').style.borderColor="green";
                                 document.getElementById('nodfeedbackweight').style.borderColor="green";
                             }
-                            else if (sum !== 100 && cost!=0 && nod!=0 && time!=0){
+                            else if (sum1 != 100 && cost1!=0 && nod1!=0 && time1!=0){
                                 alert("Total weight % must be exactly 100");
                                 document.getElementById('costfeedbackweight').style.borderColor="red";
                                 document.getElementById('timefeedbackweight').style.borderColor="red";
@@ -636,7 +640,7 @@ for (Item items:element.getItemCollection()) {%>
    
                      <div class="row"> 
                     <div class="col-xs-7">
-                        <select class="form-control" id="costfeedbackweight" name="weightcost" onchange="feedback()">
+                        <select class="form-control" id="costfeedbackweight" name="weightcost" onchange="feedback1()">
                        <option  value="0">Choose Cost Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -653,7 +657,7 @@ for (Item items:element.getItemCollection()) {%>
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="timefeedbackweight" name="weighttime" onchange="feedback()">
+                     <select class="form-control" id="timefeedbackweight" name="weighttime" onchange="feedback1()">
                        <option  value="0">Choose Time Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -671,7 +675,7 @@ for (Item items:element.getItemCollection()) {%>
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="nodfeedbackweight" name="weightnod" onchange="feedback()">
+                     <select class="form-control" id="nodfeedbackweight" name="weightnod" onchange="feedback1()">
                        <option  value="0">Choose Weight Number of Defects</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
