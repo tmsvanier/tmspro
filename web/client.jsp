@@ -377,12 +377,12 @@ function calcCost(){
 }
 
 function additem2() {
-    alert('test');
+    
  }
 
 </script>
  
- <% for (int i = 1; i<2; i++) { %>
+ <% for (int i = 1; i<3; i++) { %>
  
   <div class="input-group"><div class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></div>    
        <div class="row">
@@ -583,8 +583,58 @@ for (Item items:element.getItemCollection()) {%>
     </form>
                   
                   <% if( element.getStatusid()==5 ) { %>
-                 
-                  
+                  <script>
+                   function feedback<%=element.getOrderid()%>() {
+                     
+                        var dropcost<%=element.getOrderid()%> = document.getElementById('costfeedbackweight<%=element.getOrderid()%>'); 
+                        var droptime<%=element.getOrderid()%> = document.getElementById('timefeedbackweight<%=element.getOrderid()%>');
+                        var dropnod<%=element.getOrderid()%> = document.getElementById('nodfeedbackweight<%=element.getOrderid()%>');
+                        var cost<%=element.getOrderid()%> = dropcost<%=element.getOrderid()%>.options[dropcost<%=element.getOrderid()%>.selectedIndex].value;
+                      
+                        var time<%=element.getOrderid()%> = droptime<%=element.getOrderid()%>.options[droptime<%=element.getOrderid()%>.selectedIndex].value;
+                        
+                        var nod<%=element.getOrderid()%> = dropnod<%=element.getOrderid()%>.options[dropnod<%=element.getOrderid()%>.selectedIndex].value; 
+                        
+                         var sum<%=element.getOrderid()%> =  parseInt(cost<%=element.getOrderid()%>)+parseInt(time<%=element.getOrderid()%>)+parseInt(nod<%=element.getOrderid()%>);
+
+                         
+                            if(sum<%=element.getOrderid()%> == 100 && cost<%=element.getOrderid()%>!=0 && nod<%=element.getOrderid()%>!=0 && time<%=element.getOrderid()%>!=0) {
+                                document.getElementById('costfeedbackweight<%=element.getOrderid()%>').style.borderColor="green";
+                                document.getElementById('timefeedbackweight<%=element.getOrderid()%>').style.borderColor="green";
+                                document.getElementById('nodfeedbackweight<%=element.getOrderid()%>').style.borderColor="green";
+                            }
+                            else if (sum<%=element.getOrderid()%> != 100 && cost<%=element.getOrderid()%>!=0 && nod<%=element.getOrderid()%>!=0 && time<%=element.getOrderid()%>!=0){
+                                alert("Total weight % must be exactly 100");
+                                document.getElementById('costfeedbackweight<%=element.getOrderid()%>').style.borderColor="red";
+                                document.getElementById('timefeedbackweight<%=element.getOrderid()%>').style.borderColor="red";
+                                document.getElementById('nodfeedbackweight<%=element.getOrderid()%>').style.borderColor="red";
+                            }
+                            else
+                            return 0;
+                    }
+                    function feedbackvalue<%=element.getOrderid()%>() {
+                        if (parseInt(document.getElementById('costfeedback<%=element.getOrderid()%>').value)>100 || parseInt(document.getElementById('costfeedback<%=element.getOrderid()%>').value)<0) {
+                            document.getElementById('costfeedback<%=element.getOrderid()%>').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('costfeedback<%=element.getOrderid()%>').value)<100 && parseInt(document.getElementById('costfeedback<%=element.getOrderid()%>').value)>0) 
+                            document.getElementById('costfeedback<%=element.getOrderid()%>').style.borderColor="green";
+                        
+                        if (parseInt(document.getElementById('timefeedback<%=element.getOrderid()%>').value)>100 || parseInt(document.getElementById('timefeedback<%=element.getOrderid()%>').value)<0) {
+                            document.getElementById('timefeedback<%=element.getOrderid()%>').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('timefeedback<%=element.getOrderid()%>').value)<100 && parseInt(document.getElementById('timefeedback<%=element.getOrderid()%>').value)>0) 
+                            document.getElementById('timefeedback<%=element.getOrderid()%>').style.borderColor="green";
+                        
+                        if (parseInt(document.getElementById('nodfeedback<%=element.getOrderid()%>').value)> 100 || parseInt(document.getElementById('nodfeedback<%=element.getOrderid()%>').value)<0) {
+                            document.getElementById('nodfeedback<%=element.getOrderid()%>').style.borderColor="red";
+                            alert("Please enter value between 0 and 100");
+                        }
+                        else if(parseInt(document.getElementById('nodfeedback<%=element.getOrderid()%>').value)<100 && parseInt(document.getElementById('nodfeedback<%=element.getOrderid()%>').value)>0)
+                            document.getElementById('nodfeedback<%=element.getOrderid()%>').style.borderColor="green";                        
+                    }
+              </script>
                 <form action="OrderAction" method="post" name="feedbackform" >
                     <label for="sel1">Please Leave a Feedback based on your satisfaction of our Service, the total number of weight should be 100%</label>
                     <div class="input-group">
@@ -592,24 +642,20 @@ for (Item items:element.getItemCollection()) {%>
    
                      <div class="row"> 
                     <div class="col-xs-7">
-                        <select class="form-control" id="costfeedbackweight" name="weightcost" onchange="feedback1()">
+                        <select class="form-control" id="costfeedbackweight<%=element.getOrderid()%>" name="weightcost<%=element.getOrderid()%>" onchange="feedback<%=element.getOrderid()%>()">
                        <option  value="0">Choose Cost Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
                            else document.writeln("<option value='"+i+"'>"+i+"</option>"); }
                        </script>
                      </select>
-                                           
-                     </div>
-                      
-                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" name="valuecost" id="costfeedback"  onblur="feedbackvalue()"></div>
-                     
-                     
-                      </div> 
+                   </div> 
+                         <div class="col-xs-5">  <input type="text" placeholder="Cost Value (0-100)" class="form-control" name="valuecost<%=element.getOrderid()%>" id="costfeedback<%=element.getOrderid()%>"  onblur="feedbackvalue<%=element.getOrderid()%>()"></div>
+                   </div> 
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="timefeedbackweight" name="weighttime" onchange="feedback1()">
+                     <select class="form-control" id="timefeedbackweight<%=element.getOrderid()%>" name="weighttime<%=element.getOrderid()%>" onchange="feedback<%=element.getOrderid()%>()">
                        <option  value="0">Choose Time Weight</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -619,7 +665,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" name="valuetime" id="timefeedback" onblur="feedbackvalue()"></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="Time Value (0-100)" class="form-control" name="valuetime<%=element.getOrderid()%>" id="timefeedback<%=element.getOrderid()%>" onblur="feedbackvalue<%=element.getOrderid()%>()"></div>
                      
                      
                       </div>     
@@ -627,7 +673,7 @@ for (Item items:element.getItemCollection()) {%>
                         
                      <div class="row"> 
                     <div class="col-xs-7">
-                     <select class="form-control" id="nodfeedbackweight" name="weightnod" onchange="feedback1()">
+                     <select class="form-control" id="nodfeedbackweight<%=element.getOrderid()%>" name="weightnod<%=element.getOrderid()%>" onchange="feedback<%=element.getOrderid()%>()">
                        <option  value="0">Choose Weight Number of Defects</option>
                        <script>for(i=0; i<=100; i=i+5) {
                            if(i==0) document.writeln("<option value='1'>1</option>"); 
@@ -637,7 +683,7 @@ for (Item items:element.getItemCollection()) {%>
                                            
                      </div>
                       
-                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback" name="valuenod" onblur="feedbackvalue()"></div>
+                  <div class="col-xs-5">  <input type="text" placeholder="NOD Value (0-100)" class="form-control" id="nodfeedback<%=element.getOrderid()%>" name="valuenod<%=element.getOrderid()%>" onblur="feedbackvalue<%=element.getOrderid()%>()"></div>
                      
                      
                       </div>                          
