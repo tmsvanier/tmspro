@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -37,15 +38,13 @@ public class UserOrderItem implements OrderItem{
     ResultSet rslt3,rslt4;
     String  query="";
     @Override
-    public Set<Orders> getClientOrder(int cL_Id) {
+    public LinkedHashSet<Orders> getClientOrder(int cL_Id) {
         Client_Conn=new Oracle();
-        
-        
-
+       
         Client_Conn.connect("scott", "tiger");
         query="SELECT *FROM ORDERS WHERE CLIENTID="+cL_Id;
         rslt=Client_Conn.getResult(query);
-        orderSet=new HashSet();
+      LinkedHashSet<Orders>  clinetSet=new LinkedHashSet();
         
         try {
             while(rslt.next()){
@@ -81,7 +80,7 @@ public class UserOrderItem implements OrderItem{
                 record.setItemCollection(orderItems);
                 UserActions clientgps=new UserActions();
                 record.setGpsList(clientgps.getPosition(rslt.getLong("orderId"),Client_Conn));
-                orderSet.add(record);
+                clinetSet.add(record);
                 
              
             }//end of orderset pushing
@@ -91,7 +90,7 @@ public class UserOrderItem implements OrderItem{
                 Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
              }
         Client_Conn.terminate();
-       return  orderSet; 
+       return  clinetSet; 
     }
      @Override
         public Set<Orders> getProviderOrder(int cL_Id) {
@@ -593,6 +592,24 @@ public class UserOrderItem implements OrderItem{
         bestCarry.setQuery(query);
                   
     }//end of drop table
+
+    @Override
+    public long getlastid() {
+      Oracle  test=new Oracle();
+        test.connect("scott", "tiger");
+        query="select max(orderid)from orders";
+           int NewOrderId=-1;
+       rslt= test.getResult(query);
+        try {
+           rslt.next() ; 
+                NewOrderId = rslt.getInt(1) ;
+  
+        } catch (SQLException ex) {
+            Logger.getLogger(UserOrderItem.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        test.terminate();
+        return NewOrderId;
+    }
 
     
     

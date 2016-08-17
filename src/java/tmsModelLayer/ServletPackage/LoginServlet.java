@@ -83,7 +83,7 @@ HttpSession loginSession;
            {
                user_1.makeCopy(getLogin().getClient(username));
                loginSession.setAttribute("clientpage", user_1);
-               loginSession.setAttribute("orders", getUserOrder().getClientOrder(user_1.getClientId()));
+               loginSession.setAttribute("clinetorder", getUserOrder().getClientOrder(user_1.getClientId()));
                loginSession.setAttribute("category",getUserOrder().getCategory());
               
                response.sendRedirect("client.jsp");

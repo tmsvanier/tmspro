@@ -6,6 +6,7 @@
 package BussinessLayer.Interface;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import tmsModelLayer.Carrier;
@@ -19,7 +20,7 @@ import tmsModelLayer.Orders;
  * @author cstuser
  */
 public interface OrderItem {
-    public Set<Orders> getClientOrder(int cL_Id);
+    public LinkedHashSet<Orders> getClientOrder(int cL_Id);
     public List<Item> getOrderItem(long orderId);
     public void setClientOrder(int clientid,int providerid,int driver_id,String deprt,String arrival,ArrayList<Item> ClItem,int cosiderid,int clinetTransid);
     public Item setOrderItem(long orderId,int catNo,double Weight,int Volume,double Price,int Qnty);
@@ -29,5 +30,6 @@ public interface OrderItem {
     public int getPosition(long orderId);
     public ArrayList<Itemcategory> getCategory();
     public ArrayList<Carrier> getBestCarriers(ClientConsider temp);
+    public long getlastid();
    
 }

@@ -9,8 +9,15 @@
          int placing,confirm,cancel,deliverd,ship;
          confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
            Client myuser=(Client) session.getAttribute("clientpage");
-           Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
+           Set<Orders> myorder=(LinkedHashSet<Orders>)session.getAttribute("clinetorder");
            List<Itemcategory> myCategory=(ArrayList<Itemcategory>)session.getAttribute("category");
+           //if(session.getAttribute("neword")!=null){
+              //  Orders neword=(Orders) session.getAttribute("neword");
+              //  myorder.;
+                
+         //  }
+          
+           
            //List<Item> items_request=new ArrayList();
           // Orders order_Request=new Orders();
           // Iterator it=myorder.iterator();

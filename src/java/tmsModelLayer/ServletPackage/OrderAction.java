@@ -9,7 +9,9 @@ import BussinessLayer.Impl.UserActions;
 import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,21 +55,21 @@ HttpSession ordersession;
               ArrayList<Kpilog> feedbackList=new ArrayList(); 
              //set 1st item fro kpi
               Kpilog constFeedback=new Kpilog();
-              double costWeight=  Double.parseDouble(request.getParameter("weightcost"));//parameter1 weight
-              double costValue= Double.parseDouble(request.getParameter("valuecost"));//parameter1 value
+              double costWeight=  Double.parseDouble(request.getParameter("weightcost"+orderid));//parameter1 weight
+              double costValue= Double.parseDouble(request.getParameter("valuecost"+orderid));//parameter1 value
            feedbackList.add(constFeedback);
               constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight/100);constFeedback.setKpivalue(costValue);
                //set 2st item fro kpi
               Kpilog timeFeedback=new Kpilog();
-              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"));//parameter2 weight
-              double timeValue=  Double.parseDouble(request.getParameter("valuetime"));//parameter value
+              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"+orderid));//parameter2 weight
+              double timeValue=  Double.parseDouble(request.getParameter("valuetime"+orderid));//parameter value
               timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight/100);timeFeedback.setKpivalue(timeValue);
               
                //set 3st item fro kpi
              feedbackList.add(timeFeedback);
              Kpilog defectFeedback=new Kpilog();
-             double NODweight= Double.parseDouble(request.getParameter("weightnod"));//parameter3 weight
-             double valuenod= Double.parseDouble(request.getParameter("valuenod"));//parameter3 value           
+             double NODweight= Double.parseDouble(request.getParameter("weightnod"+orderid));//parameter3 weight
+             double valuenod= Double.parseDouble(request.getParameter("valuenod"+orderid ));//parameter3 value           
              defectFeedback.setOrderid(orderid);defectFeedback.setKpiparid1(4);defectFeedback.setKpiweight(NODweight/100);defectFeedback.setKpivalue(valuenod);
             feedbackList.add(defectFeedback);
             clientFeedback=new  UserActions();
@@ -118,17 +120,29 @@ HttpSession ordersession;
         
          //////////////////////////////////////client order Action  ////////////////////////////////////////////// //
         if(request.getParameter("orderbtn")!=null){
+         
+       
         //client_info
         int clientId=Integer.parseInt(request.getParameter("client_id"));
+       
         //GPS value
         String departure=request.getParameter("departure");
         String destination=request.getParameter("destination");
+        Orders test=new Orders();
+        test.setArrival(destination);
+        test.setDeparture(departure);
+         test.setClientid(clientId);
+        test.setStatusid(2);
+        test.setProviderid(2);
        
-    
+        test.setDriverid(10);
+        
+        
          int cosiderid =Integer.parseInt(request.getParameter("radiobtn"));
          int clinetTransid =Integer.parseInt(request.getParameter("transportType")); 
          if(clinetTransid==0)
              clinetTransid=6;
+         
          ArrayList<Item> orderItem=new ArrayList();
        for(int i=1;i<3;i++){
            String cat,itemdes,itemqty,itemvol,itemweight,itemcost;
@@ -138,46 +152,62 @@ HttpSession ordersession;
            itemcost="item"+i+"price";
            Item record=new Item();
            record.setItemcategory(Integer.parseInt(request.getParameter(cat)));
-          record.setItemDesc(request.getParameter(itemdes));          
+           record.setItemDesc(request.getParameter(itemdes));          
            record.setItemqty(Integer.parseInt(request.getParameter(itemqty)));
            record.setItemweight(Double.parseDouble(request.getParameter(itemweight)));
            record.setItemvolume(Integer.parseInt(request.getParameter(itemvol)));
            record.setItemprice(Double.parseDouble(request.getParameter(itemcost)));
-           orderItem.add(record);
+        //add record to the orderItem
+           orderItem.add(record); 
+      
        }
-        //item1
+
+        test.setItemCollection(orderItem);
+       
+        
+      
         setClient_order.setClientOrder(clientId,2,10, departure, destination,orderItem,cosiderid,clinetTransid);
+     
+         test.setOrderid(setClient_order.getlastid());
+
+        //clinetorders.add(test);
+      
          response.sendRedirect("client.jsp");
         }//end of placing an order
         
         else if(request.getParameter("feedbackbutton")!=null){ 
-            
+             HttpSession clinetsession;
+          clinetsession=request.getSession();
+          LinkedHashSet<Orders> clinetorders=(LinkedHashSet<Orders>) clinetsession.getAttribute("clinetorder");
               long orderid= Long.parseLong(request.getParameter("idfeedback"));
               ArrayList<Kpilog> feedbackList=new ArrayList(); 
              //set 1st item fro kpi
               Kpilog constFeedback=new Kpilog();
-              double costWeight=  Double.parseDouble(request.getParameter("weightcost"));//parameter1 weight
-              double costValue= Double.parseDouble(request.getParameter("valuecost"));//parameter1 value
+              double costWeight=  Double.parseDouble(request.getParameter("weightcost"+orderid));//parameter1 weight
+              double costValue= Double.parseDouble(request.getParameter("valuecost"+orderid));//parameter1 value
            feedbackList.add(constFeedback);
               constFeedback.setOrderid(orderid);constFeedback.setKpiparid1(2);constFeedback.setKpiweight(costWeight/100);constFeedback.setKpivalue(costValue);
                //set 2st item fro kpi
               Kpilog timeFeedback=new Kpilog();
-              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"));//parameter2 weight
-              double timeValue=  Double.parseDouble(request.getParameter("valuetime"));//parameter value
+              double timeWeight=  Double.parseDouble(request.getParameter("weighttime"+orderid));//parameter2 weight
+              double timeValue=  Double.parseDouble(request.getParameter("valuetime"+orderid));//parameter value
               timeFeedback.setOrderid(orderid);timeFeedback.setKpiparid1(3);timeFeedback.setKpiweight(timeWeight/100);timeFeedback.setKpivalue(timeValue);
               
                //set 3st item fro kpi
              feedbackList.add(timeFeedback);
              Kpilog defectFeedback=new Kpilog();
-             double NODweight= Double.parseDouble(request.getParameter("weightnod"));//parameter3 weight
-             double valuenod= Double.parseDouble(request.getParameter("valuenod"));//parameter3 value           
+             double NODweight= Double.parseDouble(request.getParameter("weightnod"+orderid));//parameter3 weight
+             double valuenod= Double.parseDouble(request.getParameter("valuenod"+orderid));//parameter3 value           
              defectFeedback.setOrderid(orderid);defectFeedback.setKpiparid1(4);defectFeedback.setKpiweight(NODweight/100);defectFeedback.setKpivalue(valuenod);
             feedbackList.add(defectFeedback);
             
              
             clientFeedback=new  UserActions();
             clientFeedback.orderFeedBack(feedbackList);
-           
+                  for(Orders cord:clinetorders){
+           if(cord.getOrderid()==orderid)
+               cord.setStatusid(7);
+       }
              response.sendRedirect("client.jsp");
           }//end of feedback
            
