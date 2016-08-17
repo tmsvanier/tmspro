@@ -10,12 +10,15 @@ import BussinessLayer.Impl.UserOrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import tmsModelLayer.Item;
 import tmsModelLayer.Kpilog;
+import tmsModelLayer.Orders;
 
 /**
  *
@@ -23,7 +26,7 @@ import tmsModelLayer.Kpilog;
  */
 public class OrderAction extends HttpServlet {
  UserOrderItem setClient_order=new UserOrderItem();
- 
+HttpSession ordersession;
   UserActions prov,Carr,clientFeedback,driv;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -110,7 +113,8 @@ public class OrderAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        
+          ordersession=request.getSession();
+           Set<Orders> myorder=(Set<Orders>)ordersession.getAttribute("orders");
         
          //////////////////////////////////////client order Action  ////////////////////////////////////////////// //
         if(request.getParameter("orderbtn")!=null){
@@ -183,10 +187,17 @@ public class OrderAction extends HttpServlet {
           
           //////////////////////////////////////provider actions//////////////////////////////////////////////
           
-        else if(request.getParameter("confirmbtn")!=null|| request.getParameter("cancelbtn")!=null){           
+        else if(request.getParameter("confirmbtn")!=null|| request.getParameter("cancelbtn")!=null){ 
+           
                 prov=new UserActions();        
                 int orderid=Integer.parseInt(request.getParameter("orderconf"));
                 int carrierid=Integer.parseInt(request.getParameter("carrier"));
+                for(Orders element:myorder){
+                    if(element.getOrderid()==orderid){
+                        element.setStatusid(3);
+                        element.setCarrierid(carrierid);
+                    }               
+                }
                 if(carrierid!=0)
                  prov.confirmOrder(orderid,carrierid);
               else
@@ -202,10 +213,27 @@ public class OrderAction extends HttpServlet {
           Carr=new UserActions();        
        int orderid=Integer.parseInt(request.getParameter("ordership"));
        int driverid=Integer.parseInt(request.getParameter("Driver"));
-       if(driverid!=0)
+       
+       if(driverid!=0){
            Carr.shipOrder(orderid,driverid);
-       else
-          Carr.noDriver(orderid);
+            for(Orders element:myorder){
+                    if(element.getOrderid()==orderid){
+                        element.setStatusid(4);
+                        element.setDriverid(driverid);
+                    }//if orderid is equeal to request orderid               
+                }//for loop to set session again
+       }
+           
+       else{
+           for(Orders element:myorder){
+                    if(element.getOrderid()==orderid){
+                        element.setStatusid(3);
+                        
+                    }               
+                }
+            Carr.noDriver(orderid);
+       }
+         
     
         response.sendRedirect("carrier.jsp");
        } 
@@ -223,10 +251,16 @@ public class OrderAction extends HttpServlet {
     
         response.sendRedirect("driver.jsp");
        } 
-        if(request.getParameter("confirmdelivery")!=null){
+        else if(request.getParameter("confirmdelivery")!=null){
               driv=new UserActions();        
             long orderid=Long.parseLong(request.getParameter("ordergpsid"));
             driv.deliverOrder(orderid);
+             for(Orders element:myorder){
+                    if(element.getOrderid()==orderid){
+                        element.setStatusid(5);
+                      
+                    }//if orderid is equeal to request orderid               
+                }//for loop to set session again
             response.sendRedirect("driver.jsp");
         }
           //////////////////////////////////////end of driver action////////////////////////////////////////////// 

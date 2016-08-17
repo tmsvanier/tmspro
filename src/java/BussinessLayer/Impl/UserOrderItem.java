@@ -150,7 +150,7 @@ public class UserOrderItem implements OrderItem{
                          consider.setTransportId(rslt1.getInt("transportid")); 
                      
                          record.set_CarrierOption(getBestCarriers(consider));
-                         //record.setArrival(getBestCarriers(consider).get(0).getFullName());
+                        
                     }//end of select client consideraton
                     }//end if orderid=2 means statusid=2;
                 else{
