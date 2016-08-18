@@ -226,10 +226,19 @@ HttpSession ordersession;
                         element.setCarrierid(carrierid);
                     }               
                 }
-                if(carrierid!=0)
+                if(carrierid!=0 && request.getParameter("cancelbtn")==null)
                  prov.confirmOrder(orderid,carrierid);
-              else
-                prov.cancelOrder(orderid);           
+                else{
+                    for(Orders element:myorder){
+                    if(element.getOrderid()==orderid){
+                        element.setStatusid(6);
+                        element.setCarrierid(carrierid);
+                        prov.cancelOrder(orderid);
+                    }               
+                }
+                }
+                
+                
                response.sendRedirect("provider.jsp");
                }
           

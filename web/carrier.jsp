@@ -124,7 +124,7 @@ public String gettype(int num){
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger"><% out.print(ship); %></span>
+              <span class="label label-danger"><% out.print(confirm); %></span>
             </a>
             <ul class="dropdown-menu">
                 <%if (confirm!=0)
