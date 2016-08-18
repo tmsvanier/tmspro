@@ -6,9 +6,9 @@
 <% 
     int placing,confirm,cancel,deliverd,ship;
          confirm=0;cancel=0;deliverd=0;ship=0;placing=0;
-           Carrier myuser1=(Carrier) session.getAttribute("carrierpage");
-           Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
-           List<Drivers> mydriver=(ArrayList<Drivers>)session.getAttribute("drivers");
+          Carrier myuser1=(Carrier) session.getAttribute("carrierpage");
+          Set<Orders> myorder=(Set<Orders>)session.getAttribute("orders");
+          List<Drivers> mydriver=(ArrayList<Drivers>)session.getAttribute("drivers");
           boolean find=false;
             for(Orders test:myorder){
                if(test.getStatusid()==2)placing++;
@@ -303,7 +303,7 @@ public String gettype(int num){
              
                   <th>Driver Name</th>
                   <th>Request Date</th>
-                  <th> GPS first position</th>
+                  <th>Details</th>
                 </tr>
                 
        <% for(Orders element:myorder){    
@@ -324,10 +324,11 @@ public String gettype(int num){
                               out.println("<td> Driver has not been chosen  </td>");                    
                    
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                     if(element.getGps().get(0).getGpsx()!=0.00){
-                     out.println("<td> X: "+element.getGps().get(0).getGpsx()+" Y: "+element.getGps().get(0).getGpsy()+"</td>"); }
-                            else{
-                                 out.println("<td><sup> This order  does not have any cordinate</sup></td>"); }
+                     if(element.getStatusid()==5) out.println("<td> The order was successfully delivered!</td>");
+                     else if(element.getStatusid()==4 || element.getStatusid()==3)
+                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track the order</a>");
+                     else out.println("<td>There are no details on this order</td>"); 
+                   
                     out.println("</tr>"); 
                 
                 
@@ -406,7 +407,23 @@ public String gettype(int num){
                  out.println("  <p></p>");        
                  out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='shipmentbtn' value='order'>Send This Order to selected Driver</button>"); 
                 out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='waitingbtn' value='order'>I have No Driver Right Now</button>");
-              } %>
+              } 
+
+                if(element.getStatusid()==4) { %>
+                              
+                        GPS Map Position of the vehicle:<br>
+                      
+                 <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); 
+                      %>&waypoints=<% out.print(element.getDeparture()); %> <% for(Gps gprecord:element.getGps()){
+                     out.print("|" + gprecord.getGpsx()+","+gprecord.getGpsy()); }%>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>               
+            
+                     <%     
+              }
+              
+              
+              
+              
+              %>
              
          </form>
                     <%//iner loop

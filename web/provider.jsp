@@ -305,7 +305,7 @@ public String gettype(int num){
                   <th>Status</th>
                   <th>carrier Name</th>                
                   <th>Request Date</th>
-                  <th>gps First position </th>
+                  <th>Details</th>
                 </tr>
                 
                 <% for(Orders element:myorder){    
@@ -323,22 +323,22 @@ public String gettype(int num){
                          }}
                              
                      if(!find)
-                            out.println("<td> Carrier has not been chosen  </td>");
+                            out.println("<td> Carrier has not been chosen </td>");
                     out.println("<td>"+element.getOrderdate()+"</td>");
-                     if(element.getGps().get(0).getGpsx()!=0.00){
-                     out.println("<td> X: "+element.getGps().get(0).getGpsx()+" Y: "+element.getGps().get(0).getGpsy()+"</td>"); }
-                            else{
-                                 out.println("<td><sup> This order  does not have any cordinate</sup></td>"); }
+                    
+                     if(element.getStatusid()==5) out.println("<td> The order was successfully delivered!</td>");
+                     else if(element.getStatusid()==4 || element.getStatusid()==3)
+                        out.println("<td><a href=# data-toggle=modal data-target=#"+element.getOrderid()+">Track the order</a>");
+                     else out.println("<td>There are no details on this order</td>"); 
+                     
                     out.println("</tr>"); 
-                
-                
+                    
                     out.println("<div class='modal fade' tabindex='-1' role=dialog aria-hidden=true id="+element.getOrderid()+">");              
-                    out.println(" <div class='modal-dialog modal-lg'><div class=modal-content>"); 
-                    out.println(" <div class='modal-header'>"); 
-                    out.println(" <button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
-                    out.println(" <h4 class='modal-title'>Details of order # "+element.getOrderid()+"</h4>");                                   
-                    out.println(" <div class='modal-body'>");
-                                                         
+                    out.println("<div class='modal-dialog modal-lg'><div class=modal-content>"); 
+                    out.println("<div class='modal-header'>"); 
+                    out.println("<button type='button' class='close' data-dismiss='modal'>&times;</button>"); 
+                    out.println("<h4 class='modal-title'>Details of order #"+element.getOrderid()+"</h4>");                                   
+                    out.println("<div class='modal-body'>");
                  %>
              
 <form action="OrderAction"  method="post" class="form-update" name="order<%=element.getOrderid()%>" >
@@ -428,6 +428,17 @@ public String gettype(int num){
                  out.println("<button class='btn btn-lg btn-primary btn-block' type='submit' name='confirmbtn' value='order'>Confirm an Order</button>"); 
                 out.println(" <button class='btn btn-lg bg-red btn-primary btn-block' type='submit' name='cancelbtn' value='order'>Cancel an Order</button>");
               } 
+
+              if(element.getStatusid()==4) { %>
+                              
+                        GPS Map Position of the vehicle:<br>
+                      
+                 <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAoliW0rF36cTvpCZ_TzZyphrmQ_MYm_24&origin=<% out.print(element.getDeparture()); %>&destination=<% out.print(element.getArrival()); 
+                      %>&waypoints=<% out.print(element.getDeparture()); %> <% for(Gps gprecord:element.getGps()){
+                     out.print("|" + gprecord.getGpsx()+","+gprecord.getGpsy()); }%>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>               
+            
+                     <%     
+              }
               
               %>
              
