@@ -120,7 +120,25 @@ public String gettype(int num){
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
  
-          
+          <li class="dropdown tasks-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger"><% out.print(ship); %></span>
+            </a>
+            <ul class="dropdown-menu">
+                <%if (confirm!=0)
+                 out.println("<li class='header'><b>You have <i>"+confirm+" </i>  shipped orders </br> please do not forget to choose a driver</b></li>");
+                %>
+                <li>
+                <!-- Inner menu: contains the tasks -->
+                
+              </li>
+              <li class="footer" >
+                <a data-toggle="pill" href="#list">View all Orders</a>
+              </li>
+            </ul>
+          </li>
          
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
