@@ -14,8 +14,16 @@
           <option name="url" value="git@github.com:tmsvanier/TMSProject.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/omidpn" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/OmidPn/TestViso" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="F:\software mastering\tmsproject\tmspro" />
+    <option name="cloneParentDir" value="C:\Users\omid\Desktop" />
   </component>
 </application>
