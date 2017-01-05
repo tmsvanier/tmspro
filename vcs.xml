@@ -38,8 +38,12 @@
           <option name="url" value="https://github.com/OmidPn/IntelliJProject.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="F:\softwaremastering\intelliJProject" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="C:\Users\omid\Desktop\New folder1" />
+    <option name="cloneParentDir" value="F:\softwaremastering\git projects\intellJGits" />
   </component>
 </application>
