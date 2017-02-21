@@ -5,5 +5,9 @@
     <option name="PATTERN_ANNOTATION" value="org.intellij.lang.annotations.Pattern" />
     <option name="SUBST_ANNOTATION" value="org.intellij.lang.annotations.Subst" />
     <option name="RESOLVE_REFERENCES" value="true" />
+    <injection language="SpEL" injector-id="xml">
+      <display-name>property</display-name>
+      <place><![CDATA[xmlTag().withLocalName(string().equalTo("property")).withNamespace(string().equalTo("http://www.springframework.org/schema/beans"))]]></place>
+    </injection>
   </component>
 </application>
